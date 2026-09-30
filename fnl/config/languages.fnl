@@ -4,16 +4,36 @@
 
 (vim.pack.add ["https://github.com/mrcjkb/rustaceanvim"
                "https://github.com/chomosuke/typst-preview.nvim"
-               "https://github.com/MeanderingProgrammer/render-markdown.nvim"])
+               "https://github.com/MeanderingProgrammer/render-markdown.nvim"
+               {:src "https://github.com/obsidian-nvim/obsidian.nvim"
+                :version (vim.version.range "*")}])
 
 (local typst-preview (require :typst-preview))
 (local render-markdown (require :render-markdown))
+(local obsidian (require :obsidian))
 
 ;; use tinymist and websocat from PATH instead of downloading them
 (typst-preview.setup {:dependencies_bin {:tinymist :tinymist
                                          :websocat :websocat}})
 
 (render-markdown.setup {:latex {:enabled false}})
+
+(obsidian.setup {:legacy_commands false
+                 :workspaces [{:name :vault :path "~/Obsidian Vault"}]
+                 :picker {:name :snacks.picker}
+                 :ui {:enable false}
+                 :frontmatter {:enabled false}})
+
+(vim.keymap.set :n :<leader>of "<cmd>Obsidian quick_switch<CR>"
+                {:desc "Find note"})
+
+(vim.keymap.set :n :<leader>os "<cmd>Obsidian search<CR>"
+                {:desc "Search notes"})
+
+(vim.keymap.set :n :<leader>on "<cmd>Obsidian new<CR>" {:desc "New note"})
+(vim.keymap.set :n :<leader>od "<cmd>Obsidian today<CR>" {:desc "Daily note"})
+(vim.keymap.set :n :<leader>ob "<cmd>Obsidian backlinks<CR>" {:desc :Backlinks})
+(vim.keymap.set :n :<leader>ot "<cmd>Obsidian tags<CR>" {:desc "Search tags"})
 
 (fn open-typst-pdf []
   (let [client (. (vim.lsp.get_clients {:name :tinymist :bufnr 0}) 1)]
