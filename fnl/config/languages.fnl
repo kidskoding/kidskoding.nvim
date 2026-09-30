@@ -16,7 +16,7 @@
 (typst-preview.setup {:dependencies_bin {:tinymist :tinymist
                                          :websocat :websocat}})
 
-(render-markdown.setup {:latex {:enabled false}})
+(render-markdown.setup {:enabled false :latex {:enabled false}})
 
 (obsidian.setup {:legacy_commands false
                  :workspaces [{:name :vault :path "~/Obsidian Vault"}]
