@@ -4,6 +4,8 @@
                "https://github.com/stevearc/oil.nvim"
                "https://github.com/nvim-lua/plenary.nvim"
                "https://github.com/NeogitOrg/neogit"
+               "https://github.com/MunifTanjim/nui.nvim"
+               "https://github.com/clabby/difftastic.nvim"
                "https://github.com/vyfor/cord.nvim"])
 
 (local autopairs (require :nvim-autopairs))
@@ -11,6 +13,7 @@
 (local gitsigns (require :gitsigns))
 (local oil (require :oil))
 (local neogit (require :neogit))
+(local difftastic (require :difftastic-nvim))
 (local cord (require :cord))
 
 (autopairs.setup {})
@@ -18,6 +21,7 @@
 (gitsigns.setup {})
 (oil.setup {:win_options {:cursorline true}})
 (neogit.setup {})
+(difftastic.setup {:vcs :git :snacks_picker {:enabled true}})
 
 ;; discord rich presence
 (cord.setup {:variables true
@@ -31,6 +35,8 @@
 (vim.keymap.set :n :<leader>gg :<cmd>Neogit<CR> {:desc "Git status"})
 (vim.keymap.set :n :<leader>gb gitsigns.blame_line {:desc "Blame line"})
 (vim.keymap.set :n :<leader>gc "<cmd>Neogit commit<CR>" {:desc "Git commit"})
+(vim.keymap.set :n :<leader>gd :<cmd>Difft<CR> {:desc "Diff changes"})
+(vim.keymap.set :n :<leader>gD :<cmd>DifftPick<CR> {:desc "Diff a commit"})
 
 ;; auto-save after leaving insert mode or any other textedit
 (vim.api.nvim_create_autocmd [:InsertLeave :TextChanged]
