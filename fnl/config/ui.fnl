@@ -19,6 +19,7 @@
 (local bufferline (require :bufferline))
 
 (lualine.setup {:options {: theme
+                          :globalstatus true
                           :component_separators {:left "%#lualine_sep_color_b#│"
                                                  :right "%#lualine_sep_color_x#│"}
                           :section_separators {:left "" :right ""}}})
