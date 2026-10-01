@@ -9,6 +9,8 @@
                          :folds false}
                 :overrides {"@punctuation.bracket" {:link :Normal}
                             "@punctuation.delimiter" {:link :Normal}
+                            :TroubleNormal {:link :Normal}
+                            :TroubleNormalNC {:link :Normal}
                             :Added {:link :GruvboxGreen}
                             :Removed {:link :GruvboxRed}
                             :Changed {:link :GruvboxYellow}
