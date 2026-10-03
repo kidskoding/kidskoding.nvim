@@ -12,3 +12,12 @@
 (require :config.database)
 (require :config.ai)
 (require :config.overrides)
+
+;; neovide
+(when vim.g.neovide
+  (set vim.g.neovide_animation_length 0)
+  (set vim.g.neovide_cursor_animation_length 0)
+  (set vim.g.neovide_cursor_trail_size 0)
+  (set vim.g.neovide_cursor_vfx_mode "")
+  ;; set font and size!
+  (set vim.o.guifont "Terminess Nerd Font Mono:h14"))
