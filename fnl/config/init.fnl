@@ -20,4 +20,4 @@
   (set vim.g.neovide_cursor_trail_size 0)
   (set vim.g.neovide_cursor_vfx_mode "")
   ;; set font and size!
-  (set vim.o.guifont "Terminess Nerd Font Mono:h14"))
+  (set vim.o.guifont "Terminess Nerd Font Mono:h16"))
