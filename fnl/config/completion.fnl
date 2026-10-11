@@ -12,6 +12,8 @@
                                        :plsql sql-sources}
                         :providers {:dadbod {:name :Dadbod
                                              :module :vim_dadbod_completion.blink}}}
+              :completion {:documentation {:auto_show true
+                                           :auto_show_delay_ms 200}}
               :keymap {:preset :none
                        :<C-n> [:insert_next :fallback]
                        :<C-p> [:insert_prev :fallback]
@@ -19,6 +21,7 @@
                        :<Up> [:select_prev :fallback]
                        :<C-y> [:accept :fallback]
                        :<Tab> [:accept :fallback]
+                       :<CR> [:accept :fallback]
                        :<C-e> [:cancel :fallback]
                        :<C-space> [:show
                                    :show_documentation
