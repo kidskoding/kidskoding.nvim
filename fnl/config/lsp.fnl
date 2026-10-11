@@ -5,7 +5,7 @@
 
 (vim.lsp.config :ruff {:init_options {:settings {:showSyntaxErrors false
                                                  :lint {:ignore [:F821 :F841]}}}
-                       :on_attach (fn [client bufnr]
+                       :on_attach (fn [client _]
                                     (set client.server_capabilities.diagnosticProvider
                                          false)
                                     (set client.server_capabilities.hoverProvider
