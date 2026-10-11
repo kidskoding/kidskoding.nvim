@@ -5,9 +5,9 @@
 (local sidekick (require :sidekick))
 (local sidekick-cli (require :sidekick.cli))
 
-(claudecode.setup {:terminal {:split_width_percentage 0.4}})
+(claudecode.setup {:terminal {:split_width_percentage 0.3}})
 (sidekick.setup {:nes {:enabled false}
-                 :cli {:win {:split {:width 0.4}}
+                 :cli {:win {:split {:width 0.3}}
                        :tools {:agy {:cmd [:agy] :is_proc "\\<agy"}}}})
 
 (fn map [key cmd desc]
