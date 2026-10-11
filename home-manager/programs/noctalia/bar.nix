@@ -87,7 +87,7 @@ in {
       clock = {
         actions.left = "panel-toggle control-center calendar";
         actions.right = "panel-toggle control-center calendar";
-        format = "<span foreground='${c.base08}'></span> {:%a %b %d}  |  <span foreground='${c.base08}'></span> {:%I:%M %p}";
+        format = "<span foreground='${c.base08}'></span> {:%a %b %d} | <span foreground='${c.base08}'></span> {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
       };
 
