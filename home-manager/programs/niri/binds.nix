@@ -76,6 +76,11 @@ in {
           "panel-toggle"
           "launcher"
         ];
+        "Mod+A".action.spawn = noctalia [
+          "panel-toggle"
+          "control-center"
+          "home"
+        ];
         "Mod+C".action.spawn = noctalia [
           "panel-toggle"
           "clipboard"
