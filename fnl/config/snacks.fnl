@@ -36,3 +36,4 @@
 ;; some terminals send <C-_> for <C-/>
 (vim.keymap.set [:n :t] :<C-/> #(snacks.terminal) {:desc "Toggle terminal"})
 (vim.keymap.set [:n :t] :<C-_> #(snacks.terminal) {:desc :which_key_ignore})
+(vim.keymap.set :t :jk "<C-\\><C-n>" {:desc "Exit terminal mode"})
