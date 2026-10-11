@@ -34,16 +34,8 @@ in {
         "network"
         "brightness"
         "battery"
-        "group:datetime"
+        "clock"
         "session"
-      ];
-
-      capsule_group = [
-        {
-          id = "datetime";
-          members = ["date-icon" "date" "datetime-sep" "time-icon" "clock"];
-          widget_spacing = 6;
-        }
       ];
     };
 
@@ -90,34 +82,10 @@ in {
         icon_color = "secondary";
       };
 
-      date-icon = {
-        type = "custom_button";
-        glyph = "calendar";
-        icon_color = c.base08;
-        interactive = false;
-      };
-      date = {
-        type = "clock";
-        format = "{:%a %b %d}";
-        tooltip_format = "{:%A, %B %-d %Y}";
-        actions.left = "panel-toggle control-center calendar";
-      };
-      datetime-sep = {
-        type = "text";
-        text = "|";
-        color = "on_surface_variant";
-        interactive = false;
-      };
-      time-icon = {
-        type = "custom_button";
-        glyph = "clock";
-        icon_color = c.base08;
-        interactive = false;
-      };
       clock = {
-        format = "{:%I:%M %p}";
-        tooltip_format = "{:%A, %B %-d %Y}";
         actions.left = "panel-toggle control-center calendar";
+        format = " {:%a %b %d}  |   {:%I:%M %p}";
+        tooltip_format = "{:%A, %B %-d %Y}";
       };
 
       control-center = {
