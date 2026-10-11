@@ -23,7 +23,10 @@
     ./agents.nix
 
     ./evergarden.nix
+    ./tokyonight.nix
   ];
+
+  programs.bat.enable = true;
 
   programs.direnv = {
     enable = true;

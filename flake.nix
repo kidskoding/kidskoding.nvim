@@ -70,6 +70,7 @@
       url = "https://codeberg.org/evergarden/nix/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    tokyonight.url = "github:mrjones2014/tokyonight.nix";
 
     # disko: declarative disk layout!
     disko = {

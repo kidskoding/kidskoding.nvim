@@ -28,7 +28,6 @@
 
   home.packages = with pkgs; [
     # additional user system tools
-    bat
     cliphist
     fd
     jq

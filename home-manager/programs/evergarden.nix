@@ -1,4 +1,5 @@
 {
+  lib,
   inputs,
   osConfig,
   ...
@@ -20,7 +21,7 @@ in {
   };
 
   stylix.targets = {
-    ghostty.colors.enable = !enabled;
-    fish.colors.enable = !enabled;
+    ghostty.colors.enable = lib.mkIf enabled false;
+    fish.colors.enable = lib.mkIf enabled false;
   };
 }

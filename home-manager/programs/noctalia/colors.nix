@@ -53,6 +53,11 @@ in {
     customPalettes = {
       evergarden = lib.importJSON "${inputs.evergarden-noctalia}/themes/evergarden-${variant}-${accent}.json";
 
+      tokyo-night-moon = {
+        dark = import ./tokyonight.nix;
+        light = import ./tokyonight.nix;
+      };
+
       stylix = {
         dark = stylixPalette;
         light = stylixPalette;
@@ -62,10 +67,7 @@ in {
     settings.theme = {
       mode = config.stylix.polarity;
       source = "custom";
-      custom_palette =
-        if osConfig.theme == "evergarden"
-        then "evergarden"
-        else "stylix";
+      custom_palette = osConfig.theme;
     };
   };
 }
