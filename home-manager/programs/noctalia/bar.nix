@@ -4,6 +4,7 @@
   ...
 }: let
   c = config.lib.stylix.colors.withHashtag;
+  calendar = "panel-toggle control-center calendar";
 in {
   programs.noctalia.settings = {
     bar.main = {
@@ -34,8 +35,16 @@ in {
         "network"
         "brightness"
         "battery"
-        "clock"
+        "group:datetime"
         "session"
+      ];
+
+      capsule_group = [
+        {
+          id = "datetime";
+          members = ["date-icon" "date" "datetime-sep" "time-icon" "clock"];
+          widget_spacing = 6;
+        }
       ];
     };
 
@@ -82,10 +91,33 @@ in {
         icon_color = "secondary";
       };
 
-      clock = {
-        actions.left = "panel-toggle control-center calendar";
-        format = " {:%a %b %d}  |   {:%I:%M %p}";
+      date-icon = {
+        type = "custom_button";
+        glyph = "calendar";
+        icon_color = c.base08;
+        actions.left = calendar;
+      };
+      date = {
+        type = "clock";
+        format = "{:%a %b %d}";
         tooltip_format = "{:%A, %B %-d %Y}";
+        actions.left = calendar;
+      };
+      datetime-sep = {
+        type = "text";
+        text = "|";
+        color = "outline";
+      };
+      time-icon = {
+        type = "custom_button";
+        glyph = "clock";
+        icon_color = c.base08;
+        actions.left = calendar;
+      };
+      clock = {
+        format = "{:%I:%M %p}";
+        tooltip_format = "{:%A, %B %-d %Y}";
+        actions.left = calendar;
       };
 
       control-center = {
