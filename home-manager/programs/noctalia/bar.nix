@@ -92,7 +92,7 @@ in {
       };
 
       clock = {
-        actions.left = "panel-toggle control-center calendar";
+        actions.left = "panel-toggle noctalia/timer:panel";
         format = " {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
       };
@@ -113,7 +113,7 @@ in {
         type = "custom_button";
         glyph = "U+F017";
         icon_color = c.base08;
-        actions.left = "panel-toggle control-center calendar";
+        actions.left = "panel-toggle noctalia/timer:panel";
       };
       clock-separator = {
         type = "text";
