@@ -62,7 +62,10 @@ in {
     settings.theme = {
       mode = config.stylix.polarity;
       source = "custom";
-      custom_palette = "evergarden";
+      custom_palette =
+        if osConfig.theme == "evergarden"
+        then "evergarden"
+        else "stylix";
     };
   };
 }

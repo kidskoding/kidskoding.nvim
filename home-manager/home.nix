@@ -15,6 +15,7 @@
     VISUAL = "nvim";
     TSDK = "${pkgs.typescript_5}/lib/node_modules/typescript/lib";
 
+    # use old way for initializing projects with uv!
     UV_NO_PROJECT = 1;
   };
 
@@ -27,6 +28,7 @@
 
   home.packages = with pkgs; [
     # additional user system tools
+    bat
     cliphist
     fd
     jq

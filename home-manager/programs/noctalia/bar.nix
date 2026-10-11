@@ -1,10 +1,15 @@
 {
+  config,
   pkgs,
   inputs,
   osConfig,
   ...
 }: let
   p = inputs.evergarden.lib.palette.${osConfig.evergarden.variant};
+  occupied =
+    if osConfig.theme == "evergarden"
+    then p.overlay1
+    else config.lib.stylix.colors.base04;
 in {
   programs.noctalia.settings = {
     bar.main = {
@@ -52,7 +57,7 @@ in {
         inactive_pill_size = 1;
         label_source = "id";
         hide_when_empty = true;
-        occupied_color = "#${p.overlay1}";
+        occupied_color = "#${occupied}";
       };
 
       media = {

@@ -120,6 +120,7 @@ in {
 
       # other
       agent = "cursor-agent";
+      cat = "bat";
       ff = "fastfetch";
       timer = "timr-tui";
       vim = "nvim";
