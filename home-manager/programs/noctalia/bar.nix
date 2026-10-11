@@ -65,7 +65,8 @@ in {
 
       volume = {
         show_label = true;
-        icon_color = "tertiary";
+        icon_color = "primary";
+        mute_color = c.base08;
       };
       network = {
         show_label = true;
@@ -80,10 +81,11 @@ in {
         display_mode = "glyph";
         show_label = true;
         icon_color = "secondary";
+        warning_color = c.base0A;
       };
 
       clock = {
-        actions.left = "panel-toggle noctalia/timer:panel";
+        actions.left = "panel-toggle control-center calendar";
         actions.right = "panel-toggle control-center calendar";
         format = "<span foreground='${c.base08}'></span> {:%a %b %d}  |  <span foreground='${c.base08}'></span> {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
