@@ -58,12 +58,14 @@ in {
     targets.grub.enable = false;
     targets.nixos-icons.enable = false;
     targets.plymouth.enable = false;
+    targets.qt.enable = false;
   };
 
   home-manager.users.anirudh = {
     stylix.targets = {
       gnome.enable = false;
       kde.enable = false;
+      qt.enable = false;
     };
 
     programs.noctalia.customPalettes.stylix.dark = lib.mapAttrs (_: lib.mkForce) {
