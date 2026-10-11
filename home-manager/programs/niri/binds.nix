@@ -72,6 +72,10 @@ in {
           "panel-toggle"
           "launcher"
         ];
+        "Mod+Space".action.spawn = noctalia [
+          "panel-toggle"
+          "launcher"
+        ];
         "Mod+C".action.spawn = noctalia [
           "panel-toggle"
           "clipboard"
@@ -93,7 +97,7 @@ in {
         "Mod+F".action.maximize-column = [];
         "Mod+Shift+F".action.fullscreen-window = [];
         "Mod+Shift+Space".action.toggle-window-floating = [];
-        "Mod+Space".action.switch-focus-between-floating-and-tiling = [];
+        "Mod+Ctrl+Space".action.switch-focus-between-floating-and-tiling = [];
         "Mod+R".action.switch-preset-column-width = [];
         "Mod+Comma".action.consume-window-into-column = [];
         "Mod+Period".action.expel-window-from-column = [];
