@@ -3,9 +3,13 @@
 
 (vim.lsp.config :lua_ls {:settings {:Lua {:diagnostics {:globals [:vim]}}}})
 
-(vim.lsp.config :ruff
-                {:init_options {:settings {:showSyntaxErrors false
-                                           :lint {:ignore [:F821 :F841]}}}})
+(vim.lsp.config :ruff {:init_options {:settings {:showSyntaxErrors false
+                                                 :lint {:ignore [:F821 :F841]}}}
+                       :on_attach (fn [client bufnr]
+                                    (set client.server_capabilities.diagnosticProvider
+                                         false)
+                                    (set client.server_capabilities.hoverProvider
+                                         false))})
 
 (vim.lsp.config :tinymist
                 {:settings {:exportPdf :onType
