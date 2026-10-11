@@ -26,7 +26,8 @@
                                :GitSignsChange {:fg "#F5D098"}
                                :GitSignsUntracked {:fg "#B3E3CA"}}})
 
-(tokyonight.setup {:styles {:comments {:italic false}
+(tokyonight.setup {:style :moon
+                   :styles {:comments {:italic false}
                             :keywords {:italic false}}})
 
 (vim.cmd.colorscheme :tokyonight)
