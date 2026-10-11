@@ -52,7 +52,7 @@ in {
       size = 32;
     };
 
-    opacity.terminal = 0.8;
+    opacity.terminal = 0.75;
 
     targets.console.enable = false;
     targets.grub.enable = false;

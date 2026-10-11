@@ -19,7 +19,7 @@ in {
       background_opacity = 0.85;
       capsule = true;
       capsule_fill = "surface_variant";
-      color = "on_surface_variant";
+      color = "on_surface";
       capsule_border_width = 0;
       capsule_padding = 8;
       capsule_thickness = 0.8;
