@@ -1,5 +1,5 @@
 {
-  lib,
+  config,
   pkgs,
   inputs,
   osConfig,
@@ -9,7 +9,7 @@
   occupied =
     if osConfig.theme == "evergarden"
     then p.overlay1
-    else lib.removePrefix "#" (import ./tokyonight.nix).mOnSurfaceVariant;
+    else config.lib.stylix.colors.base04;
 in {
   programs.noctalia.settings = {
     bar.main = {

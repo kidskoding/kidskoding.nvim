@@ -29,6 +29,32 @@
     base0E = p.purple;
     base0F = p.pink;
   };
+
+  tokyonightHelix = builtins.readFile "${inputs.tokyonight.inputs.tokyonight}/extras/helix/tokyonight_moon.toml";
+  t = lib.mapAttrs (_: lib.removePrefix "#") (
+    builtins.fromTOML (builtins.elemAt (builtins.split "\\[palette]" tokyonightHelix) 2)
+  );
+
+  tokyonightScheme = {
+    scheme = "Tokyo Night Moon";
+    author = "folke";
+    base00 = t.bg;
+    base01 = t.bg_highlight;
+    base02 = t.bg_visual;
+    base03 = t.comment;
+    base04 = t.fg_dark;
+    base05 = t.fg;
+    base06 = t.fg;
+    base07 = t.fg;
+    base08 = t.red;
+    base09 = t.orange;
+    base0A = t.yellow;
+    base0B = t.green;
+    base0C = t.cyan;
+    base0D = t.blue;
+    base0E = t.magenta;
+    base0F = t.red1;
+  };
 in {
   options.theme = lib.mkOption {
     type = lib.types.enum ["evergarden" "tokyo-night-moon"];
@@ -49,7 +75,7 @@ in {
       base16Scheme =
         if config.theme == "evergarden"
         then evergardenScheme
-        else "${pkgs.base16-schemes}/share/themes/${config.theme}.yaml";
+        else tokyonightScheme;
       polarity = "dark";
 
       fonts = {
