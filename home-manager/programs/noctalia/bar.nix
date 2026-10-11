@@ -34,17 +34,8 @@ in {
         "network"
         "brightness"
         "battery"
-        "group:clock"
+        "clock"
         "session"
-      ];
-      capsule_group = [
-        {
-          id = "clock";
-          members = ["calendar-icon" "date" "clock-separator" "time-icon" "clock"];
-          fill = "surface_variant";
-          padding = 8;
-          widget_spacing = 0;
-        }
       ];
     };
 
@@ -93,32 +84,8 @@ in {
 
       clock = {
         actions.left = "panel-toggle noctalia/timer:panel";
-        format = " {:%I:%M %p}";
+        format = " {:%a %b %d}  |   {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
-      };
-
-      date = {
-        type = "clock";
-        format = " {:%a %b %d}";
-        tooltip_format = "{:%A, %B %-d %Y}";
-        actions.left = "panel-toggle control-center calendar";
-      };
-      calendar-icon = {
-        type = "custom_button";
-        glyph = "U+F073";
-        icon_color = c.base08;
-        actions.left = "panel-toggle control-center calendar";
-      };
-      time-icon = {
-        type = "custom_button";
-        glyph = "U+F017";
-        icon_color = c.base08;
-        actions.left = "panel-toggle noctalia/timer:panel";
-      };
-      clock-separator = {
-        type = "text";
-        text = " | ";
-        actions.left = "panel-toggle control-center calendar";
       };
 
       control-center = {
