@@ -18,8 +18,8 @@
 (map :<leader>aC "ClaudeCode --continue" "Continue last Claude session")
 (map :<leader>ay :ClaudeCodeDiffAccept "Accept Claude Code diff")
 (map :<leader>an :ClaudeCodeDiffDeny "Deny Claude Code diff")
-(vim.keymap.set :n :<leader>at #(sidekick-cli.toggle)
-                {:desc "Toggle agent CLI"})
-
 (vim.keymap.set :v :<leader>as :<cmd>ClaudeCodeSend<CR>
                 {:desc "Send selection to Claude Code"})
+
+(vim.keymap.set :n :<leader>at #(sidekick-cli.toggle)
+                {:desc "Toggle agent CLI"})
