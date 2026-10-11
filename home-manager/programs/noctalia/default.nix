@@ -17,7 +17,12 @@
     enable = true;
 
     package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
-      patches = (old.patches or []) ++ [./patches/clock-markup.patch];
+      patches =
+        (old.patches or [])
+        ++ [
+          ./patches/clock-markup.patch
+          ./patches/markup-colors.patch
+        ];
     });
 
     settings = {
