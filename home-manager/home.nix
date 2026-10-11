@@ -116,8 +116,8 @@
     codex-acp
     devenv
     duckdb
-    evcxr
     github-cli
+    irust
     mdbook
     mdbook-mermaid
     pandoc
