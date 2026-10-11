@@ -27,6 +27,8 @@
           ./patches/control-center-power-button.patch
           ./patches/battery-icon-thresholds.patch
           ./patches/lockscreen-login-clock.patch
+          ./patches/lockscreen-battery-status.patch
+          ./patches/media-player-seek-bar.patch
         ];
     });
 

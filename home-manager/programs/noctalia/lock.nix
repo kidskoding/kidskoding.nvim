@@ -55,6 +55,9 @@
         show_media = false;
         show_weather = false;
         show_clock = true;
+        show_battery = true;
+        show_caps_lock = true;
+        show_keyboard_layout = true;
       };
     };
 
@@ -65,7 +68,10 @@
       cy = 800.0;
       placement_width = 1920.0;
       placement_height = 1080.0;
-      settings.hide_when_no_media = true;
+      settings = {
+        hide_when_no_media = true;
+        show_progress = true;
+      };
     };
 
     "lockscreen-visualizer@eDP-1" = {
