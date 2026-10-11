@@ -26,6 +26,7 @@
           ./patches/audio-osd-muted-colors.patch
           ./patches/control-center-power-button.patch
           ./patches/battery-icon-thresholds.patch
+          ./patches/lockscreen-login-clock.patch
         ];
     });
 

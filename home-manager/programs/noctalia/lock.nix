@@ -42,19 +42,6 @@
   programs.noctalia.settings.lockscreen_widgets.enabled = true;
 
   programs.noctalia.settings.lockscreen_widgets.widget = {
-    "lockscreen-clock@eDP-1" = {
-      type = "clock";
-      output = "eDP-1";
-      cx = 960.0;
-      cy = 220.0;
-      placement_width = 1920.0;
-      placement_height = 1080.0;
-      settings = {
-        scale = 1.5;
-        format = "{:%A, %B %-d}\n{:%-I:%M %p}";
-      };
-    };
-
     "lockscreen-login-box@eDP-1" = {
       type = "login_box";
       output = "eDP-1";
@@ -66,6 +53,8 @@
         show_unlock_hint = false;
         center_password_text = true;
         show_media = false;
+        show_weather = false;
+        show_clock = true;
       };
     };
 
