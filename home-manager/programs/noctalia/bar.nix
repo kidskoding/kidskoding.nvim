@@ -64,25 +64,25 @@ in {
 
       volume = {
         show_label = true;
-        icon_color = "tertiary";
+        color = "tertiary";
       };
       network = {
         show_label = true;
         show_vpn_label = false;
-        icon_color = c.base0C;
+        color = c.base0C;
       };
       brightness = {
         show_label = true;
-        icon_color = c.base0A;
+        color = c.base0A;
       };
       battery = {
         display_mode = "glyph";
         show_label = true;
-        icon_color = "secondary";
+        color = "secondary";
       };
 
       clock = {
-        icon_color = c.base09;
+        color = c.base09;
         actions.left = "panel-toggle control-center calendar";
         format = " {:%a %b %d}  |   {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";

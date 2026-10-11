@@ -65,7 +65,7 @@
         detect_files = ["Makefile" "makefile" "GNUmakefile"];
         command = "make --version | head -n1 | cut -d' ' -f3";
         symbol = " ";
-        style = "bold #6d8086";
+        style = "bold bright-black";
         format = "via [$symbol(v$output )]($style)";
       };
 
