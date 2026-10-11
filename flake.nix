@@ -56,18 +56,10 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    evergarden-noctalia = {
-      url = "git+https://codeberg.org/evergarden/noctalia";
-      flake = false;
-    };
 
     # stylix: nix in style 💎!!
     stylix = {
       url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    evergarden = {
-      url = "https://codeberg.org/evergarden/nix/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     tokyonight.url = "github:mrjones2014/tokyonight.nix";

@@ -1,15 +1,9 @@
 {
   config,
   pkgs,
-  inputs,
-  osConfig,
   ...
 }: let
-  p = inputs.evergarden.lib.palette.${osConfig.evergarden.variant};
-  occupied =
-    if osConfig.theme == "evergarden"
-    then p.overlay1
-    else config.lib.stylix.colors.base04;
+  c = config.lib.stylix.colors.withHashtag;
 in {
   programs.noctalia.settings = {
     bar.main = {
@@ -57,7 +51,7 @@ in {
         inactive_pill_size = 1;
         label_source = "id";
         hide_when_empty = true;
-        occupied_color = "#${occupied}";
+        occupied_color = c.base04;
       };
 
       media = {
@@ -68,18 +62,27 @@ in {
         show_progress = true;
       };
 
-      volume.show_label = true;
+      volume = {
+        show_label = true;
+        icon_color = "tertiary";
+      };
       network = {
         show_label = true;
         show_vpn_label = false;
+        icon_color = c.base0C;
       };
-      brightness.show_label = true;
+      brightness = {
+        show_label = true;
+        icon_color = c.base0A;
+      };
       battery = {
         display_mode = "glyph";
         show_label = true;
+        icon_color = "secondary";
       };
 
       clock = {
+        icon_color = c.base09;
         actions.left = "panel-toggle control-center calendar";
         format = " {:%a %b %d}  |   {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";

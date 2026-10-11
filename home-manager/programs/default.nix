@@ -22,7 +22,6 @@
 
     ./agents.nix
 
-    ./evergarden.nix
     ./tokyonight.nix
   ];
 
