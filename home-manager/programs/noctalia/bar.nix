@@ -34,7 +34,6 @@ in {
         "network"
         "brightness"
         "battery"
-        "date"
         "clock"
         "session"
       ];
@@ -85,14 +84,8 @@ in {
 
       clock = {
         actions.left = "panel-toggle noctalia/timer:panel";
-        format = " {:%I:%M %p}";
-        tooltip_format = "{:%A, %B %-d %Y}";
-      };
-
-      date = {
-        type = "clock";
-        actions.left = "panel-toggle control-center calendar";
-        format = " {:%a %b %d}";
+        actions.right = "panel-toggle control-center calendar";
+        format = "<span foreground='${c.base08}'></span> {:%a %b %d}  |  <span foreground='${c.base08}'></span> {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
       };
 

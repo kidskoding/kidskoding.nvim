@@ -1,6 +1,7 @@
 {
   config,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
@@ -14,6 +15,10 @@
 
   programs.noctalia = {
     enable = true;
+
+    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+      patches = (old.patches or []) ++ [./patches/clock-markup.patch];
+    });
 
     settings = {
       accessibility.ui_scale = 1.2;
