@@ -34,8 +34,17 @@ in {
         "network"
         "brightness"
         "battery"
-        "clock"
+        "group:clock"
         "session"
+      ];
+      capsule_group = [
+        {
+          id = "clock";
+          members = ["calendar-icon" "date" "clock-separator" "time-icon" "clock"];
+          fill = "surface_variant";
+          padding = 8;
+          widget_spacing = 4;
+        }
       ];
     };
 
@@ -84,8 +93,32 @@ in {
 
       clock = {
         actions.left = "panel-toggle control-center calendar";
-        format = " {:%a %b %d}  |   {:%I:%M %p}";
+        format = "{:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
+      };
+
+      date = {
+        type = "clock";
+        format = "{:%a %b %d}";
+        tooltip_format = "{:%A, %B %-d %Y}";
+        actions.left = "panel-toggle control-center calendar";
+      };
+      calendar-icon = {
+        type = "custom_button";
+        glyph = "U+F073";
+        icon_color = c.base08;
+        actions.left = "panel-toggle control-center calendar";
+      };
+      time-icon = {
+        type = "custom_button";
+        glyph = "U+F017";
+        icon_color = c.base08;
+        actions.left = "panel-toggle control-center calendar";
+      };
+      clock-separator = {
+        type = "text";
+        text = " | ";
+        interactive = false;
       };
 
       control-center = {
