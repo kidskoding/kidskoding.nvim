@@ -2,15 +2,13 @@
   pkgs,
   fenix,
 }: let
-  toolchain = fenix.combine [
-    (fenix.stable.withComponents [
-      "cargo"
-      "clippy"
-      "rust-analyzer"
-      "rust-src"
-      "rustc"
-    ])
-    fenix.complete.rustfmt
+  toolchain = fenix.stable.withComponents [
+    "cargo"
+    "clippy"
+    "rust-analyzer"
+    "rust-src"
+    "rustc"
+    "rustfmt"
   ];
 in
   pkgs.mkShell {
