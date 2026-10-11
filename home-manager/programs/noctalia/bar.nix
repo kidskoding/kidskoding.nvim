@@ -43,7 +43,7 @@ in {
           members = ["calendar-icon" "date" "clock-separator" "time-icon" "clock"];
           fill = "surface_variant";
           padding = 8;
-          widget_spacing = 4;
+          widget_spacing = 0;
         }
       ];
     };
@@ -93,13 +93,13 @@ in {
 
       clock = {
         actions.left = "panel-toggle control-center calendar";
-        format = "{:%I:%M %p}";
+        format = " {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
       };
 
       date = {
         type = "clock";
-        format = "{:%a %b %d}";
+        format = " {:%a %b %d}";
         tooltip_format = "{:%A, %B %-d %Y}";
         actions.left = "panel-toggle control-center calendar";
       };
@@ -118,7 +118,7 @@ in {
       clock-separator = {
         type = "text";
         text = " | ";
-        interactive = false;
+        actions.left = "panel-toggle control-center calendar";
       };
 
       control-center = {
