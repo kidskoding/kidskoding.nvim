@@ -19,6 +19,7 @@ in {
       background_opacity = 0.85;
       capsule = true;
       capsule_fill = "surface_variant";
+      color = "on_surface_variant";
       capsule_border_width = 0;
       capsule_padding = 8;
       capsule_thickness = 0.8;
@@ -64,25 +65,24 @@ in {
 
       volume = {
         show_label = true;
-        color = "tertiary";
+        icon_color = "tertiary";
       };
       network = {
         show_label = true;
         show_vpn_label = false;
-        color = c.base0C;
+        icon_color = c.base0C;
       };
       brightness = {
         show_label = true;
-        color = c.base0A;
+        icon_color = c.base0A;
       };
       battery = {
         display_mode = "glyph";
         show_label = true;
-        color = "secondary";
+        icon_color = "secondary";
       };
 
       clock = {
-        color = c.base09;
         actions.left = "panel-toggle control-center calendar";
         format = " {:%a %b %d}  |   {:%I:%M %p}";
         tooltip_format = "{:%A, %B %-d %Y}";
