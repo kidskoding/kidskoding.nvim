@@ -20,4 +20,5 @@
                                        :filetype]
                            :lualine_y [:selectioncount]}})
 
-(bufferline.setup {:options {:style_preset bufferline.style_preset.no_italic}})
+(bufferline.setup {:options {:style_preset bufferline.style_preset.no_italic
+                             :tab_size 0}})
