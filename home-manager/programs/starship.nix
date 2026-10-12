@@ -40,11 +40,12 @@
         error_symbol = "[▶](bold red)";
       };
 
+      os.symbols.NixOS = " ";
+
       gcloud = {
         disabled = true;
         symbol = "  ";
       };
-
       aws.symbol = " ";
       azure = {
         disabled = false;
@@ -96,9 +97,6 @@
       nix_shell.symbol = " ";
       nodejs.symbol = " ";
       ocaml.symbol = " ";
-
-      os.symbols.NixOS = " ";
-
       package.symbol = "󰏗 ";
       perl.symbol = " ";
       php.symbol = " ";
