@@ -140,25 +140,51 @@
  #include "ext-session-lock-v1-client-protocol.h"
  #include "i18n/i18n.h"
  #include "render/core/blur_cache.h"
-@@ -335,7 +336,12 @@
+@@ -313,7 +314,12 @@
            }
        )
    );
--  m_weatherTextColumn->addChild(
-+  m_weatherTextColumn->addChild(ui::row({
+-  m_weatherCurrent->addChild(
++  m_weatherCurrent->addChild(ui::row({
 +      .out = &m_loginClockRow,
 +      .align = FlexAlign::Center,
-+      .gap = Style::spaceMd,
++      .gap = Style::spaceSm,
 +  }));
 +  m_loginClockRow->addChild(
+       ui::glyph({
+           .out = &m_weatherGlyph,
+           .glyph = "weather-cloud",
+@@ -321,7 +327,7 @@
+           .color = colorSpecFromRole(ColorRole::Primary),
+       })
+   );
+-  m_weatherCurrent->addChild(
++  m_loginClockRow->addChild(
+       ui::flex(
+           FlexDirection::Vertical,
+           {
+@@ -337,6 +343,15 @@
+   );
+   m_weatherTextColumn->addChild(
        ui::label({
++          .out = &m_weatherMeta,
++          .fontSize = Style::fontSizeCaption,
++          .color = colorSpecFromRole(ColorRole::OnSurfaceVariant),
++          .maxLines = 1,
++          .textAlign = TextAlign::Start,
++      })
++  );
++  m_weatherTextColumn->addChild(
++      ui::label({
            .out = &m_weatherTemp,
            .fontSize = Style::fontSizeBody,
-@@ -354,6 +360,28 @@
+           .fontWeight = FontWeight::Bold,
+@@ -345,15 +360,28 @@
            .textAlign = TextAlign::Start,
        })
    );
-+  m_loginClockRow->addChild(ui::row({
+-  m_weatherTextColumn->addChild(
++  m_weatherCurrent->addChild(ui::row({
 +      .out = &m_loginBatteryRow,
 +      .align = FlexAlign::Center,
 +      .gap = Style::spaceXs,
@@ -171,14 +197,17 @@
 +      .color = colorSpecFromRole(ColorRole::Secondary),
 +  }));
 +  m_loginBatteryRow->addChild(
-+      ui::label({
+       ui::label({
+-          .out = &m_weatherMeta,
 +          .out = &m_loginBatteryLabel,
-+          .fontSize = Style::fontSizeCaption,
+           .fontSize = Style::fontSizeCaption,
+-          .color = colorSpecFromRole(ColorRole::OnSurfaceVariant),
 +          .color = colorSpecFromRole(ColorRole::OnSurface),
-+          .maxLines = 1,
+           .maxLines = 1,
+-          .textAlign = TextAlign::Start,
 +          .visible = false,
-+      })
-+  );
+       })
+   );
 +
    m_weatherBlock->addChild(
        ui::flex(
@@ -198,14 +227,15 @@
    rebuildSessionButtons();
    requestUpdate();
  }
-@@ -1344,6 +1373,15 @@
+@@ -1344,6 +1373,16 @@
    if (m_weatherMeta != nullptr) {
      m_weatherMeta->setFontSize(captionSize);
    }
 +  if (m_loginBatteryLabel != nullptr) {
 +    m_loginBatteryLabel->setFontSize(bodySize);
 +    m_loginBatteryGlyph->setGlyphSize(Style::baseGlyphSize * contentScale);
-+    m_loginClockRow->setGap(Style::spaceLg * contentScale);
++    m_loginClockRow->setGap(Style::spaceSm * contentScale);
++    m_weatherCurrent->setGap((loginStyle.showClock ? Style::spaceLg : Style::spaceSm) * contentScale);
 +    m_loginBatteryRow->setGap(Style::spaceXs * contentScale);
 +    m_loginClockRow->setJustify(FlexJustify::Center);
 +    m_weatherTextColumn->setAlign(loginStyle.showClock ? FlexAlign::Center : FlexAlign::Stretch);
@@ -214,7 +244,7 @@
    for (auto& column : m_forecastColumns) {
      if (column.day != nullptr) {
        column.day->setFontSize(captionSize);
-@@ -1381,6 +1419,11 @@
+@@ -1381,6 +1420,11 @@
      m_weatherMeta->setMaxWidth(weatherTextMax);
      m_weatherMeta->setEllipsize(TextEllipsize::End);
      m_weatherMeta->setVisible(showWeather && (loginStyle.showClock || weatherBudget >= 160.0F) && !m_weatherMeta->text().empty());
@@ -226,7 +256,7 @@
    }
  
    // Scale info / status / password / session by the same factor so extra panel
-@@ -1739,6 +1782,18 @@
+@@ -1739,6 +1783,18 @@
          tempText = formatLocalTime("{:%-I:%M %p}");
          metaText = formatLocalTime("{:%a, %b %-d}");
          fingerprint = tempText + "|" + metaText;
