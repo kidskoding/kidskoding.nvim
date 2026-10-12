@@ -32,3 +32,7 @@ read -rp "neovim commit message: kidskoding.nvim: " msg
 git commit -m "kidskoding.nvim: ${msg:-update}" -- "$NVIM_DIR"
 
 git subtree push -S --prefix="$NVIM_DIR" nvim master
+
+if ! git push origin HEAD; then
+    echo "push failed; commit is local only. run 'git push' later."
+fi
