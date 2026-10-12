@@ -28,6 +28,7 @@
           ./patches/battery-icon-thresholds.patch
           ./patches/lockscreen-login-clock.patch
           ./patches/lockscreen-battery-status.patch
+          ./patches/lockscreen-header-caps-lock.patch
           ./patches/media-player-seek-bar.patch
         ];
     });

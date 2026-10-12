@@ -1,0 +1,76 @@
+--- a/src/shell/lockscreen/lock_surface.h
++++ b/src/shell/lockscreen/lock_surface.h
+@@ -167,6 +167,9 @@
+   Box* m_backdrop = nullptr;
+   Flex* m_loginPanel = nullptr;
+   Flex* m_infoRow = nullptr;
++  Flex* m_headerCapsLock = nullptr;
++  Glyph* m_headerCapsLockGlyph = nullptr;
++  Label* m_headerCapsLockLabel = nullptr;
+   Flex* m_mediaBlock = nullptr;
+   Image* m_mediaArt = nullptr;
+   Glyph* m_mediaFallbackGlyph = nullptr;
+--- a/src/shell/lockscreen/lock_surface.cpp
++++ b/src/shell/lockscreen/lock_surface.cpp
+@@ -213,6 +213,25 @@
+           }
+       )
+   );
++
++  m_infoRow->addChild(ui::row({
++      .out = &m_headerCapsLock,
++      .align = FlexAlign::Center,
++      .gap = Style::spaceXs,
++      .visible = false,
++      .participatesInLayout = false,
++      .configure = [](Flex& row) { row.setZIndex(1); },
++  }, ui::glyph({
++      .out = &m_headerCapsLockGlyph,
++      .glyph = "keyboard",
++      .glyphSize = Style::fontSizeBody,
++      .color = colorSpecFromRole(ColorRole::Error),
++  }), ui::label({
++      .out = &m_headerCapsLockLabel,
++      .fontSize = Style::fontSizeCaption,
++      .color = colorSpecFromRole(ColorRole::Error),
++      .maxLines = 2,
++  })));
+ 
+   m_infoRow->addChild(
+       ui::flex(
+@@ -1494,6 +1513,26 @@
+ 
+   m_loginPanel->arrange(renderer, LayoutRect{panelX, panelY, panelWidth, panelHeight});
+ 
++  if (m_headerCapsLock != nullptr) {
++    const bool showCapsLock = regular && loginStyle.showClock && loginStyle.showCapsLock && m_capsLock;
++    m_headerCapsLock->setVisible(showCapsLock);
++    if (showCapsLock) {
++      const float iconSize = Style::fontSizeBody * contentScale;
++      const float gap = Style::spaceXs * contentScale;
++      const float clockWidth = m_weatherCurrent != nullptr ? m_weatherCurrent->width() : 0.0F;
++      const float leftWidth = std::max(iconSize, (contentWidth - clockWidth) * 0.5F - Style::spaceMd);
++      m_headerCapsLock->setGap(gap);
++      m_headerCapsLockGlyph->setGlyphSize(iconSize);
++      m_headerCapsLockLabel->setFontSize(captionSize);
++      m_headerCapsLockLabel->setMaxWidth(std::max(0.0F, leftWidth - iconSize - gap));
++      m_headerCapsLockLabel->setText(i18n::tr("lockscreen.caps-lock-on"));
++      m_headerCapsLock->setMaxWidth(leftWidth);
++      m_headerCapsLock->layout(renderer);
++      m_headerCapsLock->setPosition(0.0F, std::max(0.0F, (rows.info - m_headerCapsLock->height()) * 0.5F));
++    }
++  }
++
++
+   // Auth panel: sibling above/below the login box (flips below when near the top edge).
+   if (m_authPanel != nullptr && m_authLabel != nullptr) {
+     bool statusError = false;
+@@ -1895,7 +1934,7 @@
+     isError = true;
+     return m_status;
+   }
+-  if (m_capsLock && style.showCapsLock) {
++  if (m_capsLock && style.showCapsLock && !(style.showClock && style.layout == lockscreen_login_box::LayoutMode::Regular)) {
+     isError = true;
+     return i18n::tr("lockscreen.caps-lock-on");
+   }

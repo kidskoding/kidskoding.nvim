@@ -198,20 +198,23 @@
    rebuildSessionButtons();
    requestUpdate();
  }
-@@ -1344,6 +1373,12 @@
+@@ -1344,6 +1373,15 @@
    if (m_weatherMeta != nullptr) {
      m_weatherMeta->setFontSize(captionSize);
    }
 +  if (m_loginBatteryLabel != nullptr) {
 +    m_loginBatteryLabel->setFontSize(bodySize);
 +    m_loginBatteryGlyph->setGlyphSize(Style::baseGlyphSize * contentScale);
-+    m_loginClockRow->setGap(Style::spaceMd * contentScale);
++    m_loginClockRow->setGap(Style::spaceLg * contentScale);
 +    m_loginBatteryRow->setGap(Style::spaceXs * contentScale);
++    m_loginClockRow->setJustify(FlexJustify::Center);
++    m_weatherTextColumn->setAlign(loginStyle.showClock ? FlexAlign::Center : FlexAlign::Stretch);
++    m_weatherMeta->setTextAlign(loginStyle.showClock ? TextAlign::Center : TextAlign::Start);
 +  }
    for (auto& column : m_forecastColumns) {
      if (column.day != nullptr) {
        column.day->setFontSize(captionSize);
-@@ -1381,6 +1416,11 @@
+@@ -1381,6 +1419,11 @@
      m_weatherMeta->setMaxWidth(weatherTextMax);
      m_weatherMeta->setEllipsize(TextEllipsize::End);
      m_weatherMeta->setVisible(showWeather && (loginStyle.showClock || weatherBudget >= 160.0F) && !m_weatherMeta->text().empty());
@@ -223,7 +226,7 @@
    }
  
    // Scale info / status / password / session by the same factor so extra panel
-@@ -1739,6 +1779,18 @@
+@@ -1739,6 +1782,18 @@
          tempText = formatLocalTime("{:%-I:%M %p}");
          metaText = formatLocalTime("{:%a, %b %-d}");
          fingerprint = tempText + "|" + metaText;
