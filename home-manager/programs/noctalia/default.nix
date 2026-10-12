@@ -45,9 +45,7 @@
         time_format = "{:%-I:%M %p}";
         avatar_path = "${./avatars/starfire.jpeg}";
         panel = {
-          control_center_placement = "floating";
-          control_center_position = "top_left";
-          open_near_click_control_center = false;
+          open_near_click_control_center = true;
           session_placement = "floating";
           session_position = "center";
           open_near_click_session = false;
