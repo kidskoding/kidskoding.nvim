@@ -65,7 +65,7 @@ in {
   programs.eza = {
     enable = true;
     enableFishIntegration = false;
-    icons = "always";
+    icons = "auto";
     colors = "always";
     extraOptions = ["--group-directories-first"];
   };
