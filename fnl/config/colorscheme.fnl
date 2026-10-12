@@ -26,14 +26,16 @@
                                :GitSignsChange {:fg "#F5D098"}
                                :GitSignsUntracked {:fg "#B3E3CA"}}})
 
-(tokyonight.setup {:style :storm
+(tokyonight.setup {:style :moon
                    :styles {:comments {:italic false}
                             :keywords {:italic false}}
-                   :overrides {;; git overrides
-                               :Added {:fg "#CBE3B3"}
-                               :Removed {:fg "#F57F82"}
-                               :Changed {:fg "#F5D098"}
-                               :GitSignsChange {:fg "#F5D098"}
-                               :GitSignsUntracked {:fg "#B3E3CA"}}})
+                   :on_highlights (fn [highlights _colors]
+                                    (set highlights.Added {:fg "#CBE3B3"})
+                                    (set highlights.Removed {:fg "#F57F82"})
+                                    (set highlights.Changed {:fg "#F5D098"})
+                                    (set highlights.GitSignsChange
+                                         {:fg "#F5D098"})
+                                    (set highlights.GitSignsUntracked
+                                         {:fg "#B3E3CA"}))})
 
 (vim.cmd.colorscheme :tokyonight)
