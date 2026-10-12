@@ -1,0 +1,22 @@
+--- a/src/shell/osd/osd_overlay.cpp
++++ b/src/shell/osd/osd_overlay.cpp
+@@ -771,10 +771,17 @@
+   const ColorRole accentRole = (m_content.overLimit || silentAudio) ? ColorRole::Error
+       : m_content.inactive                                        ? ColorRole::OnSurfaceVariant
+                                                                   : ColorRole::Primary;
++  ColorSpec accentColor = colorSpecFromRole(accentRole);
++  if (m_content.kind == OsdKind::Brightness && m_config != nullptr) {
++    const auto& widgets = m_config->config().widgets;
++    if (const auto it = widgets.find("brightness"); it != widgets.end()) {
++      accentColor = it->second.getColorSpec("icon_color", accentColor, "widget.brightness.icon_color");
++    }
++  }
+   inst.glyph->setGlyph(m_content.icon);
+-  inst.glyph->setColor(colorSpecFromRole(accentRole));
++  inst.glyph->setColor(accentColor);
+   inst.progress->setVisible(m_content.showProgress);
+-  inst.progress->setFill(colorSpecFromRole(accentRole));
++  inst.progress->setFill(accentColor);
+   inst.progress->setOrientation(vertical ? ProgressBarOrientation::Vertical : ProgressBarOrientation::Horizontal);
+   inst.row->setJustify((vertical || !m_content.showProgress) ? FlexJustify::Center : FlexJustify::Start);
+   inst.value->setFontSize(valueFontSize(s));

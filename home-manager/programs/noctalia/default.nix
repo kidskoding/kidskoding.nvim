@@ -24,6 +24,7 @@
           ./patches/markup-colors.patch
           ./patches/volume-icon-state.patch
           ./patches/audio-osd-muted-colors.patch
+          ./patches/brightness-osd-color.patch
           ./patches/control-center-power-button.patch
           ./patches/battery-icon-thresholds.patch
           ./patches/lockscreen-login-clock.patch
