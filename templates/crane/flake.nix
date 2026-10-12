@@ -28,6 +28,7 @@
         cargo-info
         cargo-seek
         irust
+        rusty-man
         trunk
         wasm-pack
 
