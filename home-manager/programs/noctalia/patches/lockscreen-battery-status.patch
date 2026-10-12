@@ -37,15 +37,18 @@
    );
    void selectAllPassword();
    void clearPasswordSelection();
-@@ -178,6 +179,7 @@
+@@ -178,6 +179,10 @@
    Flex* m_weatherTextColumn = nullptr;
    Label* m_weatherTemp = nullptr;
    Label* m_weatherMeta = nullptr;
++  Flex* m_loginClockRow = nullptr;
++  Flex* m_loginBatteryRow = nullptr;
++  Glyph* m_loginBatteryGlyph = nullptr;
 +  Label* m_loginBatteryLabel = nullptr;
    Flex* m_forecastRow = nullptr;
    std::array<ForecastColumn, 5> m_forecastColumns{};
    Flex* m_authPanel = nullptr;
-@@ -239,6 +241,7 @@
+@@ -239,6 +244,7 @@
    MprisService* m_mpris = nullptr;
    const WeatherService* m_weather = nullptr;
    HttpClient* m_httpClient = nullptr;
@@ -137,11 +140,37 @@
  #include "ext-session-lock-v1-client-protocol.h"
  #include "i18n/i18n.h"
  #include "render/core/blur_cache.h"
-@@ -354,6 +355,16 @@
+@@ -335,7 +336,12 @@
+           }
+       )
+   );
+-  m_weatherTextColumn->addChild(
++  m_weatherTextColumn->addChild(ui::row({
++      .out = &m_loginClockRow,
++      .align = FlexAlign::Center,
++      .gap = Style::spaceMd,
++  }));
++  m_loginClockRow->addChild(
+       ui::label({
+           .out = &m_weatherTemp,
+           .fontSize = Style::fontSizeBody,
+@@ -354,6 +360,28 @@
            .textAlign = TextAlign::Start,
        })
    );
-+  m_weatherTextColumn->addChild(
++  m_loginClockRow->addChild(ui::row({
++      .out = &m_loginBatteryRow,
++      .align = FlexAlign::Center,
++      .gap = Style::spaceXs,
++      .visible = false,
++  }));
++  m_loginBatteryRow->addChild(ui::glyph({
++      .out = &m_loginBatteryGlyph,
++      .glyph = "battery-4",
++      .glyphSize = Style::baseGlyphSize,
++      .color = colorSpecFromRole(ColorRole::Secondary),
++  }));
++  m_loginBatteryRow->addChild(
 +      ui::label({
 +          .out = &m_loginBatteryLabel,
 +          .fontSize = Style::fontSizeCaption,
@@ -154,7 +183,7 @@
    m_weatherBlock->addChild(
        ui::flex(
            FlexDirection::Horizontal,
-@@ -580,12 +591,13 @@
+@@ -580,12 +608,13 @@
  }
  
  void LockSurface::setLoginBoxServices(
@@ -169,17 +198,20 @@
    rebuildSessionButtons();
    requestUpdate();
  }
-@@ -1344,6 +1356,9 @@
+@@ -1344,6 +1373,12 @@
    if (m_weatherMeta != nullptr) {
      m_weatherMeta->setFontSize(captionSize);
    }
 +  if (m_loginBatteryLabel != nullptr) {
-+    m_loginBatteryLabel->setFontSize(captionSize);
++    m_loginBatteryLabel->setFontSize(bodySize);
++    m_loginBatteryGlyph->setGlyphSize(Style::baseGlyphSize * contentScale);
++    m_loginClockRow->setGap(Style::spaceMd * contentScale);
++    m_loginBatteryRow->setGap(Style::spaceXs * contentScale);
 +  }
    for (auto& column : m_forecastColumns) {
      if (column.day != nullptr) {
        column.day->setFontSize(captionSize);
-@@ -1381,6 +1396,11 @@
+@@ -1381,6 +1416,11 @@
      m_weatherMeta->setMaxWidth(weatherTextMax);
      m_weatherMeta->setEllipsize(TextEllipsize::End);
      m_weatherMeta->setVisible(showWeather && (loginStyle.showClock || weatherBudget >= 160.0F) && !m_weatherMeta->text().empty());
@@ -191,17 +223,20 @@
    }
  
    // Scale info / status / password / session by the same factor so extra panel
-@@ -1739,6 +1759,15 @@
+@@ -1739,6 +1779,18 @@
          tempText = formatLocalTime("{:%-I:%M %p}");
          metaText = formatLocalTime("{:%a, %b %-d}");
          fingerprint = tempText + "|" + metaText;
 +        if (m_loginBatteryLabel != nullptr) {
 +          const bool showBattery = style.showBattery && m_upower != nullptr && m_upower->state().isPresent;
++          m_loginBatteryRow->setVisible(showBattery);
 +          m_loginBatteryLabel->setVisible(showBattery);
 +          if (showBattery) {
 +            const auto& battery = m_upower->state();
 +            const int percent = static_cast<int>(std::round(battery.percentage));
-+            m_loginBatteryLabel->setText(std::format("{}% · {}", percent, batteryStateLabel(battery.state)));
++            m_loginBatteryGlyph->setGlyph(batteryGlyphName(battery.percentage, battery.state));
++            m_loginBatteryLabel->setText(std::format("{}%", percent));
++            m_loginBatteryLabel->setTooltip(batteryStateLabel(battery.state));
 +          }
 +        }
        } else if (weatherReady) {
