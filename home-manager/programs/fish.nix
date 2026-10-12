@@ -10,8 +10,6 @@
 
   render = attrs: lib.concatStringsSep ":" (lib.mapAttrsToList (k: v: "${k}=${v}") attrs);
 
-  # file-type colors in dircolors format. eza reads LS_COLORS too, so this one
-  # attrset drives ls, grep, fd and eza's shared keys.
   fileTypes = {
     no = fg "base05";
     fi = fg "base05";
@@ -31,7 +29,6 @@
     tw = "1;${fg "base0E"}";
   };
 
-  # eza-only keys, layered on top of LS_COLORS by eza itself
   ezaExtra = {
     ur = "0";
     uw = "0";
@@ -65,9 +62,13 @@ in {
     age.keyFile = "/home/anirudh/.config/sops/age/keys.txt";
   };
 
-  home.packages = with pkgs; [
-    eza
-  ];
+  programs.eza = {
+    enable = true;
+    enableFishIntegration = false;
+    icons = "always";
+    colors = "always";
+    extraOptions = ["--group-directories-first"];
+  };
 
   programs.fish = {
     enable = true;
@@ -94,13 +95,13 @@ in {
       collect-garbage = "sudo nix-collect-garbage --delete-older-than 7d";
 
       # eza listings
-      ls = "eza --icons --color=always --group-directories-first";
-      lsa = "eza -al --icons --color=always --group-directories-first";
-      la = "eza -a --icons --color=always --group-directories-first";
-      ll = "eza -l --icons --color=always --group-directories-first";
-      tree = "eza -aT --color=always --icons --git-ignore";
-      tree-git = "eza -aT --color=always --icons";
-      "l." = "eza -a | grep -e '^\\.'";
+      ls = "eza";
+      lsa = "eza -al";
+      la = "eza -a";
+      ll = "eza -l";
+      tree = "eza -aT --git-ignore";
+      tree-git = "eza -aT";
+      "l." = "command eza -a | grep -e '^\\.'";
 
       # navigation
       ".." = "cd ..";

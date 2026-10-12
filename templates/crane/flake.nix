@@ -25,6 +25,7 @@
         bacon
         cargo-chef
         cargo-generate
+        cargo-info
         cargo-seek
         irust
         trunk
