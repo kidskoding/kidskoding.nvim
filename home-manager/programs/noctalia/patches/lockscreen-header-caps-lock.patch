@@ -206,9 +206,9 @@
 +                warningColor = it->second.getColorSpec("warning_color", warningColor, "widget.battery.warning_color");
 +              }
 +            }
-+            m_loginBatteryGlyph->setColor(percent < 15 ? colorSpecFromRole(ColorRole::Error)
-+                : percent < warningThreshold          ? warningColor
-+                                                      : normalColor);
++            m_loginBatteryGlyph->setColor(!batteryStatePlugged(battery.state).value_or(false) && percent < 15 ? colorSpecFromRole(ColorRole::Error)
++                : !batteryStatePlugged(battery.state).value_or(false) && percent < warningThreshold          ? warningColor
++                                                                                                           : normalColor);
              m_loginBatteryGlyph->setGlyph(batteryGlyphName(battery.percentage, battery.state));
              m_loginBatteryLabel->setText(std::format("{}%", percent));
              m_loginBatteryLabel->setTooltip(batteryStateLabel(battery.state));

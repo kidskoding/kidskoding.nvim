@@ -8,6 +8,7 @@
 
     settings = {
       format = "$os$all";
+      battery.disabled = true;
 
       os = {
         disabled = false;
