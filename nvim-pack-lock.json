@@ -17,10 +17,6 @@
       "rev": "2390c6e45c4789072c293ac69de051d169668b29",
       "src": "https://github.com/coder/claudecode.nvim"
     },
-    "codecompanion.nvim": {
-      "rev": "3af636c9892c70c5a4e91604718bf902076aff26",
-      "src": "https://github.com/olimorris/codecompanion.nvim"
-    },
     "conform.nvim": {
       "rev": "016802de402556da54c36bd7359b441266b01cdd",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -37,14 +33,6 @@
       "rev": "c39bbe1c60eec06ad7d141bd09bb910fac4d2436",
       "src": "https://github.com/clabby/difftastic.nvim"
     },
-    "everforest-nvim": {
-      "rev": "a0e9edc57379e8feafc6ba207c26dbb12fc1b6d8",
-      "src": "https://github.com/neanias/everforest-nvim"
-    },
-    "evergarden": {
-      "rev": "c8e5e7e67a36694e5d917b7065b26b59b8cb489f",
-      "src": "https://codeberg.org/evergarden/nvim"
-    },
     "friendly-snippets": {
       "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
       "src": "https://github.com/rafamadriz/friendly-snippets"
@@ -52,10 +40,6 @@
     "gitsigns.nvim": {
       "rev": "070a5d7b985546cc57e1fc61e5bc507fecac6045",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
-    },
-    "gruvbox.nvim": {
-      "rev": "154eb5ff5b96d0641307113fa385eaf0d36d9796",
-      "src": "https://github.com/ellisonleao/gruvbox.nvim"
     },
     "guess-indent.nvim": {
       "rev": "84a4987ff36798c2fc1169cbaff67960aed9776f",
@@ -90,10 +74,6 @@
     "nui.nvim": {
       "rev": "10fc361835c856ba4233ef5ea135b919bf3dce97",
       "src": "https://github.com/MunifTanjim/nui.nvim"
-    },
-    "nvim": {
-      "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
-      "src": "https://github.com/catppuccin/nvim"
     },
     "nvim-autopairs": {
       "rev": "430522f95fe4fb7c511ec64f8c1a90cc6a66c05c",

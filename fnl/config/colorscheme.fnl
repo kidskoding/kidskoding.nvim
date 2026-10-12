@@ -1,5 +1,4 @@
-(vim.pack.add [{:src "https://codeberg.org/evergarden/nvim" :name :evergarden}
-               "https://github.com/folke/tokyonight.nvim"])
+(vim.pack.add ["https://github.com/folke/tokyonight.nvim"])
 
 (local tokyonight (require :tokyonight))
 
