@@ -1,22 +1,23 @@
 --- a/src/shell/lockscreen/lock_surface.h
 +++ b/src/shell/lockscreen/lock_surface.h
-@@ -167,6 +167,9 @@
+@@ -167,6 +167,11 @@
    Box* m_backdrop = nullptr;
    Flex* m_loginPanel = nullptr;
    Flex* m_infoRow = nullptr;
 +  Flex* m_headerCapsLock = nullptr;
 +  Glyph* m_headerCapsLockGlyph = nullptr;
 +  Label* m_headerCapsLockLabel = nullptr;
++  Flex* m_headerBatteryText = nullptr;
++  Label* m_headerBatteryStatus = nullptr;
    Flex* m_mediaBlock = nullptr;
    Image* m_mediaArt = nullptr;
    Glyph* m_mediaFallbackGlyph = nullptr;
 --- a/src/shell/lockscreen/lock_surface.cpp
 +++ b/src/shell/lockscreen/lock_surface.cpp
-@@ -213,6 +213,25 @@
-           }
+@@ -214,6 +214,25 @@
        )
    );
-+
+ 
 +  m_infoRow->addChild(ui::row({
 +      .out = &m_headerCapsLock,
 +      .align = FlexAlign::Center,
@@ -35,42 +36,140 @@
 +      .color = colorSpecFromRole(ColorRole::Error),
 +      .maxLines = 2,
 +  })));
- 
++
    m_infoRow->addChild(
        ui::flex(
-@@ -1494,6 +1513,26 @@
+           FlexDirection::Horizontal,
+@@ -372,7 +391,12 @@
+       .glyphSize = Style::baseGlyphSize,
+       .color = colorSpecFromRole(ColorRole::Secondary),
+   }));
+-  m_loginBatteryRow->addChild(
++  m_loginBatteryRow->addChild(ui::column({
++      .out = &m_headerBatteryText,
++      .align = FlexAlign::Center,
++      .gap = Style::spaceXs,
++  }));
++  m_headerBatteryText->addChild(
+       ui::label({
+           .out = &m_loginBatteryLabel,
+           .fontSize = Style::fontSizeCaption,
+@@ -381,6 +405,14 @@
+           .visible = false,
+       })
+   );
++
++  m_headerBatteryText->addChild(ui::label({
++      .out = &m_headerBatteryStatus,
++      .fontSize = Style::fontSizeCaption,
++      .color = colorSpecFromRole(ColorRole::OnSurfaceVariant),
++      .maxLines = 1,
++      .textAlign = TextAlign::Center,
++  }));
  
-   m_loginPanel->arrange(renderer, LayoutRect{panelX, panelY, panelWidth, panelHeight});
+   m_weatherBlock->addChild(
+       ui::flex(
+@@ -1368,13 +1400,15 @@
+     m_weatherGlyph->setGlyphSize(weatherGlyphSize);
+   }
+   if (m_weatherTemp != nullptr) {
+-    m_weatherTemp->setFontSize(bodySize);
++    m_weatherTemp->setFontSize(bodySize * (loginStyle.showClock ? 1.35F : 1.0F));
+   }
+   if (m_weatherMeta != nullptr) {
+     m_weatherMeta->setFontSize(captionSize);
+   }
+   if (m_loginBatteryLabel != nullptr) {
+-    m_loginBatteryLabel->setFontSize(bodySize);
++    m_loginBatteryLabel->setFontSize(bodySize * 1.35F);
++    m_headerBatteryStatus->setFontSize(captionSize);
++    m_headerBatteryText->setGap(Style::spaceXs * contentScale);
+     m_loginBatteryGlyph->setGlyphSize(Style::baseGlyphSize * contentScale);
+     m_loginClockRow->setGap(Style::spaceSm * contentScale);
+     m_weatherCurrent->setGap((loginStyle.showClock ? Style::spaceLg : Style::spaceSm) * contentScale);
+@@ -1493,7 +1527,68 @@
+     m_loginButton->setGlyphSize(sessionGlyphSize);
+   }
  
-+  if (m_headerCapsLock != nullptr) {
-+    const bool showCapsLock = regular && loginStyle.showClock && loginStyle.showCapsLock && m_capsLock;
-+    m_headerCapsLock->setVisible(showCapsLock);
-+    if (showCapsLock) {
-+      const float iconSize = Style::fontSizeBody * contentScale;
-+      const float gap = Style::spaceXs * contentScale;
-+      const float clockWidth = m_weatherCurrent != nullptr ? m_weatherCurrent->width() : 0.0F;
-+      const float leftWidth = std::max(iconSize, (contentWidth - clockWidth) * 0.5F - Style::spaceMd);
-+      m_headerCapsLock->setGap(gap);
-+      m_headerCapsLockGlyph->setGlyphSize(iconSize);
-+      m_headerCapsLockLabel->setFontSize(captionSize);
-+      m_headerCapsLockLabel->setMaxWidth(std::max(0.0F, leftWidth - iconSize - gap));
-+      m_headerCapsLockLabel->setText(i18n::tr("lockscreen.caps-lock-on"));
-+      m_headerCapsLock->setMaxWidth(leftWidth);
-+      m_headerCapsLock->layout(renderer);
-+      m_headerCapsLock->setPosition(0.0F, std::max(0.0F, (rows.info - m_headerCapsLock->height()) * 0.5F));
-+    }
++  const bool structuredHeader = regular && loginStyle.showClock && !showMedia;
++  const float headerWidth = std::min(contentWidth, 600.0F * contentScale);
++  if (m_weatherCurrent != nullptr) {
++    m_loginClockRow->setParticipatesInLayout(!structuredHeader);
++    m_loginBatteryRow->setParticipatesInLayout(!structuredHeader);
++    m_weatherCurrent->setMinWidth(structuredHeader ? headerWidth : 0.0F);
++    m_weatherCurrent->setMaxWidth(structuredHeader ? headerWidth : 0.0F);
++    m_weatherCurrent->setMinHeight(structuredHeader ? rows.info : 0.0F);
++    m_weatherCurrent->setMaxHeight(structuredHeader ? rows.info : 0.0F);
 +  }
 +
+   m_loginPanel->arrange(renderer, LayoutRect{panelX, panelY, panelWidth, panelHeight});
 +
++  if (structuredHeader) {
++    const float columnGap = Style::spaceLg * contentScale;
++    const float columnWidth = std::max(0.0F, (headerWidth - columnGap * 2.0F) / 3.0F);
++    const float iconSize = Style::fontSizeBody * contentScale;
++    const float iconGap = Style::spaceSm * contentScale;
++    const float textWidth = std::max(0.0F, columnWidth - iconSize - iconGap);
++
++    m_weatherGlyph->setGlyphSize(iconSize);
++    m_weatherTextColumn->setGap(Style::spaceXs * contentScale);
++    m_weatherMeta->setMaxWidth(textWidth);
++    m_weatherTemp->setMaxWidth(textWidth);
++    m_weatherTemp->setTextAlign(TextAlign::Center);
++    m_loginClockRow->setGap(iconGap);
++    m_loginClockRow->setMaxWidth(columnWidth);
++    m_loginClockRow->layout(renderer);
++    m_loginClockRow->setPosition(
++        columnWidth + columnGap + (columnWidth - m_loginClockRow->width()) * 0.5F,
++        std::max(0.0F, (rows.info - m_loginClockRow->height()) * 0.5F)
++    );
++
++    m_loginBatteryLabel->setMaxWidth(textWidth);
++    m_headerBatteryStatus->setMaxWidth(textWidth);
++    m_loginBatteryGlyph->setGlyphSize(iconSize);
++    m_loginBatteryRow->setGap(iconGap);
++    m_loginBatteryRow->setMaxWidth(columnWidth);
++    m_loginBatteryRow->layout(renderer);
++    m_loginBatteryRow->setPosition(
++        (columnWidth + columnGap) * 2.0F + (columnWidth - m_loginBatteryRow->width()) * 0.5F,
++        std::max(0.0F, (rows.info - m_loginBatteryRow->height()) * 0.5F)
++    );
++
++    const bool showCapsLock = loginStyle.showCapsLock && m_capsLock;
++    m_headerCapsLock->setVisible(showCapsLock);
++    if (showCapsLock) {
++      m_headerCapsLock->setGap(iconGap);
++      m_headerCapsLockGlyph->setGlyphSize(iconSize);
++      m_headerCapsLockLabel->setFontSize(captionSize);
++      m_headerCapsLockLabel->setMaxWidth(textWidth);
++      m_headerCapsLockLabel->setText(i18n::tr("lockscreen.caps-lock-on"));
++      m_headerCapsLock->setMaxWidth(columnWidth);
++      m_headerCapsLock->layout(renderer);
++      m_headerCapsLock->setPosition(
++          (contentWidth - headerWidth) * 0.5F + (columnWidth - m_headerCapsLock->width()) * 0.5F,
++          std::max(0.0F, (rows.info - m_headerCapsLock->height()) * 0.5F)
++      );
++    }
++  } else if (m_headerCapsLock != nullptr) {
++    m_headerCapsLock->setVisible(false);
++  }
+ 
    // Auth panel: sibling above/below the login box (flips below when near the top edge).
    if (m_authPanel != nullptr && m_authLabel != nullptr) {
-     bool statusError = false;
-@@ -1895,7 +1934,7 @@
+@@ -1793,6 +1888,7 @@
+             m_loginBatteryGlyph->setGlyph(batteryGlyphName(battery.percentage, battery.state));
+             m_loginBatteryLabel->setText(std::format("{}%", percent));
+             m_loginBatteryLabel->setTooltip(batteryStateLabel(battery.state));
++            m_headerBatteryStatus->setText(batteryStateLabel(battery.state));
+           }
+         }
+       } else if (weatherReady) {
+@@ -1896,7 +1992,7 @@
      isError = true;
      return m_status;
    }
 -  if (m_capsLock && style.showCapsLock) {
-+  if (m_capsLock && style.showCapsLock && !(style.showClock && style.layout == lockscreen_login_box::LayoutMode::Regular)) {
++  if (m_capsLock && style.showCapsLock && !(style.showClock && !style.showMedia && style.layout == lockscreen_login_box::LayoutMode::Regular)) {
      isError = true;
      return i18n::tr("lockscreen.caps-lock-on");
    }
