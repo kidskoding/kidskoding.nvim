@@ -149,6 +149,7 @@
     asciiquarium-transparent
     cava
     cowsay
+    dua
     fortune
     ghostscript
     gum
