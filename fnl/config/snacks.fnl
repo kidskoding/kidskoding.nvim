@@ -24,7 +24,7 @@
 (map :<leader>h #(snacks.picker.help) "Search help pages")
 (map :<leader>bb #(snacks.picker.buffers) "Switch buffer")
 (map :<leader>bd #(snacks.bufdelete) "Close buffer")
-(map :<leader>gg #(snacks.lazygit) :Lazygit)
+(map :<leader>gz #(snacks.lazygit) :Lazygit)
 (map :<leader>gB #(snacks.gitbrowse) "Open file on GitHub")
 (map :<leader>gl #(snacks.picker.git_log_file) "File git history")
 (map :<leader>xt #(snacks.picker.todo_comments) "Todo list")
