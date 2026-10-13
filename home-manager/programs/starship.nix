@@ -38,7 +38,7 @@
       };
 
       git_branch.style = "bold base09";
-      git_status.style = "bold #fca7ea";
+      git_status.style = "bold base0e";
       cmd_duration.style = "base0a";
 
       character = {
