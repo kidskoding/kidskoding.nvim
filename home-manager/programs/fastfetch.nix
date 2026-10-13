@@ -9,7 +9,8 @@ in {
     settings = {
       logo = {
         type = "small";
-        color = {
+        /*
+           color = {
           "1" = nixosBlue;
           "2" = nixosBlueLight;
           "3" = nixosBlue;
@@ -17,6 +18,7 @@ in {
           "5" = nixosBlue;
           "6" = nixosBlueLight;
         };
+        */
         padding = {
           top = 5;
           left = 3;
