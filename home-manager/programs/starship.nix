@@ -13,32 +13,37 @@
       os = {
         disabled = false;
         format = "[$symbol]($style)";
-        style = "bold #7ebae4";
+        # style = "bold #7ebae4";
+        style = "bold base0d";
       };
 
       username = {
         show_always = true;
         format = "[$user]($style)";
-        style_user = "bold green";
+        style_user = "bold base0b";
       };
 
       hostname = {
         ssh_only = true;
         format = "[@$hostname]($style)";
-        style = "bold yellow";
+        style = "bold base0a";
         ssh_symbol = " ";
       };
 
       directory = {
         truncation_length = 3;
         format = " in [$path]($style) ";
-        style = "bold blue";
+        style = "bold base0d";
         read_only = "󰌾";
       };
 
+      git_branch.style = "bold base09";
+      git_status.style = "bold #fca7ea";
+      cmd_duration.style = "base0a";
+
       character = {
-        success_symbol = "[▶](bold green)";
-        error_symbol = "[▶](bold red)";
+        success_symbol = "[▶](bold base0b)";
+        error_symbol = "[▶](bold base08)";
       };
 
       os.symbols.NixOS = " ";
@@ -67,7 +72,7 @@
         detect_files = ["Makefile" "makefile" "GNUmakefile"];
         command = "make --version | head -n1 | cut -d' ' -f3";
         symbol = " ";
-        style = "bold bright-black";
+        style = "bold base03";
         format = "via [$symbol(v$output )]($style)";
       };
 

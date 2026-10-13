@@ -10,7 +10,6 @@
     ./networking.nix
     ./nvidia.nix
     ./disko.nix
-    ./packages.nix
     ./stylix.nix
     ./home-manager/programs/noctalia/greeter.nix
 
