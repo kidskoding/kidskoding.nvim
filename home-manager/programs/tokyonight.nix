@@ -1,3 +1,4 @@
+# tokyonight configuration for home manager!
 {inputs, ...}: let
   app = {
     enable = true;
