@@ -59,10 +59,6 @@
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "neogit": {
-      "rev": "5adc81b26232954cd7a90f158aa7844c18fc3165",
-      "src": "https://github.com/NeogitOrg/neogit"
-    },
     "neotest": {
       "rev": "27bf921498043f7ecd821d6db68d05de244bbd02",
       "src": "https://github.com/nvim-neotest/neotest"
