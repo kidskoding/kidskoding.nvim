@@ -80,14 +80,14 @@
       elixir.symbol = " ";
       elm.symbol = " ";
       fennel.symbol = " ";
-      fossil_branch.symbol = " ";
-      git_branch.symbol = " ";
+      fossil_branch.symbol = " ";
+      git_branch.symbol = " ";
       git_commit.tag_symbol = "  ";
       golang.symbol = " ";
       guix_shell.symbol = " ";
       haskell.symbol = " ";
       haxe.symbol = " ";
-      hg_branch.symbol = " ";
+      hg_branch.symbol = " ";
       java.symbol = " ";
       julia.symbol = " ";
       kotlin.symbol = " ";
@@ -101,7 +101,7 @@
       package.symbol = "󰏗 ";
       perl.symbol = " ";
       php.symbol = " ";
-      pijul_channel.symbol = " ";
+      pijul_channel.symbol = " ";
       pixi.symbol = "󰏗 ";
       python.symbol = " ";
       rlang.symbol = "󰟔 ";
