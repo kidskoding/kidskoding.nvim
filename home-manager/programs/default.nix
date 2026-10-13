@@ -10,12 +10,13 @@
     ./agents.nix
     ./fastfetch.nix
     ./fish.nix
-    ./git.nix
     ./ghostty.nix
+    ./git.nix
     ./lazygit.nix
     ./mangohud.nix
     ./obs.nix
     ./ssh.nix
+    ./starship.nix
     ./tickrs.nix
     ./tokyonight.nix
     ./zellij.nix

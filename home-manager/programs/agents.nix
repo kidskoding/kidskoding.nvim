@@ -67,7 +67,7 @@
     };
   };
 
-  home.packages = with pkgs; [gh nodejs starship];
+  home.packages = [pkgs.nodejs];
 
   programs.claude-code = {
     package = null;
