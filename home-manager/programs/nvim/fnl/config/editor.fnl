@@ -3,7 +3,6 @@
                "https://github.com/lewis6991/gitsigns.nvim"
                "https://github.com/stevearc/oil.nvim"
                "https://github.com/nvim-lua/plenary.nvim"
-               "https://github.com/NeogitOrg/neogit"
                "https://github.com/MunifTanjim/nui.nvim"
                "https://github.com/clabby/difftastic.nvim"
                "https://github.com/okuuva/auto-save.nvim"
@@ -16,7 +15,6 @@
 (local guess-indent (require :guess-indent))
 (local gitsigns (require :gitsigns))
 (local oil (require :oil))
-(local neogit (require :neogit))
 (local difftastic (require :difftastic-nvim))
 (local auto-save (require :auto-save))
 (local cord (require :cord))
@@ -28,7 +26,6 @@
 (gitsigns.setup {})
 (harpoon:setup {:settings {:save_on_toggle true}})
 (oil.setup {:win_options {:cursorline true}})
-(neogit.setup {})
 (difftastic.setup {:vcs :git
                    :snacks_picker {:enabled true}
                    :highlights {:DifftTreeRenamed {:fg "#D2BDF3"}}})
@@ -55,8 +52,7 @@
 
 (fn autosave? [buf]
   (and (= (. vim.bo buf :buftype) "")
-       (not (vim.tbl_contains [:gitcommit :NeogitCommitMessage]
-                              (. vim.bo buf :filetype)))))
+       (not= (. vim.bo buf :filetype) :gitcommit)))
 
 (auto-save.setup {:condition autosave?
                   :trigger_events {:defer_save [:InsertLeave
@@ -72,9 +68,7 @@
              :idle {:details "currently touching grass"}})
 
 (vim.keymap.set :n "-" :<cmd>Oil<CR> {:desc "Browse parent directory"})
-(vim.keymap.set :n :<leader>gg :<cmd>Neogit<CR> {:desc "Git status"})
 (vim.keymap.set :n :<leader>gb gitsigns.blame_line {:desc "Blame line"})
-(vim.keymap.set :n :<leader>gc "<cmd>Neogit commit<CR>" {:desc "Git commit"})
 (vim.keymap.set :n :<leader>gd :<cmd>Difft<CR> {:desc "Diff changes"})
 (vim.keymap.set :n :<leader>gD :<cmd>DifftPick<CR> {:desc "Diff a commit"})
 (vim.keymap.set :n :<leader>gt toggle-difft-tree
