@@ -9,8 +9,6 @@
         showRandomTip = false;
       };
 
-      update.method = "never";
-
       git = {
         overrideGpg = true;
         parseEmoji = true;
@@ -33,6 +31,9 @@
           }
         ];
       };
+
+      os.editPreset = "nvim-remote";
+      update.method = "never";
     };
   };
 }

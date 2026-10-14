@@ -37,8 +37,8 @@
         read_only = "󰌾";
       };
 
-      git_branch.style = "bold base09";
-      git_status.style = "bold base0c";
+      git_branch.style = "bold base0e";
+      git_status.style = "bold base08";
       cmd_duration.style = "base0a";
 
       character = {
