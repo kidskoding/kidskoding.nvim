@@ -7,6 +7,8 @@
         nerdFontsVersion = "3";
         border = "rounded";
         showRandomTip = false;
+        showPanelJumps = false;
+        portraitMode = false;
       };
 
       git = {
