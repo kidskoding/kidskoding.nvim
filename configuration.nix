@@ -50,6 +50,7 @@
     "https://devenv.cachix.org"
     "https://noctalia.cachix.org"
     "https://pkulak.cachix.org"
+    "https://cache.numtide.com"
   ];
   nix.settings.trusted-public-keys = [
     # bun2nix trusted public key
@@ -63,6 +64,9 @@
 
     # matui trusted public key
     "pkulak.cachix.org-1:S25jAptWCkAmwrk41b47lheB9onW9mzxVqM9o6HRg1E="
+
+    # llm-agents trusted public key
+    "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
   ];
 
   security.rtkit.enable = true;
