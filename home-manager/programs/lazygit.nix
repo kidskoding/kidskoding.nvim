@@ -8,6 +8,7 @@
         border = "rounded";
         showRandomTip = false;
         showPanelJumps = false;
+        expandFocusedSidePanel = true;
       };
 
       git = {
