@@ -117,6 +117,7 @@
     claude-agent-acp
     codex-acp
     devenv
+    doxygen
     duckdb
     github-cli
     irust
@@ -127,6 +128,7 @@
     # applications
     basalt
     discord
+    doxygen_gui
     harlequin
     myx
     neovim-unwrapped
