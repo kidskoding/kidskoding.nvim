@@ -48,7 +48,6 @@ in {
       };
 
       core.editor = "nvim";
-
       push.autoSetupRemote = true;
     };
 
