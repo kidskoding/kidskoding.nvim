@@ -39,7 +39,7 @@
     wl-clipboard
 
     # languages
-    dotnet-sdk_10
+    dotnet-sdk_11
     dune_3
     elmPackages.elm
     go

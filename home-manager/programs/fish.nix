@@ -122,6 +122,7 @@ in {
       # other
       agent = "cursor-agent";
       cat = "bat";
+      dua = "dua interactive";
       ff = "fastfetch";
       timer = "timr-tui";
       vim = "nvim";
