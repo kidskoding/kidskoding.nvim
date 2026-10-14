@@ -9,6 +9,7 @@ in {
     inputs.aoc-cli.packages.${system}.default
 
     inputs.antigravity-cli.packages.${system}.default
+    inputs.claude-code-cli.packages.${system}.default
     inputs.claude-desktop.packages.${system}.claude-desktop-with-fhs
     inputs.codex-cli.packages.${system}.default
 

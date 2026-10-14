@@ -70,7 +70,7 @@
   home.packages = [pkgs.nodejs];
 
   programs.claude-code = {
-    package = inputs.claude-code-cli.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    package = null;
 
     settings = {
       model = "claude-opus-5-5[1m]";
