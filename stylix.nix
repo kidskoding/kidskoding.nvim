@@ -13,8 +13,26 @@ in {
   stylix = {
     enable = true;
 
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyo-night-moon.yaml";
-    override.base05 = t.fg;
+    base16Scheme = {
+      scheme = "Tokyo Night Moon";
+      author = "folke";
+      base00 = t.bg;
+      base01 = t.bg_highlight;
+      base02 = t.bg_visual;
+      base03 = t.comment;
+      base04 = t.fg_dark;
+      base05 = t.fg;
+      base06 = t.fg;
+      base07 = t.fg;
+      base08 = t.red;
+      base09 = t.orange;
+      base0A = t.yellow;
+      base0B = t.green;
+      base0C = t.cyan;
+      base0D = t.blue;
+      base0E = t.magenta;
+      base0F = t.red1;
+    };
     polarity = "dark";
 
     fonts = {
