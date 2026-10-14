@@ -102,6 +102,7 @@
     bear
     bun
     cmake
+    gradle
     libtool
     nodejs
     uv

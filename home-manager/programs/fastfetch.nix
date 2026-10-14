@@ -1,5 +1,13 @@
 {config, ...}: let
   c = config.lib.stylix.colors;
+  rgb = base: "38;2;${c."${base}-rgb-r"};${c."${base}-rgb-g"};${c."${base}-rgb-b"}";
+  red = "{#${rgb "base08"}}";
+  orange = "{#${rgb "base09"}}";
+  yellow = "{#${rgb "base0A"}}";
+  green = "{#${rgb "base0B"}}";
+  cyan = "{#${rgb "base0C"}}";
+  blue = "{#${rgb "base0D"}}";
+  magenta = "{#${rgb "base0E"}}";
   nixosBlue = "38;2;82;119;195";
   nixosBlueLight = "38;2;126;186;228";
 in {
@@ -27,7 +35,7 @@ in {
 
       display = {
         separator = " ";
-        color.keys = "38;2;${c."base04-rgb-r"};${c."base04-rgb-g"};${c."base04-rgb-b"}";
+        color.keys = rgb "base04";
       };
 
       modules = [
@@ -37,75 +45,75 @@ in {
         }
         {
           type = "title";
-          key = "│ {#31} user    {#keys}│";
+          key = "│ ${blue} user    {#keys}│";
           format = "{user-name}";
         }
         {
           type = "title";
-          key = "│ {#32}󰇅 hname   {#keys}│";
+          key = "│ ${magenta}󰇅 hname   {#keys}│";
           format = "{host-name}";
         }
         {
           type = "os";
-          key = "│ {#33}{icon} distro  {#keys}│";
+          key = "│ ${green}{icon} distro  {#keys}│";
         }
         {
           type = "kernel";
-          key = "│ {#34} kernel  {#keys}│";
+          key = "│ ${cyan} kernel  {#keys}│";
         }
         {
           type = "packages";
-          key = "│ {#35}󰏗 pkgs    {#keys}│";
+          key = "│ ${yellow}󰏗 pkgs    {#keys}│";
         }
         {
           type = "wm";
-          key = "│ {#36}󰖲 wm      {#keys}│";
+          key = "│ ${orange}󰖲 wm      {#keys}│";
         }
         {
           type = "custom";
-          key = "│ {#31} toolkit {#keys}│";
+          key = "│ ${red} toolkit {#keys}│";
           format = "noctalia ${config.programs.noctalia.package.version}";
         }
         {
           type = "custom";
-          key = "│ {#32}󰏘 theme   {#keys}│";
+          key = "│ ${blue}󰏘 theme   {#keys}│";
           format = c.scheme;
         }
         {
           type = "custom";
-          key = "│ {#33} font    {#keys}│";
+          key = "│ ${magenta} font    {#keys}│";
           format = config.stylix.fonts.monospace.name;
         }
         {
           type = "terminal";
-          key = "│ {#34} term    {#keys}│";
+          key = "│ ${green} term    {#keys}│";
         }
         {
           type = "shell";
-          key = "│ {#35} shell   {#keys}│";
+          key = "│ ${cyan} shell   {#keys}│";
         }
         {
           type = "host";
-          key = "│ {#36} host    {#keys}│";
+          key = "│ ${yellow} host    {#keys}│";
         }
         {
           type = "cpu";
-          key = "│ {#31}󰍛 cpu     {#keys}│";
+          key = "│ ${orange}󰍛 cpu     {#keys}│";
           format = "{name}";
         }
         {
           type = "gpu";
-          key = "│ {#32}󰍛 gpu     {#keys}│";
+          key = "│ ${red}󰍛 gpu     {#keys}│";
           format = "{1} {2}";
           hideType = "integrated";
         }
         {
           type = "memory";
-          key = "│ {#33} memory  {#keys}│";
+          key = "│ ${blue} memory  {#keys}│";
         }
         {
           type = "disk";
-          key = "│ {#34}󰉉 disk    {#keys}│";
+          key = "│ ${magenta}󰉉 disk    {#keys}│";
           folders = "/";
         }
         {
@@ -114,8 +122,8 @@ in {
         }
         {
           type = "custom";
-          key = "│ {#39} colors  {#keys}│";
-          format = "{#31}██{#32}██{#33}██{#34}██{#35}██{#36}██{#37}██{#}";
+          key = "│ {#39} colors  {#keys}│";
+          format = "${blue}██${magenta}██${green}██${cyan}██${yellow}██${orange}██${red}██{#}";
         }
         {
           type = "custom";

@@ -76,9 +76,9 @@ in {
       mOnSurfaceVariant = "#${t.fg_sidebar}";
       mPrimary = "#${t.blue}";
       mOnPrimary = "#${t.black}";
-      mSecondary = "#${t.green}";
+      mSecondary = "#${t.magenta}";
       mOnSecondary = "#${t.black}";
-      mTertiary = "#${t.magenta}";
+      mTertiary = "#${t.green}";
       mOnTertiary = "#${t.black}";
       mError = "#${t.red}";
       mOnError = "#${t.black}";

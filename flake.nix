@@ -101,11 +101,6 @@
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
   in {
-    devShells.${system} = import ./devshells {
-      inherit pkgs;
-      fenix = inputs.fenix.packages.${system};
-    };
-
     templates = {
       uv2nix = {
         path = ./templates/uv2nix;
@@ -130,6 +125,21 @@
       bundix = {
         path = ./templates/bundix;
         description = "ruby project built from Gemfile.lock";
+      };
+
+      gomod2nix = {
+        path = ./templates/gomod2nix;
+        description = "go project built from go.sum";
+      };
+
+      elm2nix = {
+        path = ./templates/elm2nix;
+        description = "elm project built from elm.json";
+      };
+
+      gradle2nix = {
+        path = ./templates/gradle2nix;
+        description = "gradle project built from gradle.lock";
       };
     };
 
