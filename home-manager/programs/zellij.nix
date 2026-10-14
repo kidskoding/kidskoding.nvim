@@ -48,6 +48,13 @@
           "bind \"Alt t\"" = {
             NewTab = [];
           };
+
+          "bind \"Alt H\" \"Alt Shift h\" \"Alt K\" \"Alt Shift k\" \"Alt Shift Left\" \"Alt Shift Up\"" = {
+            GoToPreviousTab = [];
+          };
+          "bind \"Alt L\" \"Alt Shift l\" \"Alt J\" \"Alt Shift j\" \"Alt Shift Right\" \"Alt Shift Down\"" = {
+            GoToNextTab = [];
+          };
         };
       };
     };
