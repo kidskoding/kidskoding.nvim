@@ -130,9 +130,11 @@
     discord
     doxygen_gui
     harlequin
+    lunar-client
     myx
     neovim-unwrapped
     obsidian
+    prismlauncher
     ruffle
     spotify
     teams-for-linux
@@ -141,11 +143,10 @@
     zathura
     zoom-us
 
-    # gaming
+    # gaming deps
     bottles
     dolphin-emu
     heroic
-    lunar-client
     lutris
 
     # other really cool stuff!!
