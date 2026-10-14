@@ -117,6 +117,11 @@
         description = "bun project built from bun.lock";
       };
 
+      pnpm2nix = {
+        path = ./templates/pnpm2nix;
+        description = "pnpm project built from pnpm-lock.yaml";
+      };
+
       crane = {
         path = ./templates/crane;
         description = "rust project built from Cargo.lock";
