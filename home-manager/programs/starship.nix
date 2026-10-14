@@ -58,6 +58,8 @@
       bun.symbol = " ";
       c.symbol = " ";
 
+      c.detect_extensions = ["c"];
+
       cpp = {
         disabled = false;
         symbol = " ";
