@@ -7,18 +7,20 @@
       gui.nerdFontsVersion = "3";
       update.method = "never";
 
-      git.diffRenderers = [
-        {
-          name = "difftastic";
-          type = "extDiff";
-          command = "difft --color=always";
-        }
+      /*
+         git.diffRenderers = [
         {
           name = "difftastic inline";
           type = "extDiff";
           command = "difft --color=always --display=inline";
         }
+        {
+          name = "difftastic";
+          type = "extDiff";
+          command = "difft --color=always --width=$LAZYGIT_COLUMNS";
+        }
       ];
+      */
     };
   };
 }
