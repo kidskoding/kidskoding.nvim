@@ -21,6 +21,8 @@
                  :filetypes [:mdx]
                  :init_options {:typescript {:tsdk vim.env.TSDK}}})
 
+(vim.lsp.config :sourcekit {:filetypes [:swift]})
+
 ;; rust_analyzer is handled by rustaceanvim
 (vim.lsp.enable [:clangd
                  :cssls
