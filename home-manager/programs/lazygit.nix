@@ -21,11 +21,6 @@
             command = "difft --color=always --context={{diffContext}}";
           }
           {
-            name = "difftastic inline";
-            type = "extDiff";
-            command = "difft --color=always --display=inline --context={{diffContext}}";
-          }
-          {
             name = "default";
             type = "rawGit";
           }
