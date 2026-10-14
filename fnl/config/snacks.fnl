@@ -6,10 +6,16 @@
 (snacks.setup {:bigfile {:enabled true}
                :indent {:enabled true}
                :picker {:enabled true
-                        :sources {:projects {:dev ["~/uiuc/go-mama-27/personal-projects"
+                        :sources {:explorer {:hidden true :ignored true}
+                                  :projects {:dev ["~/uiuc/go-mama-27/personal-projects"
                                                    "~/uiuc"
                                                    "~/contributing"
                                                    "~/playground"]}}}})
+
+(let [icon snacks.util.icon]
+  (set snacks.util.icon (fn [name cat opts]
+                          (icon (if (= cat :file) (vim.fs.basename name) name)
+                                cat opts))))
 
 ;; after snacks.setup so todo-comments registers its picker source
 ((. (require :todo-comments) :setup) {})
@@ -37,4 +43,13 @@
 ;; some terminals send <C-_> for <C-/>
 (vim.keymap.set [:n :t] :<C-/> #(snacks.terminal) {:desc "Toggle terminal"})
 (vim.keymap.set [:n :t] :<C-_> #(snacks.terminal) {:desc :which_key_ignore})
-(vim.keymap.set :t :jk "<C-\\><C-n>" {:desc "Exit terminal mode"})
+
+;; add jk escape sequence for terminals, EXCEPT for lazygit!
+(vim.api.nvim_create_autocmd :TermOpen
+                             {:callback (fn [ev]
+                                          (when (not (string.find ev.match
+                                                                  :lazygit))
+                                            (vim.keymap.set :t :jk
+                                                            "<C-\\><C-n>"
+                                                            {:buffer ev.buf
+                                                             :desc "Exit terminal mode"})))})
