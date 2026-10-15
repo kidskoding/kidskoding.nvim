@@ -131,7 +131,6 @@
     discord
     doxygen_gui
     harlequin
-    lunar-client
     myx
     neovim-unwrapped
     obsidian
