@@ -80,6 +80,8 @@ in {
       battery = {
         display_mode = "glyph";
         show_label = true;
+        icon_color = "secondary";
+        warning_color = c.base0A;
       };
 
       clock = {
