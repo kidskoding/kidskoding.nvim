@@ -8,6 +8,7 @@
     inputs.noctalia.homeModules.default
 
     ./bar.nix
+    ./colors.nix
     ./launcher.nix
     ./lock.nix
     ./notifications.nix

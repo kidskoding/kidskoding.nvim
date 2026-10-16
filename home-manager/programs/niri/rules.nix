@@ -13,7 +13,7 @@
     }
     {
       matches = [{is-active = false;}];
-      opacity = 0.95;
+      opacity = 0.8;
     }
     {
       matches = [{app-id = "^discord$";}];

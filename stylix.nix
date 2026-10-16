@@ -1,13 +1,8 @@
 {
   config,
-  lib,
   pkgs,
   ...
-}: let
-  c = config.lib.stylix.colors.withHashtag;
-  capitalize = s: lib.toUpper (builtins.substring 0 1 s) + builtins.substring 1 (-1) s;
-  toPaletteKey = role: "m" + lib.concatMapStrings capitalize (lib.splitString "_" role);
-in {
+}: {
   stylix = {
     enable = true;
 
@@ -40,15 +35,9 @@ in {
     targets.qt.enable = false;
   };
 
-  home-manager.users.anirudh = {
-    stylix.targets = {
-      gnome.enable = false;
-      kde.enable = false;
-      qt.enable = false;
-    };
-
-    programs.noctalia.customPalettes.stylix.dark = lib.mapAttrs' (role: color:
-      lib.nameValuePair (toPaletteKey role) (lib.mkForce color))
-    (import ./home-manager/programs/noctalia/palette.nix c);
+  home-manager.users.anirudh.stylix.targets = {
+    gnome.enable = false;
+    kde.enable = false;
+    qt.enable = false;
   };
 }
