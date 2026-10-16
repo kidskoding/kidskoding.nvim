@@ -3,7 +3,67 @@
 
 (local snacks (require :snacks))
 
+(local ferris-art "                  .   ,.
+              ;. .xo.:xd',do  '.
+          ..  ddodddddddddddoodo  .
+          :dooddddddddddddddddddldd
+       c:,odddddllllllllllllllllllo:,:.
+       ,oooooolllllllllllllllllllllllo
+    .ccoooolllllllllllllllllllllllllllccc
+     loollllllllllllllllllllllllllllllll.
+  .;:lllllllllllllllllllllllclllllllllllc;,
+   .lllllllllllll{WWl} .lllc{WW.} clllllllllll
+  .:llllllllllll  {x},  :ll, {x}  'llllllccccc'
+ ,lllllllllllllll    .ccc:    ;ccccccccccccc;.
+ccc. l.:cccccccc:;;;:cccccc,,:ccccccccc y' cc,
+ .ll  l  ;c:;:dddd;,':cc:,;dddd;:;.:c. y  .c.
+   ll      c,ddcc dd'        ccdd,c.      yy
+    ll       .cc:.          .;::'        yy
+               '::;'.    ..,;;.         yy")
+
+(local wordmark-art
+       "░█▀▀░█▀▀░█▀▄░█▀▄░▀█▀░█▀▀░
+░█▀▀░█▀▀░█▀▄░█▀▄░░█░░▀▀█░
+░▀░░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░")
+
+(fn shade [art base accent texture]
+  (let [lines (vim.split art "\n")
+        width #(vim.api.nvim_strwidth (pick-values 1 (string.gsub $ "[{}]" "")))
+        max-width (math.max (unpack (vim.tbl_map width lines)))
+        chunks []]
+    (var in-accent false)
+    (each [i line (ipairs lines)]
+      (when (> i 1)
+        (table.insert chunks ["\n"]))
+      (let [padded (.. line (string.rep " " (- max-width (width line))))]
+        (each [_ char (ipairs (vim.fn.split padded "\\zs"))]
+          (if (or (= char "{") (= char "}"))
+              (set in-accent (= char "{"))
+              (let [hl (if (= char "░") texture
+                           in-accent accent
+                           base)
+                    last (. chunks (length chunks))]
+                (if (and last (= last.hl hl))
+                    (tset last 1 (.. (. last 1) char))
+                    (table.insert chunks {1 char : hl})))))))
+    chunks))
+
+(local version (let [v (vim.version)]
+                 (.. :v v.major "." v.minor "." v.patch)))
+
 (snacks.setup {:bigfile {:enabled true}
+               :dashboard {:enabled true
+                           :sections [{:text (shade ferris-art :GruvboxOrange
+                                                    :GruvboxFg0)
+                                       :align :center
+                                       :padding 1}
+                                      {:text (shade wordmark-art :GruvboxFg1
+                                                    nil :GruvboxBg2)
+                                       :align :center
+                                       :padding 2}
+                                      {:section :keys :gap 1 :padding 1}
+                                      {:text [{1 version :hl :GruvboxBg4}]
+                                       :align :center}]}
                :indent {:enabled true}
                :lazygit {:configure false}
                :styles {:lazygit {:wo {:winhighlight "NormalFloat:Normal"}}}
