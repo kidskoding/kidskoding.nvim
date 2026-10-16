@@ -29,6 +29,10 @@
                             :GruvboxPurpleSign {:link :GruvboxPurple}
                             :GruvboxAquaSign {:link :GruvboxAqua}
                             :GruvboxOrangeSign {:link :GruvboxOrange}
+                            ;; snacks dashboard menu: neutral so ferris stands out
+                            :SnacksDashboardIcon {:link :GruvboxBlue}
+                            :SnacksDashboardDesc {:link :GruvboxBlue}
+                            :SnacksDashboardKey {:link :GruvboxFg1}
                             ;; snacks picker title toggles as badges
                             :SnacksPickerToggle {:fg gruvbox.palette.bright_blue
                                                  :bg gruvbox.palette.dark2
