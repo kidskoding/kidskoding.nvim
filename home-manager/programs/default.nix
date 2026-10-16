@@ -18,7 +18,6 @@
     ./ssh.nix
     ./starship.nix
     ./tickrs.nix
-    ./tokyonight.nix
     ./zellij.nix
   ];
 
