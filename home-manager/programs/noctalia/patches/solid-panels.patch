@@ -7,7 +7,7 @@
 -  const float panelBackgroundOpacity =
 -      m_attachedToBar ? m_attachedBackgroundOpacity : shell::panel_surface::backgroundOpacity(m_config);
 -  m_activePanel->setPanelCardOpacity(shell::panel_surface::cardOpacity(m_config, panelBackgroundOpacity));
-+  const bool solidPanel = m_activePanelId == "launcher";
++  const bool solidPanel = m_activePanelId == "launcher" || m_activePanelId == "session";
 +  const float panelBackgroundOpacity = m_attachedToBar ? m_attachedBackgroundOpacity
 +      : solidPanel                                      ? 1.0F
 +                                                        : shell::panel_surface::backgroundOpacity(m_config);
@@ -21,8 +21,8 @@
          // Fill (opacity-dependent) is applied via applyAttachedDecorationStyle() below.
        } else {
 -        const float backgroundOpacity = shell::panel_surface::backgroundOpacity(m_config);
-+        const float backgroundOpacity =
-+            m_activePanelId == "launcher" ? 1.0F : shell::panel_surface::backgroundOpacity(m_config);
++        const bool solidPanel = m_activePanelId == "launcher" || m_activePanelId == "session";
++        const float backgroundOpacity = solidPanel ? 1.0F : shell::panel_surface::backgroundOpacity(m_config);
          bg->setFill(colorSpecFromRole(ColorRole::Surface, backgroundOpacity));
          if (panelBorders) {
            bg->setBorder(colorSpecFromRole(ColorRole::Outline, backgroundOpacity), Style::borderWidth);
@@ -33,7 +33,7 @@
 -    const float panelBackgroundOpacity =
 -        m_attachedToBar ? m_attachedBackgroundOpacity : shell::panel_surface::backgroundOpacity(m_config);
 -    m_activePanel->setPanelCardOpacity(shell::panel_surface::cardOpacity(m_config, panelBackgroundOpacity));
-+    const bool solidPanel = m_activePanelId == "launcher";
++    const bool solidPanel = m_activePanelId == "launcher" || m_activePanelId == "session";
 +    const float panelBackgroundOpacity = m_attachedToBar ? m_attachedBackgroundOpacity
 +        : solidPanel                                      ? 1.0F
 +                                                          : shell::panel_surface::backgroundOpacity(m_config);

@@ -50,6 +50,7 @@
       placement_width = 1920.0;
       placement_height = 1080.0;
       settings = {
+        background_opacity = 1.0;
         show_unlock_hint = false;
         center_password_text = true;
         show_media = false;
@@ -69,6 +70,7 @@
       placement_width = 1920.0;
       placement_height = 1080.0;
       settings = {
+        background_opacity = 1.0;
         hide_when_no_media = true;
         show_progress = true;
       };

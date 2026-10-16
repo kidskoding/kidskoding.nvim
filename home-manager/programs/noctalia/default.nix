@@ -32,7 +32,7 @@
           ./patches/lockscreen-battery-status.patch
           ./patches/lockscreen-header-caps-lock.patch
           ./patches/media-player-seek-bar.patch
-          ./patches/launcher-solid.patch
+          ./patches/solid-panels.patch
         ];
     });
 
