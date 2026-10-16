@@ -33,6 +33,8 @@
                             :SnacksDashboardIcon {:link :GruvboxBlue}
                             :SnacksDashboardDesc {:link :GruvboxBlue}
                             :SnacksDashboardKey {:link :GruvboxFg1}
+                            :SnacksDashboardDir {:link :GruvboxGray}
+                            :SnacksDashboardTitle {:link :GruvboxGray}
                             ;; snacks picker title toggles as badges
                             :SnacksPickerToggle {:fg gruvbox.palette.bright_blue
                                                  :bg gruvbox.palette.dark2
