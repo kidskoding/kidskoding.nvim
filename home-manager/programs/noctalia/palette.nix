@@ -20,6 +20,6 @@ c: {
   outline = c.base01;
   shadow = c.base00;
 
-  hover = c.base05;
-  on_hover = c.base00;
+  hover = c.base02;
+  on_hover = c.base05;
 }
