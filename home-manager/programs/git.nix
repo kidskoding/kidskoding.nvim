@@ -51,6 +51,11 @@ in {
       push.autoSetupRemote = true;
     };
 
+    extraConfig = {
+      pull.rebase = true;
+      rebase.autoStash = true;
+    };
+
     ignores = [
       "result" # symlink when building to /nix/store
       "result-*"
