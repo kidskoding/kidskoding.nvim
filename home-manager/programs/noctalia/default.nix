@@ -53,7 +53,7 @@
           session_position = "center";
           open_near_click_session = false;
           open_near_click_wallpaper = true;
-          transparency_mode = "glass";
+          transparency_mode = "soft";
         };
       };
 
