@@ -16,7 +16,7 @@ in {
       widget_spacing = 12;
       font_scale = 1.1;
       scale = 1.1;
-      background_opacity = 0.85;
+      background_opacity = 0.8;
       capsule = true;
       capsule_fill = "surface_variant";
       color = "on_surface";
