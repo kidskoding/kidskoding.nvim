@@ -1,17 +1,20 @@
-(vim.pack.add ["https://github.com/folke/tokyonight.nvim"])
+(vim.pack.add ["https://github.com/ellisonleao/gruvbox.nvim"])
 
-(local tokyonight (require :tokyonight))
+(local gruvbox (require :gruvbox))
 
-(tokyonight.setup {:style :moon
-                   :styles {:comments {:italic false}
-                            :keywords {:italic false}}
-                   :on_highlights (fn [highlights _colors]
-                                    (set highlights.Added {:fg "#CBE3B3"})
-                                    (set highlights.Removed {:fg "#F57F82"})
-                                    (set highlights.Changed {:fg "#F5D098"})
-                                    (set highlights.GitSignsChange
-                                         {:fg "#F5D098"})
-                                    (set highlights.GitSignsUntracked
-                                         {:fg "#B3E3CA"}))})
+(gruvbox.setup {:italic {:strings false
+                         :emphasis false
+                         :comments false
+                         :operators false
+                         :folds false}
+                :overrides {"@punctuation.bracket" {:link :Normal}
+                            "@punctuation.delimiter" {:link :Normal}
+                            :TroubleNormal {:link :Normal}
+                            :TroubleNormalNC {:link :Normal}
+                            :Added {:link :GruvboxGreen}
+                            :Removed {:link :GruvboxRed}
+                            :Changed {:link :GruvboxYellow}
+                            :GitSignsChange {:link :GruvboxYellow}
+                            :GitSignsUntracked {:link :GruvboxAqua}}})
 
-(vim.cmd.colorscheme :tokyonight)
+(vim.cmd.colorscheme :gruvbox)
