@@ -80,7 +80,7 @@ in {
       battery = {
         display_mode = "glyph";
         show_label = true;
-        icon_color = "secondary";
+        icon_color = c.base0B;
         warning_color = c.base0A;
       };
 

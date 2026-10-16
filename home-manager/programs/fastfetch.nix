@@ -35,7 +35,7 @@ in {
         }
         {
           type = "title";
-          key = "│ {#31} user    {#keys}│";
+          key = "│ {#31} user    {#keys}│";
           format = "{user-name}";
         }
         {
@@ -49,7 +49,7 @@ in {
         }
         {
           type = "kernel";
-          key = "│ {#34} kernel  {#keys}│";
+          key = "│ {#34} kernel  {#keys}│";
         }
         {
           type = "packages";
@@ -61,7 +61,7 @@ in {
         }
         {
           type = "custom";
-          key = "│ {#31} toolkit {#keys}│";
+          key = "│ {#31} toolkit {#keys}│";
           format = "noctalia ${config.programs.noctalia.package.version}";
         }
         {
@@ -71,20 +71,20 @@ in {
         }
         {
           type = "custom";
-          key = "│ {#33} font    {#keys}│";
+          key = "│ {#33} font    {#keys}│";
           format = config.stylix.fonts.monospace.name;
         }
         {
           type = "terminal";
-          key = "│ {#34} term    {#keys}│";
+          key = "│ {#34} term    {#keys}│";
         }
         {
           type = "shell";
-          key = "│ {#35} shell   {#keys}│";
+          key = "│ {#35} shell   {#keys}│";
         }
         {
           type = "host";
-          key = "│ {#36} host    {#keys}│";
+          key = "│ {#36} host    {#keys}│";
         }
         {
           type = "cpu";
@@ -99,7 +99,7 @@ in {
         }
         {
           type = "memory";
-          key = "│ {#33} memory  {#keys}│";
+          key = "│ {#33} memory  {#keys}│";
         }
         {
           type = "disk";
@@ -112,7 +112,7 @@ in {
         }
         {
           type = "custom";
-          key = "│ {#39} colors  {#keys}│";
+          key = "│ {#39} colors  {#keys}│";
           format = "{#31}██{#32}██{#33}██{#34}██{#35}██{#36}██{#37}██{#}";
         }
         {
