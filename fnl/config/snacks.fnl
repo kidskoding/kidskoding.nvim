@@ -3,33 +3,34 @@
 
 (local snacks (require :snacks))
 
-(local ferris-art "                  .   ,.
-              ;. .xo.:xd',do  '.
-          ..  ddodddddddddddoodo  .
-          :dooddddddddddddddddddldd
-       c:,odddddllllllllllllllllllo:,:.
-       ,oooooolllllllllllllllllllllllo
-    .ccoooolllllllllllllllllllllllllllccc
-     loollllllllllllllllllllllllllllllll.
-  .;:lllllllllllllllllllllllclllllllllllc;,
-   .lllllllllllll{WWl} .lllc{WW.} clllllllllll
-  .:llllllllllll  {x},  :ll, {x}  'llllllccccc'
- ,lllllllllllllll    .ccc:    ;ccccccccccccc;.
-ccc. l.:cccccccc:;;;:cccccc,,:ccccccccc y' cc,
- .ll  l  ;c:;:dddd;,':cc:,;dddd;:;.:c. y  .c.
-   ll      c,ddcc dd'        ccdd,c.      yy
-    ll       .cc:.          .;::'        yy
-               '::;'.    ..,;;.         yy")
+(local ferris-art
+       ["                  .   ,."
+        "              ;. .xo.:xd',do  '."
+        "          ..  ddodddddddddddoodo  ."
+        "          :dooddddddddddddddddddldd"
+        "       c:,odddddllllllllllllllllllo:,:."
+        "       ,oooooolllllllllllllllllllllllo"
+        "    .ccoooolllllllllllllllllllllllllllccc"
+        "     loollllllllllllllllllllllllllllllll."
+        "  .;:lllllllllllllllllllllllclllllllllllc;,"
+        "   .lllllllllllll{WWl} .lllc{WW.} clllllllllll"
+        "  .:llllllllllll  {x},  :ll, {x}  'llllllccccc'"
+        " ,lllllllllllllll    .ccc:    ;ccccccccccccc;."
+        "ccc. l.:cccccccc:;;;:cccccc,,:ccccccccc y' cc,"
+        " .ll  l  ;c:;:dddd;,':cc:,;dddd;:;.:c. y  .c."
+        "   ll      c,ddcc dd'        ccdd,c.      yy"
+        "    ll       .cc:.          .;::'        yy"
+        "               '::;'.    ..,;;.         yy"])
 
 (local wordmark-art
-       "░█▀▀░█▀▀░█▀▄░█▀▄░▀█▀░█▀▀░
-░█▀▀░█▀▀░█▀▄░█▀▄░░█░░▀▀█░
-░▀░░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░")
+       ["░█▀▀░█▀▀░█▀▄░█▀▄░▀█▀░█▀▀░"
+        "░█▀▀░█▀▀░█▀▄░█▀▄░░█░░▀▀█░"
+        "░▀░░░▀▀▀░▀░▀░▀░▀░▀▀▀░▀▀▀░"])
 
-(fn shade [art base accent texture]
-  (let [lines (vim.split art "\n")
-        width #(vim.api.nvim_strwidth (pick-values 1 (string.gsub $ "[{}]" "")))
-        max-width (math.max (unpack (vim.tbl_map width lines)))
+(fn shade [lines base accent texture]
+  (let [width #(vim.api.nvim_strwidth (pick-values 1 (string.gsub $ "[{}]" "")))
+        max-width (accumulate [w 0 _ line (ipairs lines)]
+                    (math.max w (width line)))
         chunks []]
     (var in-accent false)
     (each [i line (ipairs lines)]
@@ -51,8 +52,54 @@ ccc. l.:cccccccc:;;;:cccccc,,:ccccccccc y' cc,
 (local version (let [v (vim.version)]
                  (.. :v v.major "." v.minor "." v.patch)))
 
+(fn open-project [dir]
+  (vim.fn.chdir dir)
+  (when (= vim.bo.filetype :snacks_dashboard)
+    (vim.cmd.enew))
+  (snacks.picker.explorer))
+
+(fn new-project []
+  (let [default (.. (vim.fn.fnamemodify (vim.fn.getcwd) ":~") "/")]
+    (vim.ui.input {:prompt "New project: " : default :completion :dir}
+                  (fn [path]
+                    (when (and path
+                               (not= (vim.fn.expand path)
+                                     (vim.fn.expand default)))
+                      (let [dir (vim.fs.normalize (vim.fn.expand path))]
+                        (when (= 0 (vim.fn.isdirectory dir))
+                          (vim.fn.mkdir dir :p)
+                          (vim.fn.system [:git :init dir]))
+                        (vim.notify (.. "Project: "
+                                        (vim.fn.fnamemodify dir ":~")))
+                        (open-project dir)))))))
+
 (snacks.setup {:bigfile {:enabled true}
                :dashboard {:enabled true
+                           :formats {:icon (fn [item]
+                                             (if (= item.icon :directory)
+                                                 (doto (snacks.dashboard.icon item.file
+                                                                              item.icon)
+                                                   (tset :hl :icon))
+                                                 {1 item.icon
+                                                  :width 2
+                                                  :hl :icon}))}
+                           :preset {:keys [{:icon "󰉗 "
+                                            :key :n
+                                            :desc "New Project"
+                                            :action new-project}
+                                           {:icon " "
+                                            :key :p
+                                            :desc "Open Project"
+                                            :action #(snacks.picker.projects)}
+                                           {:icon " "
+                                            :key :c
+                                            :desc :Config
+                                            :action #(snacks.dashboard.pick :files
+                                                                            {:cwd (vim.fn.stdpath :config)})}
+                                           {:icon " "
+                                            :key :q
+                                            :desc :Quit
+                                            :action ":qa"}]}
                            :sections [{:text (shade ferris-art :GruvboxOrange
                                                     :GruvboxFg0)
                                        :align :center
@@ -61,7 +108,11 @@ ccc. l.:cccccccc:;;;:cccccc,,:ccccccccc y' cc,
                                                     nil :GruvboxBg2)
                                        :align :center
                                        :padding 2}
-                                      {:section :keys :gap 1 :padding 1}
+                                      {:title "Recent Projects"
+                                       :section :projects
+                                       :action open-project
+                                       :padding 1}
+                                      {:section :keys :padding 1}
                                       {:text [{1 version :hl :GruvboxBg4}]
                                        :align :center}]}
                :indent {:enabled true}
@@ -69,7 +120,11 @@ ccc. l.:cccccccc:;;;:cccccc,,:ccccccccc y' cc,
                :styles {:lazygit {:wo {:winhighlight "NormalFloat:Normal"}}}
                :picker {:enabled true
                         :sources {:explorer {:hidden true :ignored true}
-                                  :projects {:dev ["~/uiuc/go-mama-27/personal-projects"
+                                  :projects {:confirm (fn [picker item]
+                                                        (picker:close)
+                                                        (when item
+                                                          (open-project item.file)))
+                                             :dev ["~/uiuc/go-mama-27/personal-projects"
                                                    "~/uiuc"
                                                    "~/contributing"
                                                    "~/playground"]}}}})
