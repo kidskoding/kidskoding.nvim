@@ -59,7 +59,7 @@
                  :zls])
 
 (local trouble (require :trouble))
-(trouble.setup {})
+(trouble.setup {:modes {:diagnostics {:auto_close true}}})
 
 (fn map [key cmd desc]
   (vim.keymap.set :n key (.. "<cmd>Trouble " cmd :<CR>) {: desc}))
