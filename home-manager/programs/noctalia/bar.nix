@@ -17,6 +17,7 @@ in {
       font_scale = 1.1;
       scale = 1.1;
       background_opacity = 0.8;
+      compositor_blur = true;
       capsule = true;
       capsule_fill = "surface_variant";
       color = "on_surface";
