@@ -63,10 +63,6 @@
       "rev": "221ce6b2d999187044529f49da6554a92f740a96",
       "src": "https://github.com/nvim-lualine/lualine.nvim"
     },
-    "mini.icons": {
-      "rev": "f916635dc5ae2f479fbb9ab8184bb9444b62e86c",
-      "src": "https://github.com/nvim-mini/mini.icons"
-    },
     "neotest": {
       "rev": "27bf921498043f7ecd821d6db68d05de244bbd02",
       "src": "https://github.com/nvim-neotest/neotest"
@@ -132,10 +128,6 @@
     "todo-comments.nvim": {
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
-    },
-    "tokyonight.nvim": {
-      "rev": "cdc07ac78467a233fd62c493de29a17e0cf2b2b6",
-      "src": "https://github.com/folke/tokyonight.nvim"
     },
     "trouble.nvim": {
       "rev": "bd67efe408d4816e25e8491cc5ad4088e708a69a",

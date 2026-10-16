@@ -5,6 +5,8 @@
 
 (snacks.setup {:bigfile {:enabled true}
                :indent {:enabled true}
+               :lazygit {:configure false}
+               :styles {:lazygit {:wo {:winhighlight "NormalFloat:Normal"}}}
                :picker {:enabled true
                         :sources {:explorer {:hidden true :ignored true}
                                   :projects {:dev ["~/uiuc/go-mama-27/personal-projects"
