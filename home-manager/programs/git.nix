@@ -49,9 +49,6 @@ in {
 
       core.editor = "nvim";
       push.autoSetupRemote = true;
-    };
-
-    extraConfig = {
       pull.rebase = true;
       rebase.autoStash = true;
     };
