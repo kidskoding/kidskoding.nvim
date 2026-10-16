@@ -35,5 +35,12 @@
 
 (bufferline.setup {:options {:style_preset bufferline.style_preset.no_italic
                              :tab_size 0
+                             :separator_style ["" ""]
                              :offsets [{:filetype :snacks_layout_box
-                                        :highlight :Normal}]}})
+                                        :separator true
+                                        :highlight :Normal}]}
+                   :highlights {:indicator_selected {:fg "#d79921"}
+                                :offset_separator {:bg (. (vim.api.nvim_get_hl 0
+                                                                               {:name :Normal
+                                                                                :link false})
+                                                          :bg)}}})
