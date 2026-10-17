@@ -1,11 +1,8 @@
-{
-  config,
-  inputs,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     ./niri
-    ./noctalia
+    ./noctalia.nix
+    ./nvim.nix
 
     ./agents.nix
     ./fastfetch.nix
@@ -27,10 +24,4 @@
     enable = true;
     nix-direnv.enable = true;
   };
-
-  # neovim config managed separately and is in its own repo (subtree)
-  # linked live so edits do not need any rebuild
-  xdg.configFile."nvim".source =
-    config.lib.file.mkOutOfStoreSymlink
-    "${config.home.homeDirectory}/nixos/home-manager/programs/nvim";
 }

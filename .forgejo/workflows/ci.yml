@@ -58,4 +58,4 @@ jobs:
           git fetch --no-tags --depth=1 origin "$CI_COMMIT_SHA"
           git checkout --detach FETCH_HEAD
       - name: Validate Noctalia configuration
-        run: nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate home-manager/programs/noctalia/config.toml
+        run: nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate programs/noctalia/config.toml

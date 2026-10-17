@@ -12,8 +12,16 @@ HOST="${HOST:-nixos}"
 cd "$FLAKE_DIR"
 
 # flakes only see files that git knows about, so stage everything first!
-# the neovim config is skipped: scripts/nvim-sync.sh commits and pushes it on its own
-git add -A -- . ':!home-manager/programs/nvim'
+stage_config() {
+    if [ -n "$(git ls-files -- programs/nvim)" ]; then
+        # scripts/nvim-sync.sh commits and pushes Neovim changes separately.
+        git add -A -- . ':!programs/nvim'
+    else
+        # Include the subtree on the first rebuild after moving it here.
+        git add -A -- .
+    fi
+}
+stage_config
 
 if git diff --cached --quiet; then
     echo "no changes detected, exiting."
@@ -25,7 +33,7 @@ echo "formatting all nix files to enforce ci"
 mapfile -t changed < <(git diff --cached --name-only --diff-filter=ACMR -- '*.nix')
 if [ ${#changed[@]} -gt 0 ]; then
     alejandra -q "${changed[@]}"
-    git add -A -- . ':!home-manager/programs/nvim'
+    stage_config
 fi
 
 # show what changed: every staged file, then a structural diff via difftastic 

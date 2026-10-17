@@ -7,7 +7,7 @@
 set -euo pipefail
 
 NIXOS_DIR="${NIXOS_DIR:-$HOME/nixos}"
-NVIM_DIR="$NIXOS_DIR/home-manager/programs/nvim"
+NVIM_DIR="$NIXOS_DIR/programs/nvim"
 PACK_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/pack/core/opt"
 
 mapfile -t orphans < <(comm -23 \

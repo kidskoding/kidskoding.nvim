@@ -8,9 +8,25 @@
 set -euo pipefail
 
 NIXOS_DIR="${NIXOS_DIR:-$HOME/nixos}"
-NVIM_DIR="home-manager/programs/nvim"
+NVIM_DIR="programs/nvim"
 
 cd "$NIXOS_DIR"
+
+# Reconnect subtree history once after the folder relocation is committed.
+if [ -z "$(git log -1 --format=%H --grep="^git-subtree-dir: $NVIM_DIR/*$")" ]; then
+    legacy_dir="home-manager/programs/nvim"
+    relocation=$(git log -1 --diff-filter=D --format=%H -- "$legacy_dir/init.lua")
+    if [ -z "$relocation" ]; then
+        echo "commit the Neovim folder relocation with the rest of the config first." >&2
+        exit 1
+    fi
+    mainline=$(git rev-parse "$relocation^")
+    split=$(git subtree split -S --prefix="$legacy_dir" "$mainline")
+    git commit --allow-empty --only -m "Reconnect Neovim subtree after relocation" \
+        -m "git-subtree-dir: $NVIM_DIR
+git-subtree-mainline: $mainline
+git-subtree-split: $split"
+fi
 
 if [ -z "$(git status --porcelain -- "$NVIM_DIR")" ]; then
     echo "no neovim changes."
