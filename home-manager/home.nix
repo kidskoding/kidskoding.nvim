@@ -132,6 +132,7 @@
     discord
     doxygen_gui
     harlequin
+    libreoffice
     myx
     neovim-unwrapped
     obsidian
