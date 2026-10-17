@@ -6,7 +6,6 @@
   imports = [
     ./packages.nix
     ./default.nix
-    ./wallpaper
   ];
 
   home.stateVersion = "26.05";

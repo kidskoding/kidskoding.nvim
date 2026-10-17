@@ -10,7 +10,7 @@
     settings = ./greeter/greeter.toml;
   };
 
-  environment.etc."noctalia-greeter/wallpaper.jpg".source = ../../home-manager/wallpaper/images/starfire-bg.jpg;
+  environment.etc."noctalia-greeter/wallpaper.jpg".source = ./wallpapers/starfire-bg.jpg;
 
   environment.systemPackages = [
     (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
