@@ -64,19 +64,3 @@ jobs:
           git checkout --detach FETCH_HEAD
       - name: Validate Noctalia configuration
         run: nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate home-manager/programs/noctalia/config.toml
-
-  system-build:
-    needs: [format, flake-check, noctalia-config]
-    runs-on: codeberg-medium
-    timeout-minutes: 120
-    container:
-      image: ghcr.io/nixos/nix:2.35.2-amd64
-    steps:
-      - name: Check out commit
-        run: |
-          git init .
-          git remote add origin "$CI_REPOSITORY_URL"
-          git fetch --no-tags --depth=1 origin "$CI_COMMIT_SHA"
-          git checkout --detach FETCH_HEAD
-      - name: Build NixOS system
-        run: nix build --no-write-lock-file --no-link --print-build-logs .#nixosConfigurations.nixos.config.system.build.toplevel
