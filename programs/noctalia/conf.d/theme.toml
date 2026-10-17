@@ -1,4 +1,4 @@
 [theme]
 mode = "dark"
 source = "custom"
-custom_palette = "stylix"
+custom_palette = "gruvbox"
