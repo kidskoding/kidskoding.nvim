@@ -44,12 +44,9 @@
     go
     jdk21
     (julia.withPackages ["LanguageServer"])
-
-    # lua
     lua
     luarocks
     luaPackages.fennel
-
     ocaml
     php
     phpPackages.composer
