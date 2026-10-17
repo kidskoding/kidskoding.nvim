@@ -89,6 +89,10 @@ in {
           "panel-toggle"
           "session"
         ];
+        "Mod+Ctrl+L".action.spawn = noctalia [
+          "session"
+          "lock"
+        ];
         "Mod+Shift+R".action.spawn-sh = "pkill -fx '.*/bin/noctalia'; while pgrep -fx '.*/bin/noctalia' >/dev/null; do sleep 0.1; done; noctalia";
         "Mod+Shift+C".action.spawn = [
           "hyprpicker"

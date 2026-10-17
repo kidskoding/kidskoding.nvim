@@ -3,21 +3,12 @@
   inputs,
   pkgs,
   ...
-}: {
-  imports = [
-    inputs.noctalia.homeModules.default
-
-    ./bar.nix
-    ./colors.nix
-    ./launcher.nix
-    ./lock.nix
-    ./notifications.nix
-  ];
-
-  programs.noctalia = {
-    enable = true;
-
-    package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
+}: let
+  dir = "${config.home.homeDirectory}/nixos/home-manager/programs/noctalia";
+  link = config.lib.file.mkOutOfStoreSymlink;
+in {
+  home.packages = [
+    (inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default.overrideAttrs (old: {
       patches =
         (old.patches or [])
         ++ [
@@ -34,39 +25,12 @@
           ./patches/media-player-seek-bar.patch
           ./patches/solid-panels.patch
         ];
-    });
+    }))
+  ];
 
-    settings = {
-      accessibility.ui_scale = 1.2;
-      osd.kinds.media = false;
-      plugins.enabled = ["noctalia/timer"];
-
-      control_center.sidebar_section = "none";
-
-      shell = {
-        time_format = "{:%-I:%M %p}";
-        avatar_path = "${./avatars/starfire.jpeg}";
-
-        panel = {
-          open_near_click_control_center = true;
-          session_placement = "floating";
-          session_position = "center";
-          open_near_click_session = false;
-          open_near_click_wallpaper = true;
-          transparency_mode = "soft";
-        };
-      };
-
-      location.auto_locate = true;
-
-      weather = {
-        enabled = true;
-        unit = "imperial";
-      };
-
-      battery.warning_threshold = 30;
-
-      dock.enabled = false;
-    };
+  xdg.configFile = {
+    "noctalia/config.toml".source = link "${dir}/config.toml";
+    "noctalia/conf.d".source = link "${dir}/conf.d";
+    "noctalia/palettes".source = link "${dir}/palettes";
   };
 }

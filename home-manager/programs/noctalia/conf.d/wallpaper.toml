@@ -1,0 +1,7 @@
+[wallpaper]
+enabled = true
+directory = "/home/anirudh/nixos/home-manager/wallpaper/images"
+fill_mode = "crop"
+
+[wallpaper.default]
+path = "/home/anirudh/nixos/home-manager/wallpaper/images/starfire-bg.jpg"

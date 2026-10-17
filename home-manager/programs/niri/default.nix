@@ -57,6 +57,7 @@ in {
       GDK_DPI_SCALE = "1.25";
       QT_FONT_DPI = "120";
       MOZ_ENABLE_WAYLAND = "1";
+      TERMINAL = terminal;
     };
 
     outputs."eDP-1" = {
