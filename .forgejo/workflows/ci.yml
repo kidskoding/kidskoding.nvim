@@ -8,7 +8,10 @@ on:
   workflow_dispatch:
 
 env:
-  NIX_CONFIG: experimental-features = nix-command flakes
+  NIX_CONFIG: |
+    experimental-features = nix-command flakes
+    extra-substituters = https://noctalia.cachix.org
+    extra-trusted-public-keys = noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=
   CI_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}.git
   CI_COMMIT_SHA: ${{ github.sha }}
 
@@ -58,4 +61,10 @@ jobs:
           git fetch --no-tags --depth=1 origin "$CI_COMMIT_SHA"
           git checkout --detach FETCH_HEAD
       - name: Validate Noctalia configuration
-        run: nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate programs/noctalia/config.toml
+        run: |
+          out=$(nix eval --raw --no-write-lock-file --inputs-from . noctalia#default.outPath)
+          if ! nix path-info --store https://noctalia.cachix.org "$out" >/dev/null 2>&1; then
+            echo "::warning::$out not in noctalia.cachix.org yet, skipping validation"
+            exit 0
+          fi
+          nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate programs/noctalia/config.toml

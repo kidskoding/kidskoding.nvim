@@ -58,15 +58,14 @@
     swift
     swiftpm
     typst
+    typescript
     zig
 
-    # lsps / formatters / linters
-    alejandra
+    # lsps
     dockerfile-language-server
     elmPackages.elm-language-server
     fennel-ls
     fish-lsp
-    fnlfmt
     gopls
     graphql-language-service-cli
     intelephense
@@ -74,29 +73,31 @@
     kotlin-language-server
     lua-language-server
     marksman
-    mdx-language-server
     metals
     nixd
-    ocamlformat
     ocamlPackages.ocaml-lsp
     omnisharp-roslyn
-    prettier
     ruby-lsp
-    ruff
     shellcheck
     sourcekit-lsp
     sqls
-    stylelint
-    stylua
     taplo
     terraform-ls
     tinymist
     ty
-    typescript
-    typstyle
     vscode-langservers-extracted
     yaml-language-server
     zls
+
+    # formatters / linters
+    alejandra
+    fnlfmt
+    ocamlformat
+    prettier
+    ruff
+    stylelint
+    stylua
+    typstyle
 
     # core developer tools
     bear
