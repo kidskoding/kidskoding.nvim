@@ -1,4 +1,4 @@
-name: formatting
+name: nix ci
 
 on:
   push:
@@ -31,3 +31,19 @@ jobs:
         run: nix run --no-write-lock-file --inputs-from . nixpkgs#taplo -- fmt --check
       - name: Check JSON, YAML, and Markdown formatting
         run: nix run --no-write-lock-file --inputs-from . nixpkgs#prettier -- --check "**/*.{json,yaml,yml,md}"
+
+  flake-check:
+    runs-on: codeberg-medium
+    timeout-minutes: 30
+    container:
+      image: ghcr.io/nixos/nix:2.35.2-amd64
+    steps:
+      - name: Check out commit
+        run: |
+          git init .
+          git remote add origin "$CI_REPOSITORY_URL"
+          git fetch --no-tags --depth=1 origin "$CI_COMMIT_SHA"
+          git checkout --detach FETCH_HEAD
+      - name: Check flake
+        run: nix flake check --no-write-lock-file --print-build-logs
+
