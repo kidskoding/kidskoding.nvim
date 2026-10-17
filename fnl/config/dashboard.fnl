@@ -6,9 +6,7 @@
 
 (fn open-project [dir]
   (vim.fn.chdir dir)
-  (if (= 1 (vim.fn.filereadable (persistence.current))) (persistence.load)
-      (= vim.bo.filetype :snacks_dashboard) (vim.cmd.enew))
-  (snacks.picker.explorer))
+  (vim.cmd.Oil dir))
 
 (local ferris-art
        ["                  .   ,.                      "
