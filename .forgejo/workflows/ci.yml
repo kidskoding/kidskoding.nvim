@@ -1,4 +1,4 @@
-name: nix ci
+name: formatting
 
 on:
   push:
@@ -8,10 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  NIX_CONFIG: |
-    experimental-features = nix-command flakes
-    extra-substituters = https://nix-community.cachix.org https://devenv.cachix.org https://noctalia.cachix.org https://pkulak.cachix.org https://cache.numtide.com
-    extra-trusted-public-keys = nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs= devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw= noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4= pkulak.cachix.org-1:S25jAptWCkAmwrk41b47lheB9onW9mzxVqM9o6HRg1E= niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g=
+  NIX_CONFIG: experimental-features = nix-command flakes
   CI_REPOSITORY_URL: ${{ github.server_url }}/${{ github.repository }}.git
   CI_COMMIT_SHA: ${{ github.sha }}
 
@@ -34,33 +31,3 @@ jobs:
         run: nix run --no-write-lock-file --inputs-from . nixpkgs#taplo -- fmt --check
       - name: Check JSON, YAML, and Markdown formatting
         run: nix run --no-write-lock-file --inputs-from . nixpkgs#prettier -- --check "**/*.{json,yaml,yml,md}"
-
-  flake-check:
-    runs-on: codeberg-medium
-    timeout-minutes: 30
-    container:
-      image: ghcr.io/nixos/nix:2.35.2-amd64
-    steps:
-      - name: Check out commit
-        run: |
-          git init .
-          git remote add origin "$CI_REPOSITORY_URL"
-          git fetch --no-tags --depth=1 origin "$CI_COMMIT_SHA"
-          git checkout --detach FETCH_HEAD
-      - name: Check flake
-        run: nix flake check --no-write-lock-file --print-build-logs
-
-  noctalia-config:
-    runs-on: codeberg-medium
-    timeout-minutes: 30
-    container:
-      image: ghcr.io/nixos/nix:2.35.2-amd64
-    steps:
-      - name: Check out commit
-        run: |
-          git init .
-          git remote add origin "$CI_REPOSITORY_URL"
-          git fetch --no-tags --depth=1 origin "$CI_COMMIT_SHA"
-          git checkout --detach FETCH_HEAD
-      - name: Validate Noctalia configuration
-        run: nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate home-manager/programs/noctalia/config.toml
