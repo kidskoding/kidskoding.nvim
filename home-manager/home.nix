@@ -81,6 +81,7 @@
     ocamlformat
     ocamlPackages.ocaml-lsp
     omnisharp-roslyn
+    prettier
     ruby-lsp
     ruff
     shellcheck

@@ -1,0 +1,10 @@
+# Generated files and encrypted data
+flake.lock
+**/*-lock.json
+secrets/**
+
+# Local build outputs and scratch files
+result
+result-*
+tmp/
+docs/

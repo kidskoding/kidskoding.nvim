@@ -6,11 +6,9 @@
     settings = ./greeter.toml;
   };
 
-  environment.etc."noctalia-greeter/wallpaper.jpg".source = ../../wallpaper/images/starfire-bg.jpg;
+  environment.etc."noctalia-greeter/wallpaper.jpg".source = ../../../wallpaper/images/starfire-bg.jpg;
 
   environment.systemPackages = [pkgs.adwaita-icon-theme];
 
-  systemd.tmpfiles.settings."10-accountsservice-avatar"."/var/lib/AccountsService/users/anirudh"."f+".argument = "[User]\nIcon=${./avatars/starfire.jpeg}\n";
-
-  fonts.packages = [pkgs.nerd-fonts.terminess-ttf];
+  systemd.tmpfiles.settings."10-accountsservice-avatar"."/var/lib/AccountsService/users/anirudh"."f+".argument = "[User]\nIcon=${../avatars/starfire.jpeg}\n";
 }
