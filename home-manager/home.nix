@@ -5,7 +5,7 @@
 }: {
   imports = [
     ./packages.nix
-    ./programs
+    ./default.nix
     ./wallpaper
   ];
 

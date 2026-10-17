@@ -58,7 +58,7 @@ in {
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
   sops = {
-    defaultSopsFile = ../../secrets/secrets.yaml;
+    defaultSopsFile = ../secrets/secrets.yaml;
     age.keyFile = "/home/anirudh/.config/sops/age/keys.txt";
   };
 

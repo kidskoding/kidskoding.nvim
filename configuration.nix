@@ -11,7 +11,7 @@
     ./nvidia.nix
     ./disko.nix
     ./stylix.nix
-    ./modules/nixos/noctalia.nix
+    ./modules/noctalia.nix
 
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
