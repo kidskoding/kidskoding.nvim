@@ -1,11 +1,12 @@
 (vim.pack.add ["https://github.com/folke/snacks.nvim"
-               "https://github.com/folke/todo-comments.nvim"])
+               "https://github.com/folke/todo-comments.nvim"
+               "https://github.com/folke/persistence.nvim"])
 
 (local snacks (require :snacks))
-(local {: open-project} (require :config.snacks.projects))
+(local {: dashboard : open-project} (require :config.dashboard))
 
 (snacks.setup {:bigfile {:enabled true}
-               :dashboard (require :config.snacks.dashboard)
+               : dashboard
                :indent {:enabled true}
                :lazygit {:configure false}
                :styles {:lazygit {:wo {:winhighlight "NormalFloat:Normal"}}}
