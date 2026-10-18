@@ -69,10 +69,20 @@
     "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
   ];
 
-  security.rtkit.enable = true;
-  security.sudo.extraConfig = ''
-    Defaults pwfeedback
-  '';
+  security = {
+    rtkit.enable = true;
+    sudo.extraConfig = ''
+      Defaults pwfeedback
+    '';
+    polkit.extraConfig = ''
+      polkit.addRule(function(action, subject) {
+        if (action.id == "org.gnome.gparted" &&
+            subject.isInGroup("wheel") && subject.local && subject.active) {
+          return polkit.Result.YES;
+        }
+      });
+    '';
+  };
 
   services.pipewire = {
     enable = true;
@@ -133,6 +143,7 @@
     gcc
     gdb
     git
+    gparted
     pkg-config
     psmisc
     python315
