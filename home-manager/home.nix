@@ -128,6 +128,7 @@
     basalt
     discord
     doxygen_gui
+    gparted
     harlequin
     libreoffice
     myx
