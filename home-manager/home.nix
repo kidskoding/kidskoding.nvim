@@ -133,6 +133,7 @@
     myx
     neovim-unwrapped
     obsidian
+    popsicle
     prismlauncher
     ruffle
     spotify
