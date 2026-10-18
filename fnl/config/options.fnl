@@ -2,6 +2,7 @@
 
 (set vim.o.clipboard :unnamedplus)
 (set vim.o.number true)
+(set vim.o.wrap false)
 
 ;; 4-space indent!
 (set vim.o.expandtab true)
