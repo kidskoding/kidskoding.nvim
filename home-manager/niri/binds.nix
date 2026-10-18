@@ -1,6 +1,6 @@
 {...}: let
   terminal = "ghostty";
-  fileManager = "dolphin";
+  fileManager = "nautilus";
   noctalia = c:
     [
       "noctalia"

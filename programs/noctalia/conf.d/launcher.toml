@@ -12,7 +12,7 @@ pinned = [
   "lunarclient",
   "neovide",
   "orca-ide",
-  "org.kde.dolphin",
+  "org.gnome.Nautilus",
   "qimgv",
   "rs.ruffle.Ruffle",
   "spotify",

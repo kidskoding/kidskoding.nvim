@@ -201,6 +201,10 @@
   boot.supportedFilesystems = ["btrfs" "fuse"];
   programs.fuse.userAllowOther = true;
 
+  # nautilus: trash, mounts, and settings storage
+  services.gvfs.enable = true;
+  programs.dconf.enable = true;
+
   # plasma (dolphin-style) file dialog for portal-using apps
   xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
 

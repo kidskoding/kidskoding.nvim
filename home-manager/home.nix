@@ -23,6 +23,7 @@
     enable = true;
     defaultApplications = {
       "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
+      "inode/directory" = "org.gnome.Nautilus.desktop";
     };
   };
 

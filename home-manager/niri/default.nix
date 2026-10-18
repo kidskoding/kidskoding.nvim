@@ -22,7 +22,7 @@ in {
     playerctl
     qimgv
 
-    kdePackages.dolphin
+    nautilus
     kdePackages.qtsvg
   ];
 
