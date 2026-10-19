@@ -29,7 +29,6 @@
     opacity.terminal = 0.8;
 
     targets.console.enable = false;
-    targets.grub.enable = false;
     targets.nixos-icons.enable = false;
     targets.plymouth.enable = false;
     targets.qt.enable = false;
