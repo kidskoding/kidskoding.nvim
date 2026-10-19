@@ -4,6 +4,10 @@ a minimal Neovim config written in Fennel: compiled by [hotpot.nvim](https://git
 
 plugins are managed by Neovim's built-in `vim.pack`!
 
+![](screenshots/splash.png)
+
+![](screenshots/file.png)
+
 ## Requirements
 
 - Neovim 0.12+
