@@ -88,6 +88,7 @@
         text = ''
           export PATH="''${PATH:+$PATH:}${lib.makeBinPath deps}"
           export NVIM_APPNAME="''${NVIM_APPNAME:-nvim}"
+          export TSDK="''${TSDK:-${pkgs.typescript_5}/lib/node_modules/typescript/lib}"
 
           dir="''${XDG_CONFIG_HOME:-$HOME/.config}/$NVIM_APPNAME"
           if [ -L "$dir" ] && [ ! -e "$dir" ]; then
