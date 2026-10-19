@@ -71,6 +71,7 @@
     kotlin-language-server
     lua-language-server
     marksman
+    mdx-language-server
     metals
     nixd
     ocamlPackages.ocaml-lsp
