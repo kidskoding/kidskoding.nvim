@@ -18,7 +18,7 @@ instead: it sets up every requirement above (except the font) for you. see [Nix]
 ## Install
 
 ```sh
-git clone https://github.com/kidskoding/kidskoding.nvim ~/.config/nvim
+git clone https://codeberg.org/kidskoding/kidskoding.nvim ~/.config/nvim
 nvim
 ```
 
@@ -29,13 +29,13 @@ plugins install on first launch, use `:checkhealth` to spot any missing tools an
 this repo includes a flake that bundles Neovim with every tool, LSP, and formatter, making the config ready to use in one command!
 
 ```sh
-nix run github:kidskoding/kidskoding.nvim
+nix run git+https://codeberg.org/kidskoding/kidskoding.nvim
 ```
 
 the first run copies the config into `~/.config/nvim` if nothing is there yet (an existing config is used as is). try it in a separate, clean profile with:
 
 ```sh
-NVIM_APPNAME=nvim-test nix run github:kidskoding/kidskoding.nvim
+NVIM_APPNAME=nvim-test nix run git+https://codeberg.org/kidskoding/kidskoding.nvim
 ```
 
 you still need a Nerd Font for icons!
