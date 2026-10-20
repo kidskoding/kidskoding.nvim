@@ -6,8 +6,6 @@ in {
     enableFishIntegration = true;
 
     defaultCommand = "${fd} --type f";
-    fileWidgetCommand = "${fd} --type f";
-    changeDirWidgetCommand = "${fd} --type d";
 
     defaultOptions = [
       "--height=60%"
@@ -25,17 +23,23 @@ in {
       "--bind=ctrl-/:toggle-preview"
     ];
 
-    fileWidgetOptions = [
-      "--border-label=' files '"
-      "--preview='bat --color=always --style=numbers --theme=gruvbox-dark --line-range=:300 {}'"
-    ];
+    fileWidget = {
+      command = "${fd} --type f";
+      options = [
+        "--border-label=' files '"
+        "--preview='bat --color=always --style=numbers --theme=gruvbox-dark --line-range=:300 {}'"
+      ];
+    };
 
-    changeDirWidgetOptions = [
-      "--border-label=' dirs '"
-      "--preview='eza -T -L2 --color=always --icons=always --group-directories-first {}'"
-    ];
+    changeDirWidget = {
+      command = "${fd} --type d";
+      options = [
+        "--border-label=' dirs '"
+        "--preview='eza -T -L2 --color=always --icons=always --group-directories-first {}'"
+      ];
+    };
 
-    historyWidgetOptions = [
+    historyWidget.options = [
       "--border-label=' history '"
     ];
 

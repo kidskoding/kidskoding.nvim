@@ -18,7 +18,17 @@
     useUserPackages = true;
     backupFileExtension = "bak";
     extraSpecialArgs = {inherit inputs;};
-    users.anirudh = import ./home-manager/home.nix;
+    users.anirudh = {
+      imports = [
+        ./home-manager/home.nix
+        inputs.sops-nix.homeManagerModules.sops
+      ];
+
+      sops = {
+        defaultSopsFile = ./secrets/secrets.yaml;
+        age.keyFile = "/home/anirudh/.config/sops/age/keys.txt";
+      };
+    };
   };
 
   sops = {
@@ -83,6 +93,11 @@
     pulse.enable = true;
   };
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+  };
+
   services.upower.enable = true;
   services.upower.criticalPowerAction = "Hibernate";
 
@@ -119,8 +134,6 @@
         "wheel"
         "docker"
       ];
-
-      shell = pkgs.fish;
     };
   };
 
@@ -152,8 +165,6 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
-
-  programs.fish.enable = true;
 
   # run prebuilt binaries (uv-managed pythons, pip wheels, etc.) when necessary
   programs.nix-ld.enable = true;

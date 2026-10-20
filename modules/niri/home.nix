@@ -14,7 +14,6 @@ in {
 
   home.packages = with pkgs; [
     adwaita-icon-theme
-    blueman
     brightnessctl
     hyprpicker
     libnotify
@@ -76,7 +75,6 @@ in {
 
     spawn-at-startup = [
       {argv = ["noctalia"];}
-      {argv = ["blueman-applet"];}
       {
         argv = [
           "nm-applet"

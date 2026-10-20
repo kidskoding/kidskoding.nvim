@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  inputs,
   ...
 }: let
   c = config.lib.stylix.colors;
@@ -55,13 +54,6 @@
     tm = fg "base04"; # temp file
   };
 in {
-  imports = [inputs.sops-nix.homeManagerModules.sops];
-
-  sops = {
-    defaultSopsFile = ../secrets/secrets.yaml;
-    age.keyFile = "/home/anirudh/.config/sops/age/keys.txt";
-  };
-
   programs.eza = {
     enable = true;
     enableFishIntegration = false;
