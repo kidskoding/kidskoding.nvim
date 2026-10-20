@@ -1,4 +1,4 @@
-let
+{lib, ...}: let
   fd = "fd --hidden --follow --exclude .git";
 in {
   programs.fzf = {
@@ -38,5 +38,10 @@ in {
     historyWidgetOptions = [
       "--border-label=' history '"
     ];
+
+    colors = {
+      bg = lib.mkForce "-1";
+      gutter = "-1";
+    };
   };
 }
