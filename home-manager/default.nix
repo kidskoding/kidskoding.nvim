@@ -4,10 +4,7 @@
 in {
   imports = [
     ./agents.nix
-    ./git.nix
-    ./lazygit.nix
     ./obs.nix
-    ./ssh.nix
     ./tickrs.nix
   ];
 
