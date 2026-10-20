@@ -31,6 +31,8 @@
           ./patches/lockscreen-header-caps-lock.patch
           ./patches/media-player-seek-bar.patch
           ./patches/solid-panels.patch
+          ./patches/network-wifi-off-color.patch
+          ./patches/bluetooth-state-label.patch
         ];
     }))
     pkgs.adwaita-icon-theme

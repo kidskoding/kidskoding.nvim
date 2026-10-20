@@ -18,7 +18,7 @@ capsule_padding = 8
 capsule_thickness = 0.8
 start = ["control-center", "workspaces"]
 center = ["media"]
-end = ["tray", "volume", "network", "brightness", "battery", "clock", "session"]
+end = ["tray", "volume", "network", "bluetooth", "brightness", "battery", "clock", "session"]
 
 [bar.main.dead_zone.actions]
 right = "none"
@@ -40,20 +40,24 @@ occupied_color = "#928374"
 
 [widget.media]
 artist_first = false
-max_length = 300
+max_length = 220
 title_scroll = "always"
 hide_when_no_media = true
 show_progress = true
 
 [widget.volume]
 show_label = true
-icon_color = "secondary"
+icon_color = "#d3869b"
 mute_color = "#fb4934"
 
 [widget.network]
 show_label = true
 show_vpn_label = false
 icon_color = "#8ec07c"
+
+[widget.bluetooth]
+show_label = true
+icon_color = "#83a598"
 
 [widget.brightness]
 show_label = true

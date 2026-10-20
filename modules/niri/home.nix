@@ -90,7 +90,6 @@ in {
 
     spawn-at-startup = [
       {argv = ["noctalia"];}
-      {argv = ["blueman-applet"];}
       {
         argv = [
           "nm-applet"

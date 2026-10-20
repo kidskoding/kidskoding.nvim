@@ -1,0 +1,20 @@
+--- a/src/shell/bar/widgets/bluetooth_widget.cpp
++++ b/src/shell/bar/widgets/bluetooth_widget.cpp
+@@ -149,11 +149,15 @@
+ 
+   m_glyph->setGlyph(glyphForState(s, numConnected));
+   m_glyph->setGlyphSize(Style::baseGlyphSize * m_contentScale);
+-  m_glyph->setColor(widgetIconColorOr(colorSpecFromRole(ColorRole::OnSurface)));
++  m_glyph->setColor(
++      s.powered ? widgetIconColorOr(colorSpecFromRole(ColorRole::OnSurface)) : colorSpecFromRole(ColorRole::Error)
++  );
+   m_glyph->measure(renderer);
+ 
+   if (m_label != nullptr) {
+-    m_label->setText(alias);
++    m_label->setText(
++        !alias.empty() ? alias : i18n::tr(s.powered ? "bar.widgets.network.on" : "bar.widgets.network.off")
++    );
+     m_label->setColor(widgetForegroundOr(colorSpecFromRole(ColorRole::OnSurface)));
+     m_label->measure(renderer);
+   }
