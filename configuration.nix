@@ -7,12 +7,10 @@
 }: {
   imports = [
     ./networking.nix
-    ./stylix.nix
 
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
-    inputs.stylix.nixosModules.stylix
   ];
 
   home-manager = {

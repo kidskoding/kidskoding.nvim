@@ -1,8 +1,11 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
+  imports = [inputs.stylix.nixosModules.stylix];
+
   stylix = {
     enable = true;
 
@@ -35,10 +38,5 @@
     targets.qt.enable = false;
   };
 
-  home-manager.users.anirudh.stylix.targets = {
-    bat.enable = false;
-    gnome.enable = false;
-    kde.enable = false;
-    qt.enable = false;
-  };
+  home-manager.users.anirudh.imports = [./home.nix];
 }
