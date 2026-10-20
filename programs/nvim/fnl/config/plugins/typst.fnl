@@ -1,20 +1,10 @@
-(set vim.g.rustaceanvim
-     {:server {:default_settings {:rust-analyzer {:cargo {:allFeatures true}
-                                                  :check {:command :clippy}}}}})
-
-(vim.pack.add ["https://github.com/mrcjkb/rustaceanvim"
-               "https://github.com/chomosuke/typst-preview.nvim"
-               "https://github.com/MeanderingProgrammer/render-markdown.nvim"
-               "https://github.com/mechatroner/rainbow_csv"])
+(vim.pack.add ["https://github.com/chomosuke/typst-preview.nvim"])
 
 (local typst-preview (require :typst-preview))
-(local render-markdown (require :render-markdown))
 
 ;; use tinymist and websocat from PATH instead of downloading them
 (typst-preview.setup {:dependencies_bin {:tinymist :tinymist
                                          :websocat :websocat}})
-
-(render-markdown.setup {:enabled false :latex {:enabled false}})
 
 (fn open-typst-pdf []
   (let [client (. (vim.lsp.get_clients {:name :tinymist :bufnr 0}) 1)]
@@ -50,12 +40,5 @@
 (fn map [key action desc]
   (vim.keymap.set :n key action {: desc}))
 
-(map :<leader>ra "<cmd>RustLsp codeAction<CR>" "Rust code action")
-(map :<leader>rr "<cmd>RustLsp runnables<CR>" "Rust runnables")
-(map :<leader>rt "<cmd>RustLsp testables<CR>" "Rust testables")
-(map :<leader>re "<cmd>RustLsp explainError<CR>" "Explain Rust error")
 (map :<leader>Tp open-typst-pdf "Open Typst PDF in Zathura")
 (map :<leader>TP :<cmd>TypstPreviewToggle<CR> "Toggle Typst browser preview")
-
-(map :<leader>mr "<cmd>RenderMarkdown toggle<CR>" "Toggle Markdown render")
-(map :<leader>mp "<cmd>RenderMarkdown preview<CR>" "Markdown preview split")

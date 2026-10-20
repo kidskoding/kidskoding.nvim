@@ -73,3 +73,10 @@
 
 (map :<leader>xq "qflist toggle" "Quickfix list")
 (map :<leader>xl "loclist toggle" "Location list")
+
+;; snacks loads later; resolve picker at keypress time
+(vim.keymap.set :n :gd #((. (require :snacks) :picker :lsp_definitions))
+                {:desc "Go to definition"})
+
+(vim.keymap.set :n :grr #((. (require :snacks) :picker :lsp_references))
+                {:desc :References})
