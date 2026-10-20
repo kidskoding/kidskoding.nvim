@@ -1,6 +1,6 @@
 {
   "dark": {
-    "mError": "#cc241d",
+    "mError": "#fb4934",
     "mHover": "#504945",
     "mOnError": "#282828",
     "mOnHover": "#ebdbb2",
@@ -10,23 +10,23 @@
     "mOnSurfaceVariant": "#928374",
     "mOnTertiary": "#282828",
     "mOutline": "#3c3836",
-    "mPrimary": "#d79921",
-    "mSecondary": "#458588",
+    "mPrimary": "#fabd2f",
+    "mSecondary": "#83a598",
     "mShadow": "#282828",
     "mSurface": "#282828",
     "mSurfaceVariant": "#3c3836",
-    "mTertiary": "#98971a",
+    "mTertiary": "#b8bb26",
     "terminal": {
       "background": "#282828",
       "bright": {
         "black": "#928374",
-        "blue": "#458588",
-        "cyan": "#689d6a",
-        "green": "#98971a",
-        "magenta": "#b16286",
-        "red": "#cc241d",
+        "blue": "#83a598",
+        "cyan": "#8ec07c",
+        "green": "#b8bb26",
+        "magenta": "#d3869b",
+        "red": "#fb4934",
         "white": "#ebdbb2",
-        "yellow": "#d79921"
+        "yellow": "#fabd2f"
       },
       "cursor": "#ebdbb2",
       "cursorText": "#282828",
@@ -46,7 +46,7 @@
     }
   },
   "light": {
-    "mError": "#cc241d",
+    "mError": "#fb4934",
     "mHover": "#504945",
     "mOnError": "#282828",
     "mOnHover": "#ebdbb2",
@@ -56,23 +56,23 @@
     "mOnSurfaceVariant": "#928374",
     "mOnTertiary": "#282828",
     "mOutline": "#3c3836",
-    "mPrimary": "#d79921",
-    "mSecondary": "#458588",
+    "mPrimary": "#fabd2f",
+    "mSecondary": "#83a598",
     "mShadow": "#282828",
     "mSurface": "#282828",
     "mSurfaceVariant": "#3c3836",
-    "mTertiary": "#98971a",
+    "mTertiary": "#b8bb26",
     "terminal": {
       "background": "#282828",
       "bright": {
         "black": "#928374",
-        "blue": "#458588",
-        "cyan": "#689d6a",
-        "green": "#98971a",
-        "magenta": "#b16286",
-        "red": "#cc241d",
+        "blue": "#83a598",
+        "cyan": "#8ec07c",
+        "green": "#b8bb26",
+        "magenta": "#d3869b",
+        "red": "#fb4934",
         "white": "#ebdbb2",
-        "yellow": "#d79921"
+        "yellow": "#fabd2f"
       },
       "cursor": "#ebdbb2",
       "cursorText": "#282828",

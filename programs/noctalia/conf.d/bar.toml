@@ -48,25 +48,25 @@ show_progress = true
 [widget.volume]
 show_label = true
 icon_color = "primary"
-mute_color = "#cc241d"
+mute_color = "#fb4934"
 
 [widget.network]
 show_label = true
 show_vpn_label = false
-icon_color = "#689d6a"
+icon_color = "#8ec07c"
 
 [widget.brightness]
 show_label = true
-icon_color = "#d79921"
+icon_color = "#fabd2f"
 
 [widget.battery]
 display_mode = "glyph"
 show_label = true
-icon_color = "#98971a"
-warning_color = "#d79921"
+icon_color = "#b8bb26"
+warning_color = "#fabd2f"
 
 [widget.clock]
-format = "<span foreground='#cc241d'></span> {:%a %b %d} | <span foreground='#cc241d'></span> {:%I:%M %p}"
+format = "<span foreground='#fb4934'></span> {:%a %b %d} | <span foreground='#fb4934'></span> {:%I:%M %p}"
 tooltip_format = "{:%A, %B %-d %Y}"
 
 [widget.clock.actions]

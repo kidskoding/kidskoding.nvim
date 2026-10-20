@@ -11,13 +11,13 @@ hide_logo = false
 font_family = "Terminess Nerd Font Mono"
 
 [appearance.palette]
-primary = "#d79921"
+primary = "#fabd2f"
 on_primary = "#282828"
-secondary = "#458588"
+secondary = "#83a598"
 on_secondary = "#282828"
-tertiary = "#98971a"
+tertiary = "#b8bb26"
 on_tertiary = "#282828"
-error = "#cc241d"
+error = "#fb4934"
 on_error = "#282828"
 surface = "#282828"
 on_surface = "#ebdbb2"
