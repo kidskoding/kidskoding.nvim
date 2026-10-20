@@ -8,19 +8,13 @@
     ../../modules/gaming
   ];
 
-  home-manager.users.anirudh.programs.niri.settings.outputs."eDP-1" = {
-    mode = {
-      width = 1920;
-      height = 1080;
-      refresh = 144.0;
-    };
-    position = {
-      x = 0;
-      y = 0;
-    };
-    scale = 1.0;
-    variable-refresh-rate = "on-demand";
-  };
+  home-manager.users.anirudh.imports = [./home.nix];
 
-  system.stateVersion = "26.05";
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "26.05"; # Did you read the comment?
 }
