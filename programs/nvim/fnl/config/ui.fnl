@@ -1,9 +1,13 @@
 (vim.pack.add ["https://github.com/nvim-lualine/lualine.nvim"
                "https://github.com/nvim-tree/nvim-web-devicons"
-               "https://github.com/akinsho/bufferline.nvim"])
+               "https://github.com/akinsho/bufferline.nvim"
+               "https://github.com/brenoprata10/nvim-highlight-colors"])
 
 (local lualine (require :lualine))
 (local bufferline (require :bufferline))
+(local highlight-colors (require :nvim-highlight-colors))
+
+(highlight-colors.setup {:render :background :enable_tailwind true})
 
 (vim.api.nvim_set_hl 0 :lualine_sep_color_b {:fg "#a89984" :bg "#504945"})
 (vim.api.nvim_set_hl 0 :lualine_sep_color_x {:fg "#a89984" :bg "#3c3836"})
