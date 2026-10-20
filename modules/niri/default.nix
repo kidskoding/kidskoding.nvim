@@ -6,6 +6,7 @@
 }: {
   imports = [inputs.niri.nixosModules.niri];
 
+  # niri!!!
   nixpkgs.overlays = [
     (final: prev: {
       libdisplay-info_0_2 = prev.libdisplay-info.overrideAttrs (old: rec {
