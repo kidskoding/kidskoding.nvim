@@ -97,8 +97,14 @@
   };
 
   outputs = inputs @ {nixpkgs, ...}: let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    mkHost = name:
+      nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hosts/${name}
+          ./configuration.nix
+        ];
+      };
   in {
     templates = {
       uv2nix = {
@@ -142,10 +148,9 @@
       };
     };
 
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      inherit system;
-      specialArgs = {inherit inputs;};
-      modules = [./configuration.nix];
+    nixosConfigurations = {
+      victus = mkHost "victus";
+      # thinkpad = mkHost "thinkpad";
     };
   };
 }
