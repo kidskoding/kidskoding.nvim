@@ -32,7 +32,7 @@
           ./patches/media-player-seek-bar.patch
           ./patches/solid-panels.patch
           ./patches/network-wifi-off-color.patch
-          ./patches/bluetooth-state-label.patch
+          ./patches/bluetooth-off-color.patch
         ];
     }))
     pkgs.adwaita-icon-theme
