@@ -10,7 +10,6 @@ in {
     ./ghostty.nix
     ./git.nix
     ./lazygit.nix
-    ./mangohud.nix
     ./obs.nix
     ./ssh.nix
     ./starship.nix

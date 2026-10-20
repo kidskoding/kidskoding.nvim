@@ -136,20 +136,11 @@
     neovim-unwrapped
     obsidian
     popsicle
-    prismlauncher
     ruffle
     spotify
     teams-for-linux
-    wineWow64Packages.stable
-    winetricks
     zathura
     zoom-us
-
-    # gaming deps
-    bottles
-    dolphin-emu
-    heroic
-    lutris
 
     # other really cool stuff!!
     asciiquarium-transparent

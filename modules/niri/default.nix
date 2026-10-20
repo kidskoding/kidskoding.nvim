@@ -34,5 +34,5 @@
   # plasma (dolphin-style) file dialog for portal-using apps
   xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
 
-  hm.imports = [./home.nix];
+  home-manager.users.anirudh.imports = [./home.nix];
 }

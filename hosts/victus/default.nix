@@ -4,9 +4,11 @@
     ./boot.nix
     ./disko.nix
     ./nvidia.nix
+
+    ../../modules/gaming
   ];
 
-  hm.programs.niri.settings.outputs."eDP-1" = {
+  home-manager.users.anirudh.programs.niri.settings.outputs."eDP-1" = {
     mode = {
       width = 1920;
       height = 1080;

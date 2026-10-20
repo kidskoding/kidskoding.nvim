@@ -97,10 +97,6 @@
   ];
   services.logind.settings.Login.HandleLidSwitch = "lock";
 
-  programs.steam.enable = true;
-  programs.gamescope.enable = true;
-  programs.gamemode.enable = true;
-
   time.timeZone = "America/Chicago";
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {

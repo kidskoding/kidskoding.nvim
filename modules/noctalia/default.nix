@@ -36,7 +36,7 @@
     pkgs.adwaita-icon-theme
   ];
 
-  hm.imports = [./home.nix];
+  home-manager.users.anirudh.imports = [./home.nix];
 
   systemd.tmpfiles.settings."10-accountsservice-avatar"."/var/lib/AccountsService/users/anirudh"."f+".argument = "[User]\nIcon=${./avatars/starfire.jpeg}\n";
 }
