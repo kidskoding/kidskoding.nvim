@@ -2,7 +2,8 @@
 
 (set vim.o.clipboard :unnamedplus)
 (set vim.o.number true)
-(set vim.o.wrap false)
+(set vim.o.wrap true)
+(set vim.o.linebreak true)
 (set vim.o.cursorline true)
 
 ;; 4-space indent!
