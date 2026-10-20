@@ -1,7 +1,9 @@
 (vim.pack.add [{:src "https://github.com/nvim-treesitter/nvim-treesitter"
-                :version :main}])
+                :version :main}
+               "https://github.com/nvim-treesitter/nvim-treesitter-context"])
 
 (local treesitter (require :nvim-treesitter))
+(local treesitter-context (require :treesitter-context))
 
 ;; installs only missing parsers, in the background
 (treesitter.install [:bash
@@ -22,6 +24,8 @@
                      :typst
                      :vue
                      :yaml])
+
+(treesitter-context.setup {:max_lines 3 :separator nil})
 
 (let [ts vim.treesitter.language]
   (ts.register :markdown :mdx))
