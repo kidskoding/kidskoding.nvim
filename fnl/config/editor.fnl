@@ -5,6 +5,9 @@
                "https://github.com/nvim-lua/plenary.nvim"
                "https://github.com/MunifTanjim/nui.nvim"
                "https://github.com/clabby/difftastic.nvim"
+               "https://github.com/sindrets/diffview.nvim"
+               "https://github.com/akinsho/git-conflict.nvim"
+               "https://github.com/kylechui/nvim-surround"
                "https://github.com/okuuva/auto-save.nvim"
                "https://github.com/vyfor/cord.nvim"
                "https://github.com/saecki/crates.nvim"
@@ -16,6 +19,9 @@
 (local gitsigns (require :gitsigns))
 (local oil (require :oil))
 (local difftastic (require :difftastic-nvim))
+(local diffview (require :diffview))
+(local git-conflict (require :git-conflict))
+(local surround (require :nvim-surround))
 (local auto-save (require :auto-save))
 (local cord (require :cord))
 (local crates (require :crates))
@@ -26,6 +32,9 @@
 (gitsigns.setup {})
 (harpoon:setup {:settings {:save_on_toggle true}})
 (oil.setup {:win_options {:cursorline true}})
+(diffview.setup {})
+(git-conflict.setup {})
+(surround.setup {})
 (difftastic.setup {:vcs :git
                    :snacks_picker {:enabled true}
                    :highlights {:DifftTreeRenamed {:fg "#D2BDF3"}}})
@@ -73,6 +82,11 @@
 (vim.keymap.set :n :<leader>gD :<cmd>DifftPick<CR> {:desc "Diff a commit"})
 (vim.keymap.set :n :<leader>gt toggle-difft-tree
                 {:desc "Toggle diff file tree"})
+
+(vim.keymap.set :n :<leader>gv :<cmd>DiffviewOpen<CR> {:desc "Diffview open"})
+(vim.keymap.set :n :<leader>gV :<cmd>DiffviewClose<CR> {:desc "Diffview close"})
+(vim.keymap.set :n :<leader>gh :<cmd>DiffviewFileHistory %<CR>
+                {:desc "File history"})
 
 (vim.keymap.set :n :<leader>H #(: (harpoon:list) :add) {:desc "Harpoon file"})
 (vim.keymap.set :n :<C-e> #(harpoon.ui:toggle_quick_menu (harpoon:list))
