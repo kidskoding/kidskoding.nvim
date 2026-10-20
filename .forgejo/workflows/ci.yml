@@ -67,4 +67,4 @@ jobs:
             echo "::warning::$out not in noctalia.cachix.org yet, skipping validation"
             exit 0
           fi
-          nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate programs/noctalia/config.toml
+          nix run --no-write-lock-file --inputs-from . noctalia#default -- config validate modules/noctalia/config.toml

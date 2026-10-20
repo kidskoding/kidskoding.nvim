@@ -2,17 +2,15 @@
   config,
   pkgs,
   inputs,
+  host,
   ...
 }: {
   imports = [
     ./networking.nix
     ./stylix.nix
-    ./programs/noctalia
 
     inputs.disko.nixosModules.disko
     inputs.home-manager.nixosModules.home-manager
-    inputs.niri.nixosModules.niri
-    inputs.noctalia-greeter.nixosModules.default
     inputs.sops-nix.nixosModules.sops
     inputs.stylix.nixosModules.stylix
   ];
@@ -166,30 +164,6 @@
   # run prebuilt binaries (uv-managed pythons, pip wheels, etc.) when necessary
   programs.nix-ld.enable = true;
 
-  # niri!!!
-  nixpkgs.overlays = [
-    (final: prev: {
-      libdisplay-info_0_2 = prev.libdisplay-info.overrideAttrs (old: rec {
-        version = "0.2.0";
-        src = prev.fetchFromGitLab {
-          domain = "gitlab.freedesktop.org";
-          owner = "emersion";
-          repo = "libdisplay-info";
-          rev = version;
-          hash = "sha256-6xmWBrPHghjok43eIDGeshpUEQTuwWLXNHg7CnBUt3Q=";
-        };
-      });
-    })
-
-    inputs.niri.overlays.niri
-  ];
-  programs.niri = {
-    enable = true;
-    package = pkgs.niri-unstable;
-  };
-  niri-flake.cache.enable = false;
-
-  systemd.packages = [config.programs.niri.package];
   systemd.globalEnvironment = {
     SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "false";
   };
@@ -201,9 +175,6 @@
   services.gvfs.enable = true;
   programs.dconf.enable = true;
 
-  # plasma (dolphin-style) file dialog for portal-using apps
-  xdg.portal.extraPortals = [pkgs.kdePackages.xdg-desktop-portal-kde];
-
   virtualisation.docker.enable = true;
   virtualisation.docker.storageDriver = "btrfs";
 
@@ -213,9 +184,11 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  environment.etc."flake-host".text = host;
+
   system.autoUpgrade = {
     enable = true;
-    flake = "git+https://codeberg.org/kidskoding/nixos-config?ref=master";
+    flake = "git+https://codeberg.org/kidskoding/nixos-config?ref=master#${host}";
     flags = ["-L"];
     dates = "hourly";
     randomizedDelaySec = "10min";

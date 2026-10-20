@@ -3,6 +3,8 @@
   pkgs,
   ...
 }: {
+  imports = [inputs.noctalia-greeter.nixosModules.default];
+
   # greeter runs as the greeter user before login and cannot read ~/,
   # so its toml and assets go through the store and /etc (needs a rebuild)
   services.displayManager.noctalia-greeter = {
@@ -33,6 +35,8 @@
     }))
     pkgs.adwaita-icon-theme
   ];
+
+  hm.imports = [./home.nix];
 
   systemd.tmpfiles.settings."10-accountsservice-avatar"."/var/lib/AccountsService/users/anirudh"."f+".argument = "[User]\nIcon=${./avatars/starfire.jpeg}\n";
 }

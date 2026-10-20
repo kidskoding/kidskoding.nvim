@@ -99,9 +99,13 @@
   outputs = inputs @ {nixpkgs, ...}: let
     mkHost = name:
       nixpkgs.lib.nixosSystem {
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+          inherit inputs;
+          host = name;
+        };
         modules = [
           ./hosts/${name}
+          ./modules
           ./configuration.nix
         ];
       };

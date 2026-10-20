@@ -7,7 +7,7 @@
 set -euo pipefail
 
 FLAKE_DIR="${FLAKE_DIR:-$HOME/nixos}"
-HOST="${HOST:-$(hostname)}"
+HOST="${HOST:-$(cat /etc/flake-host 2>/dev/null || echo victus)}"
 
 cd "$FLAKE_DIR"
 
