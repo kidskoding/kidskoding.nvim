@@ -14,6 +14,7 @@ in {
 
   home.packages = with pkgs; [
     adwaita-icon-theme
+    blueman
     brightnessctl
     hyprpicker
     libnotify
@@ -59,6 +60,20 @@ in {
       TERMINAL = terminal;
     };
 
+    outputs."eDP-1" = {
+      mode = {
+        width = 1920;
+        height = 1080;
+        refresh = 144.0;
+      };
+      position = {
+        x = 0;
+        y = 0;
+      };
+      scale = 1.0;
+      variable-refresh-rate = "on-demand";
+    };
+
     input = {
       keyboard.xkb.layout = "us";
       focus-follows-mouse.enable = true;
@@ -75,6 +90,7 @@ in {
 
     spawn-at-startup = [
       {argv = ["noctalia"];}
+      {argv = ["blueman-applet"];}
       {
         argv = [
           "nm-applet"

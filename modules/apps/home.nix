@@ -1,17 +1,8 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
-    ./packages.nix
-    ./default.nix
+    ./obs.nix
+    ./tickrs.nix
   ];
-
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
 
   xdg.mimeApps = {
     enable = true;
@@ -22,16 +13,6 @@
   };
 
   home.packages = with pkgs; [
-    # additional user system tools
-    cliphist
-    fd
-    jq
-    ripgrep
-    tree
-    tree-sitter
-    websocat
-    wl-clipboard
-
     # applications
     basalt
     discord
@@ -39,7 +20,6 @@
     harlequin
     libreoffice
     myx
-    neovim-unwrapped
     obsidian
     popsicle
     ruffle

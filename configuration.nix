@@ -20,7 +20,7 @@
     extraSpecialArgs = {inherit inputs;};
     users.anirudh = {
       imports = [
-        ./home-manager/home.nix
+        ./packages.nix
         inputs.sops-nix.homeManagerModules.sops
       ];
 

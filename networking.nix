@@ -12,6 +12,7 @@
         content = ''
           RUDY2015_PSK="${config.sops.placeholder."wifi/home"}"
           ILLINOISNET_PSK="${config.sops.placeholder."wifi/uiuc"}"
+          BRNIJET_PSK="${config.sops.placeholder."wifi/brunswick"}"
           ANIRUDHIPHONE17_PSK="${config.sops.placeholder."wifi/hotspot"}"
         '';
       };
