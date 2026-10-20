@@ -1,14 +1,17 @@
 --- a/src/shell/osd/osd_overlay.cpp
 +++ b/src/shell/osd/osd_overlay.cpp
-@@ -771,10 +771,17 @@
+@@ -771,10 +771,20 @@
    const ColorRole accentRole = (m_content.overLimit || silentAudio) ? ColorRole::Error
        : m_content.inactive                                        ? ColorRole::OnSurfaceVariant
                                                                    : ColorRole::Primary;
 +  ColorSpec accentColor = colorSpecFromRole(accentRole);
-+  if (m_content.kind == OsdKind::Brightness && m_config != nullptr) {
++  const char* widgetName = m_content.kind == OsdKind::Brightness ? "brightness"
++      : (m_content.kind == OsdKind::Volume && !m_content.inactive && !m_content.overLimit) ? "volume"
++                                                                                         : nullptr;
++  if (widgetName != nullptr && m_config != nullptr) {
 +    const auto& widgets = m_config->config().widgets;
-+    if (const auto it = widgets.find("brightness"); it != widgets.end()) {
-+      accentColor = it->second.getColorSpec("icon_color", accentColor, "widget.brightness.icon_color");
++    if (const auto it = widgets.find(widgetName); it != widgets.end()) {
++      accentColor = it->second.getColorSpec("icon_color", accentColor, std::string("widget.") + widgetName + ".icon_color");
 +    }
 +  }
    inst.glyph->setGlyph(m_content.icon);
