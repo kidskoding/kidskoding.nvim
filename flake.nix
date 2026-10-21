@@ -29,6 +29,9 @@
     # coding agent skills, plugins, settings
     anikonistack.url = "github:kidskoding/anikonistack";
 
+    # neovim nightly (0.13.0-dev)
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
     # rust tooling
     fenix = {
       url = "github:nix-community/fenix";
