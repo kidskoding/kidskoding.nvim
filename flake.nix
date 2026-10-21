@@ -27,10 +27,7 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     # coding agent skills, plugins, settings
-    anikonistack = {
-      url = "github:kidskoding/anikonistack";
-      inputs.claude-code-nix.follows = "claude-code-cli";
-    };
+    anikonistack.url = "github:kidskoding/anikonistack";
 
     # rust tooling
     fenix = {
