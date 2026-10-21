@@ -6,6 +6,9 @@
     UV_NO_PROJECT = 1;
   };
 
+  # go install puts binaries here (myleet, etc.)
+  home.sessionPath = ["$HOME/go/bin"];
+
   home.packages = with pkgs; [
     # languages
     dotnet-sdk_11
