@@ -30,8 +30,8 @@ in {
     inputs.llm-agents.packages.${system}.hermes-agent # hermes-agent cli!
     inputs.llm-agents.packages.${system}.hermes-desktop # hermes-agent desktop!
 
-    # rust stable toolchain
-    (inputs.fenix.packages.${system}.stable.withComponents [
+    # rust nightly toolchain
+    (inputs.fenix.packages.${system}.latest.withComponents [
       "cargo"
       "clippy"
       "rust-analyzer"

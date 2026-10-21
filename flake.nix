@@ -32,7 +32,7 @@
     # neovim nightly (0.13.0-dev)
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
 
-    # rust tooling
+    # rust nightly (fenix latest)
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";

@@ -325,6 +325,22 @@
         "type": "github"
       }
     },
+    "cpython": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792612431,
+        "narHash": "sha256-qcZxJ93yixLh/fzBIKBCzLLjanG2fWliZGNJ0Pa2apg=",
+        "owner": "python",
+        "repo": "cpython",
+        "rev": "867d16eb02a55e57f895b6fd44913748c0619268",
+        "type": "github"
+      },
+      "original": {
+        "owner": "python",
+        "repo": "cpython",
+        "type": "github"
+      }
+    },
     "cromite": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -376,11 +392,11 @@
         "rust-analyzer-src": "rust-analyzer-src"
       },
       "locked": {
-        "lastModified": 1791026615,
-        "narHash": "sha256-F1kbChHSEQ9rnMWvH2lc7RxE2TUzqObA797b5oWKTQM=",
+        "lastModified": 1792582139,
+        "narHash": "sha256-pEsYM6FAbqTHx9PxvRNOC6m43MR9oqEEpSW2TveD2U0=",
         "owner": "nix-community",
         "repo": "fenix",
-        "rev": "24ce8305b35f9f0351d87c4ad939500228678ac6",
+        "rev": "02d6357e9d59c4626a82b27371ae6e90508839e5",
         "type": "github"
       },
       "original": {
@@ -1153,6 +1169,7 @@
         "claude-code-cli": "claude-code-cli",
         "claude-desktop": "claude-desktop",
         "codex-cli": "codex-cli",
+        "cpython": "cpython",
         "cromite": "cromite",
         "disko": "disko",
         "fenix": "fenix",
@@ -1174,11 +1191,11 @@
     "rust-analyzer-src": {
       "flake": false,
       "locked": {
-        "lastModified": 1790945856,
-        "narHash": "sha256-NFVMI5fBIijd+xVkz6+Ab8GxZOB964b8s00DDFjBtP8=",
+        "lastModified": 1792506877,
+        "narHash": "sha256-dqi+R9BPtkJ5Y7Kfcz5iCBytFGhfIdElzy3Ii/DcKSE=",
         "owner": "rust-lang",
         "repo": "rust-analyzer",
-        "rev": "cdc4aa0a6142ff7cda91dae5ae373792d81c522c",
+        "rev": "6c1fc437b550edf709a3ca55a2a8f809f3d3fcea",
         "type": "github"
       },
       "original": {
