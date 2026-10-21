@@ -2,7 +2,6 @@
   imports = [
     ./agents
     ./apps
-    ./dev
     ./git
     ./niri
     ./noctalia
@@ -10,4 +9,6 @@
     ./shell
     ./stylix
   ];
+
+  home-manager.users.anirudh.imports = [./home.nix];
 }
