@@ -1,3 +1,3 @@
 {...}: {
-  flake.homeModules.anirudh = ./_/nvim/home.nix;
+  flake.homeModules.anirudh = ../config/nvim/home.nix;
 }

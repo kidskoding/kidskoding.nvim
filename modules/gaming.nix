@@ -1,4 +1,4 @@
 {...}: {
-  flake.nixosModules.gaming = ./_/gaming;
-  flake.homeModules.gaming = ./_/gaming/home.nix;
+  flake.nixosModules.gaming = ../config/gaming;
+  flake.homeModules.gaming = ../config/gaming/home.nix;
 }

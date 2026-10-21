@@ -1,4 +1,4 @@
 {...}: {
-  flake.nixosModules.niri = ./_/niri;
-  flake.homeModules.anirudh = ./_/niri/home.nix;
+  flake.nixosModules.niri = ../config/niri;
+  flake.homeModules.anirudh = ../config/niri/home.nix;
 }

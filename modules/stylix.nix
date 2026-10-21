@@ -1,4 +1,4 @@
 {...}: {
-  flake.nixosModules.stylix = ./_/stylix;
-  flake.homeModules.anirudh = ./_/stylix/home.nix;
+  flake.nixosModules.stylix = ../config/stylix;
+  flake.homeModules.anirudh = ../config/stylix/home.nix;
 }

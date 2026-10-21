@@ -1,4 +1,4 @@
 {...}: {
-  flake.nixosModules.noctalia = ./_/noctalia;
-  flake.homeModules.anirudh = ./_/noctalia/home.nix;
+  flake.nixosModules.noctalia = ../config/noctalia;
+  flake.homeModules.anirudh = ../config/noctalia/home.nix;
 }

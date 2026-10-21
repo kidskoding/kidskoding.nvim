@@ -1,3 +1,3 @@
 {...}: {
-  flake.homeModules.anirudh = ./_/git/home.nix;
+  flake.homeModules.anirudh = ../config/git/home.nix;
 }
