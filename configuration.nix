@@ -6,6 +6,7 @@
   ...
 }: {
   imports = [
+    ./boot.nix
     ./networking.nix
 
     inputs.disko.nixosModules.disko
