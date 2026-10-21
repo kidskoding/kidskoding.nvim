@@ -325,22 +325,6 @@
         "type": "github"
       }
     },
-    "cpython": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1792612431,
-        "narHash": "sha256-qcZxJ93yixLh/fzBIKBCzLLjanG2fWliZGNJ0Pa2apg=",
-        "owner": "python",
-        "repo": "cpython",
-        "rev": "867d16eb02a55e57f895b6fd44913748c0619268",
-        "type": "github"
-      },
-      "original": {
-        "owner": "python",
-        "repo": "cpython",
-        "type": "github"
-      }
-    },
     "cromite": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -1169,7 +1153,6 @@
         "claude-code-cli": "claude-code-cli",
         "claude-desktop": "claude-desktop",
         "codex-cli": "codex-cli",
-        "cpython": "cpython",
         "cromite": "cromite",
         "disko": "disko",
         "fenix": "fenix",
