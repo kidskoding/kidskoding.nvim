@@ -20,11 +20,6 @@
     backupFileExtension = "bak";
     extraSpecialArgs = {inherit inputs;};
     users.anirudh = {
-      imports = [
-        ./packages.nix
-        inputs.sops-nix.homeManagerModules.sops
-      ];
-
       sops = {
         defaultSopsFile = ./secrets/secrets.yaml;
         age.keyFile = "/home/anirudh/.config/sops/age/keys.txt";

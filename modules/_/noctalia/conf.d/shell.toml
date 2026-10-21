@@ -1,0 +1,41 @@
+[accessibility]
+ui_scale = 1.2
+
+[shell]
+time_format = "{:%-I:%M %p}"
+avatar_path = "/home/anirudh/nixos/modules/_/noctalia/avatars/starfire.jpeg"
+font_family = "Terminess Nerd Font Mono"
+
+[shell.panel]
+open_near_click_control_center = true
+session_placement = "floating"
+session_position = "center"
+open_near_click_session = false
+open_near_click_wallpaper = true
+transparency_mode = "soft"
+
+[control_center]
+sidebar_section = "none"
+
+[osd]
+background_opacity = 1.0
+
+[osd.kinds]
+media = false
+
+[plugins]
+enabled = ["noctalia/timer"]
+
+[location]
+auto_locate = true
+
+[weather]
+enabled = true
+unit = "imperial"
+
+[battery]
+warning_threshold = 30
+
+[dock]
+enabled = false
+background_opacity = 1.0

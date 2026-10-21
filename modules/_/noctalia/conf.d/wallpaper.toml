@@ -1,0 +1,7 @@
+[wallpaper]
+enabled = true
+directory = "/home/anirudh/nixos/modules/_/noctalia/wallpapers"
+fill_mode = "crop"
+
+[wallpaper.default]
+path = "/home/anirudh/nixos/modules/_/noctalia/wallpapers/starfire-bg.jpg"
