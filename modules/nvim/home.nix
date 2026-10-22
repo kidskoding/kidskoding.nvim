@@ -98,6 +98,7 @@
       nativeBuildInputs = [pkgs.makeWrapper];
       postBuild = ''
         wrapProgram $out/bin/nvim \
+          --set NVIM_NIX_PLUGINS 1 \
           --add-flags "--cmd" \
           --add-flags "set packpath^=${packDir}"
       '';
