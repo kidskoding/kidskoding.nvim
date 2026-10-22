@@ -5,9 +5,9 @@
 }: {
   flake.nixosModules.victus = {
     imports = [
-      ../../../hosts/victus/hardware-configuration.nix
-      ../../../hosts/victus/disko.nix
-      ../../../hosts/victus/nvidia.nix
+      ../../hosts/victus/hardware-configuration.nix
+      ../../hosts/victus/disko.nix
+      ../../hosts/victus/nvidia.nix
       self.nixosModules.gaming
     ];
 
@@ -19,7 +19,7 @@
     ];
   };
 
-  flake.homeModules.victus = ../../../hosts/victus/home.nix;
+  flake.homeModules.victus = ../../hosts/victus/home.nix;
 
   flake.nixosConfigurations.victus = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
