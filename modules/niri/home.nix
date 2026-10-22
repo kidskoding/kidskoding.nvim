@@ -11,11 +11,13 @@
       adwaita-icon-theme
       blueman
       brightnessctl
+      grim
       hyprpicker
       libnotify
       networkmanagerapplet
       playerctl
       qimgv
+      slurp
 
       nautilus
       kdePackages.qtsvg
