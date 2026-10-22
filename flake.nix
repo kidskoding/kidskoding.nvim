@@ -1,6 +1,5 @@
 {
   description = "kidskoding.nvim: a minimal Neovim config written in Fennel";
-
   inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
   outputs = {
