@@ -8,7 +8,7 @@
 set -euo pipefail
 
 NIXOS_DIR="${NIXOS_DIR:-$HOME/nixos}"
-NVIM_DIR="modules/nvim/_/config"
+NVIM_DIR="nvim"
 
 cd "$NIXOS_DIR"
 
