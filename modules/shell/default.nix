@@ -1,4 +1,6 @@
 {...}: {
-  flake.nixosModules.shell = ./_/default.nix;
-  flake.homeModules.anirudh = ./_/home.nix;
+  flake.nixosModules.shell = {pkgs, ...}: {
+    programs.fish.enable = true;
+    users.users.anirudh.shell = pkgs.fish;
+  };
 }

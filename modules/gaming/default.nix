@@ -1,4 +1,7 @@
 {...}: {
-  flake.nixosModules.gaming = ./_/default.nix;
-  flake.homeModules.gaming = ./_/home.nix;
+  flake.nixosModules.gaming = {
+    programs.steam.enable = true;
+    programs.gamescope.enable = true;
+    programs.gamemode.enable = true;
+  };
 }
