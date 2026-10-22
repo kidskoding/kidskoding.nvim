@@ -5,7 +5,7 @@
     pkgs,
     ...
   }: let
-    dir = "${config.home.homeDirectory}/nixos/nvim";
+    dir = "${config.home.homeDirectory}/nixos/modules/nvim/config";
     link = config.lib.file.mkOutOfStoreSymlink;
     neovim = inputs.neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
   in {
