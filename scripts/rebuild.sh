@@ -13,9 +13,9 @@ cd "$FLAKE_DIR"
 
 # flakes only see files that git knows about, so stage everything first!
 stage_config() {
-    if [ -n "$(git ls-files -- config/nvim/config)" ]; then
+    if [ -n "$(git ls-files -- modules/features/nvim/_/config)" ]; then
         # scripts/nvim-sync.sh commits and pushes Neovim changes separately.
-        git add -A -- . ':!config/nvim/config'
+        git add -A -- . ':!modules/features/nvim/_/config'
     else
         # Include the subtree on the first rebuild after moving it here.
         git add -A -- .

@@ -1,5 +1,5 @@
 {config, ...}: let
-  dir = "${config.home.homeDirectory}/nixos/config/noctalia";
+  dir = "${config.home.homeDirectory}/nixos/modules/features/noctalia/_";
   link = config.lib.file.mkOutOfStoreSymlink;
 in {
   xdg.configFile = {
