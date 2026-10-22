@@ -124,7 +124,7 @@ in {
     functions = {
       fish_greeting = ''
         printf '%s\n\n— %s' \
-          "Every great thing that you will ever achieve is built brick by brick, day by day. You cannot lose if you just don't give up!" \
+          "Every great thing that you will ever achieve is built brick by brick, day by day, and night by night. You cannot lose if you just don't give up!" \
           'Nicholas "Jynxzi" Stewart' \
           | fold -s -w 40 | cowsay -n -f stegosaurus
       '';
