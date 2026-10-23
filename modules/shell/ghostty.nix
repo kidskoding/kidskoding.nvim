@@ -12,7 +12,8 @@
         confirm-close-surface = false;
 
         window-decoration = false;
-        window-padding-x = 0;
+        window-padding-x = 8;
+        window-padding-y = 8;
         window-padding-balance = true;
         window-padding-color = "extend";
         window-width = 100;
