@@ -34,12 +34,12 @@
         "spartan-ops"
         "spartan-research"
       ];
-      skip = ["resolving-merge-conflicts"];
 
       agents = {
         claude-code = {
           enable = true;
           statusline = true;
+          gruvbox = true;
         };
 
         codex.enable = true;
@@ -77,7 +77,6 @@
         model = "claude-opus-5-5[1m]";
         modelSettings.claude-opus-5-5.effortLevel = "high";
         effortLevel = "xhigh";
-        theme = "dark";
         tui = "fullscreen";
         skipWorkflowUsageWarning = true;
         agentPushNotifEnabled = true;
