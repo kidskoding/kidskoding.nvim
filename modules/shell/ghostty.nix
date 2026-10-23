@@ -8,6 +8,7 @@
         term = "xterm-256color";
 
         background-blur = true;
+        background-opacity-cells = true;
 
         confirm-close-surface = false;
 
