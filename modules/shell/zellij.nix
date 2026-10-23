@@ -49,6 +49,9 @@
             "bind \"Alt t\"" = {
               NewTab = [];
             };
+            "bind \"Alt f\"" = {
+              ToggleFocusFullscreen = [];
+            };
 
             "bind \"Alt H\" \"Alt Shift h\" \"Alt K\" \"Alt Shift k\" \"Alt Shift Left\" \"Alt Shift Up\"" = {
               GoToPreviousTab = [];
