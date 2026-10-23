@@ -19,6 +19,8 @@
   (set section.c theme.normal.c))
 
 (set theme.normal.a.bg "#d79921")
+;; brighter middle text; the theme's muted gray is hard to read on the bar
+(set theme.normal.c.fg "#d5c4a1")
 (set theme.terminal {:a {:bg "#d3869b" :fg "#282828" :gui :bold}
                      :b theme.normal.b
                      :c theme.normal.c})
@@ -41,16 +43,41 @@
 
 (local normal-bg (. (vim.api.nvim_get_hl 0 {:name :Normal :link false}) :bg))
 
+(local active-bg "#3c3836")
+
+(local buffer-highlights
+       {:fill {:bg normal-bg}
+        :separator {:fg "#504945" :bg normal-bg}
+        :separator_visible {:fg "#504945" :bg normal-bg}
+        :separator_selected {:fg "#504945" :bg normal-bg}
+        :offset_separator {:bg normal-bg}})
+
+;; every piece of the active tab sits on the same raised background
+(each [_ part (ipairs [:indicator
+                       :close_button
+                       :modified
+                       :duplicate
+                       :numbers
+                       :pick
+                       :diagnostic])]
+  (tset buffer-highlights (.. part :_selected) {:bg active-bg}))
+
+(each [_ level (ipairs [:hint :info :warning :error])]
+  (tset buffer-highlights (.. level :_selected) {:bg active-bg})
+  (tset buffer-highlights (.. level :_diagnostic_selected) {:bg active-bg}))
+
+(tset buffer-highlights :buffer_selected
+      {:fg "#ebdbb2" :bg active-bg :bold true})
+
 (bufferline.setup {:options {:style_preset [bufferline.style_preset.minimal
                                             bufferline.style_preset.no_italic]
                              :tab_size 0
-                             :separator_style ["" ""]
+                             :indicator {:style :none}
+                             :separator_style :thin
                              :offsets [{:filetype :snacks_layout_box
                                         :separator true
                                         :highlight :Normal}]}
-                   :highlights {:fill {:bg normal-bg}
-                                :indicator_selected {:fg "#d79921"}
-                                :offset_separator {:bg normal-bg}}})
+                   :highlights buffer-highlights})
 
 ;; leader group names. groups with no keymaps yet stay hidden
 (which-key.setup {:icons {:rules [{:pattern :claude
