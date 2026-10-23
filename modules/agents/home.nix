@@ -22,6 +22,7 @@
         "understand-anything"
         "last30days"
         "duet"
+        "open-steps"
 
         "spartan-core"
         "spartan-database"
