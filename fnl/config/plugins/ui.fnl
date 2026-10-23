@@ -19,6 +19,9 @@
   (set section.c theme.normal.c))
 
 (set theme.normal.a.bg "#d79921")
+(set theme.terminal {:a {:bg "#d3869b" :fg "#282828" :gui :bold}
+                     :b theme.normal.b
+                     :c theme.normal.c})
 
 (lualine.setup {:options {: theme
                           :globalstatus true
@@ -36,24 +39,31 @@
                                        :filetype]
                            :lualine_y [:selectioncount]}})
 
-(bufferline.setup {:options {:style_preset bufferline.style_preset.no_italic
+(local normal-bg (. (vim.api.nvim_get_hl 0 {:name :Normal :link false}) :bg))
+
+(bufferline.setup {:options {:style_preset [bufferline.style_preset.minimal
+                                            bufferline.style_preset.no_italic]
                              :tab_size 0
                              :separator_style ["" ""]
                              :offsets [{:filetype :snacks_layout_box
                                         :separator true
                                         :highlight :Normal}]}
-                   :highlights {:indicator_selected {:fg "#d79921"}
-                                :offset_separator {:bg (. (vim.api.nvim_get_hl 0
-                                                                               {:name :Normal
-                                                                                :link false})
-                                                          :bg)}}})
+                   :highlights {:fill {:bg normal-bg}
+                                :indicator_selected {:fg "#d79921"}
+                                :offset_separator {:bg normal-bg}}})
 
 ;; leader group names. groups with no keymaps yet stay hidden
-(which-key.setup {:spec [{1 :<leader>a :group :ai}
-                         {1 :<leader>b :group :buffers}
-                         {1 :<leader>c :group :code}
+(which-key.setup {:icons {:rules [{:pattern :claude
+                                   :icon "󱚣 "
+                                   :color :orange}
+                                  {:pattern :agent :icon " " :color :purple}]}
+                  :spec [{1 :<leader>a
+                          :group :ai
+                          :icon {:icon "󱚣 " :color :orange}}
+                         {1 :<leader>b :group :buffers :icon "󰓩 "}
+                         {1 :<leader>c :group :code :icon " "}
                          {1 :<leader>D :group :database :icon " "}
-                         {1 :<leader>g :group :git}
+                         {1 :<leader>g :group :git :icon "󰊢 "}
                          {1 :<leader>m :group :markdown :icon " "}
                          {1 :<leader>o :group :obsidian :icon "󰠮 "}
                          {1 :<leader>r
