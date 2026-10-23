@@ -19,9 +19,6 @@
   (set section.c theme.normal.c))
 
 (set theme.normal.a.bg "#d79921")
-(each [mode section (pairs theme)]
-  (when (not= mode :inactive)
-    (set section.b.fg section.a.bg)))
 
 (lualine.setup {:options {: theme
                           :globalstatus true
