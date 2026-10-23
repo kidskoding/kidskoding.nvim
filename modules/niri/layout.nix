@@ -3,7 +3,7 @@
     c = config.lib.stylix.colors.withHashtag;
   in {
     programs.niri.settings.layout = {
-      gaps = 10;
+      gaps = 5;
       background-color = c.base00;
 
       center-focused-column = "on-overflow";
