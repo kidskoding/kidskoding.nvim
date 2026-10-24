@@ -56,7 +56,10 @@
               ToggleFloatingPanes = [];
             };
             "bind \"Alt m\"" = {
-              MovePane = "right";
+              _children = [
+                {Resize = "Decrease";}
+                {MovePane = "right";}
+              ];
             };
 
             "bind \"Alt h\" \"Alt Left\"" = {
