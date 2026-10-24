@@ -99,6 +99,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    # artcraft: rust clones of creative/office apps
+    artcraft-nix.url = "github:applicative-systems/artcraft-nix";
   };
 
   outputs = inputs:

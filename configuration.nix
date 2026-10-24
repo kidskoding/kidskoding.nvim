@@ -49,6 +49,7 @@
     "https://noctalia.cachix.org"
     "https://pkulak.cachix.org"
     "https://cache.numtide.com"
+    "https://applicative-systems.cachix.org"
   ];
   nix.settings.trusted-public-keys = [
     # bun2nix trusted public key
@@ -65,6 +66,9 @@
 
     # llm-agents trusted public key
     "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+
+    # artcraft trusted public key
+    "applicative-systems.cachix.org-1:ND41hRBh0ST2abuI/oee3yWVf3n0FsAftyJJ/Tb7KDE="
   ];
 
   security = {

@@ -45,6 +45,20 @@ in {
     inputs.matui.packages.${system}.default
     inputs.toofan.packages.${system}.default
 
+    # artcraft apps
+    # inputs.artcraft-nix.packages.${system}.cadcraft     # autocad clone
+    inputs.artcraft-nix.packages.${system}.deckcraft # powerpoint clone
+    # inputs.artcraft-nix.packages.${system}.designcraft  # indesign clone
+    # inputs.artcraft-nix.packages.${system}.effectcraft  # after effects clone
+    # inputs.artcraft-nix.packages.${system}.filmcraft    # premiere pro clone
+    inputs.artcraft-nix.packages.${system}.gridcraft # excel clone
+    # inputs.artcraft-nix.packages.${system}.lightcraft   # lightroom clone
+    # inputs.artcraft-nix.packages.${system}.pdfcraft     # acrobat clone
+    # inputs.artcraft-nix.packages.${system}.photocraft   # photoshop clone
+    inputs.artcraft-nix.packages.${system}.soundcraft # pro tools clone
+    # inputs.artcraft-nix.packages.${system}.vectorcraft  # illustrator clone
+    inputs.artcraft-nix.packages.${system}.wordcraft # word clone
+
     inputs.cromite.packages.${system}.default
     inputs.zen-browser.packages.${system}.default
   ];

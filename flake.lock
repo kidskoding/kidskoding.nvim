@@ -75,6 +75,21 @@
         "type": "github"
       }
     },
+    "artcraft-nix": {
+      "locked": {
+        "lastModified": 1792839885,
+        "narHash": "sha256-P/pDwjT+i6ARHSlK/MDzNHKPBUgE4wL1o//Q7LOVBrc=",
+        "owner": "applicative-systems",
+        "repo": "artcraft-nix",
+        "rev": "f369624c9cf9524182324149cd1dd093772db57c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "applicative-systems",
+        "repo": "artcraft-nix",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -1215,6 +1230,7 @@
         "anikonistack": "anikonistack",
         "antigravity-cli": "antigravity-cli",
         "aoc-cli": "aoc-cli",
+        "artcraft-nix": "artcraft-nix",
         "claude-code-cli": "claude-code-cli",
         "claude-desktop": "claude-desktop",
         "codex-cli": "codex-cli",
