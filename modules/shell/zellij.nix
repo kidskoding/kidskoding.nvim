@@ -55,6 +55,9 @@
             "bind \"Alt w\"" = {
               ToggleFloatingPanes = [];
             };
+            "bind \"Alt m\"" = {
+              MovePane = "right";
+            };
 
             "bind \"Alt H\" \"Alt Shift h\" \"Alt K\" \"Alt Shift k\" \"Alt Shift Left\" \"Alt Shift Up\"" = {
               GoToPreviousTab = [];
