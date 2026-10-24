@@ -59,6 +59,13 @@
               MovePane = "right";
             };
 
+            "bind \"Alt h\" \"Alt Left\"" = {
+              MoveFocus = "Left";
+            };
+            "bind \"Alt l\" \"Alt Right\"" = {
+              MoveFocus = "Right";
+            };
+
             "bind \"Alt H\" \"Alt Shift h\" \"Alt K\" \"Alt Shift k\" \"Alt Shift Left\" \"Alt Shift Up\"" = {
               GoToPreviousTab = [];
             };
