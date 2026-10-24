@@ -22,11 +22,11 @@
         "vercel-skills": "vercel-skills"
       },
       "locked": {
-        "lastModified": 1792847988,
-        "narHash": "sha256-LWrLbKhZHOjsZPrrUTKb4holdOu2sCogTRthUXWrJ6w=",
+        "lastModified": 1792850398,
+        "narHash": "sha256-rQlGuzqgyVuCgNS3IVdX5juXsAyZvNTQOWmsXvrgomM=",
         "owner": "kidskoding",
         "repo": "anikonistack",
-        "rev": "1c8d0b6a2d0ea5a0a715196f48f388c6780ce009",
+        "rev": "ddfd0e2c8443fb06ba9866efddfdf3314b15b916",
         "type": "github"
       },
       "original": {
