@@ -9,6 +9,8 @@
     imports = [inputs.anikonistack.homeManagerModules.default];
 
     anikonistack = {
+      checkout = "${config.home.homeDirectory}/anikonistack";
+
       bundles = [
         "custom"
         "mattpocock"
