@@ -53,7 +53,7 @@ in {
     # inputs.artcraft-nix.packages.${system}.filmcraft    # premiere pro clone
     inputs.artcraft-nix.packages.${system}.gridcraft # excel clone
     # inputs.artcraft-nix.packages.${system}.lightcraft   # lightroom clone
-    # inputs.artcraft-nix.packages.${system}.pdfcraft     # acrobat clone
+    inputs.artcraft-nix.packages.${system}.pdfcraft # acrobat clone
     # inputs.artcraft-nix.packages.${system}.photocraft   # photoshop clone
     inputs.artcraft-nix.packages.${system}.soundcraft # pro tools clone
     # inputs.artcraft-nix.packages.${system}.vectorcraft  # illustrator clone

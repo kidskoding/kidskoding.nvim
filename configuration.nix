@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   inputs,
   host,
@@ -133,6 +134,29 @@
         "networkmanager"
         "wheel"
         "docker"
+      ];
+    };
+  };
+
+  virtualisation.vmVariant = {
+    users.users.anirudh.initialPassword = "test";
+    services.greetd.settings.initial_session = {
+      user = "anirudh";
+      command = "niri-session";
+    };
+    services.xserver.videoDrivers = lib.mkForce ["modesetting"];
+    virtualisation = {
+      memorySize = 8192;
+      cores = 4;
+      sharedDirectories.nixos = {
+        source = "/home/anirudh/nixos";
+        target = "/home/anirudh/nixos";
+        writable = false;
+      };
+      qemu.options = [
+        "-vga none"
+        "-device virtio-vga-gl"
+        "-display gtk,gl=on"
       ];
     };
   };

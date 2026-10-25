@@ -68,6 +68,31 @@
           args = ["@playwright/mcp@latest" "--extension"];
           env.PLAYWRIGHT_MCP_EXTENSION_TOKEN = "\${PLAYWRIGHT_MCP_EXTENSION_TOKEN}";
         };
+
+        deckcraft = {
+          command = "deckcraft-cli";
+          args = ["mcp"];
+        };
+
+        gridcraft = {
+          command = "gridcraft-cli";
+          args = ["mcp"];
+        };
+
+        pdfcraft = {
+          command = "pdfcraft-cli";
+          args = ["mcp" "--compact"];
+        };
+
+        soundcraft = {
+          command = "soundcraft-cli";
+          args = ["mcp"];
+        };
+
+        wordcraft = {
+          command = "wordcraft-cli";
+          args = ["mcp"];
+        };
       };
     };
 
