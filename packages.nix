@@ -4,19 +4,6 @@
   ...
 }: let
   system = pkgs.stdenv.hostPlatform.system;
-
-  thinkrail = pkgs.stdenvNoCC.mkDerivation rec {
-    pname = "thinkrail";
-    version = "0.2.0";
-    src = pkgs.fetchurl {
-      url = "https://github.com/JetBrains/thinkrail/releases/download/v${version}/thinkrail-linux-x64";
-      hash = "sha256-VA99RiWEkWExin2wU3GbGbQgHrf86vTdVWykx+CIAQw=";
-    };
-    dontUnpack = true;
-    dontStrip = true;
-    dontPatchELF = true;
-    installPhase = "install -Dm755 $src $out/bin/thinkrail";
-  };
 in {
   home.packages = [
     inputs.aoc-cli.packages.${system}.default
@@ -37,7 +24,6 @@ in {
     # inputs.llm-agents.packages.${system}.mistral-vibe     # mistral ai's minimal coding agent cli!
     inputs.llm-agents.packages.${system}.orca # a wonderful ade for working with many coding agents!
     inputs.llm-agents.packages.${system}.pi # a wonderful agent harness!
-    thinkrail # jetbrains's spec-first agentic ide, runs pi in the browser!
     # inputs.llm-agents.packages.${system}.qwen-code          # agent cli / workflow tool for the family of Qwen3 models!
 
     # ai assistants
