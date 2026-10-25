@@ -1,4 +1,5 @@
 [theme]
 mode = "dark"
-source = "custom"
+source = "builtin"
+builtin = "Gruvbox"
 custom_palette = "gruvbox"
