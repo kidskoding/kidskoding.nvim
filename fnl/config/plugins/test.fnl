@@ -14,5 +14,6 @@
 
 (map :<leader>tt #(neotest.run.run) "Run nearest test")
 (map :<leader>tf #(neotest.run.run (vim.fn.expand "%")) "Run file tests")
+(map :<leader>ta #(neotest.run.run (vim.fn.getcwd)) "Run all tests")
 (map :<leader>ts #(neotest.summary.toggle) "Test summary")
 (map :<leader>to #(neotest.output.open {:enter true}) "Test output")
