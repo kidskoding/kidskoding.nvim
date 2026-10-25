@@ -18,13 +18,5 @@
     home.packages = [neovim];
 
     xdg.configFile."nvim".source = link dir;
-
-    programs.neovide = {
-      enable = true;
-      settings = {
-        neovim-bin = "${neovim}/bin/nvim";
-        frame = "none";
-      };
-    };
   };
 }
