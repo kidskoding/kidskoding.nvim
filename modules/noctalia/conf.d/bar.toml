@@ -48,7 +48,7 @@ show_progress = true
 [widget.volume]
 show_label = true
 icon_color = "#d3869b"
-mute_color = "#fb4934"
+mute_color = "error"
 
 [widget.network]
 show_label = true
@@ -57,17 +57,17 @@ icon_color = "#8ec07c"
 
 [widget.bluetooth]
 show_label = true
-icon_color = "#83a598"
+icon_color = "tertiary"
 
 [widget.brightness]
 show_label = true
-icon_color = "#fabd2f"
+icon_color = "secondary"
 
 [widget.battery]
 display_mode = "glyph"
 show_label = true
-icon_color = "#b8bb26"
-warning_color = "#fabd2f"
+icon_color = "primary"
+warning_color = "secondary"
 
 [widget.clock]
 format = "<span foreground='#fb4934'></span> {:%a %b %d} | <span foreground='#fb4934'></span> {:%I:%M %p}"

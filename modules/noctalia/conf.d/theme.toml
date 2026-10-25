@@ -2,4 +2,3 @@
 mode = "dark"
 source = "builtin"
 builtin = "Gruvbox"
-custom_palette = "gruvbox"

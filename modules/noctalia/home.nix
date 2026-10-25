@@ -6,7 +6,6 @@
     xdg.configFile = {
       "noctalia/config.toml".source = link "${dir}/config.toml";
       "noctalia/conf.d".source = link "${dir}/conf.d";
-      "noctalia/palettes".source = link "${dir}/palettes";
     };
   };
 }
