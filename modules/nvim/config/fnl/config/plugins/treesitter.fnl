@@ -10,6 +10,7 @@
                      :css
                      :fennel
                      :fish
+                     :go
                      :html
                      :javascript
                      :json
