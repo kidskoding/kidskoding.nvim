@@ -7,7 +7,7 @@
 -    const ColorSpec iconColor = isWarning ? m_warningColor : widgetIconColorOr(colorSpecFromRole(ColorRole::OnSurface));
 -    const ColorSpec labelColor =
 -        isWarning ? m_warningColor : widgetForegroundOr(colorSpecFromRole(ColorRole::OnSurface));
-+    const ColorSpec iconColor = !isPluggedIn && pct < 15 ? colorSpecFromRole(ColorRole::Error)
++    const ColorSpec iconColor = !isPluggedIn && pct < 15 ? colorSpecFromRole(ColorRole::Red)
 +        : !isPluggedIn && pct < m_warningThreshold       ? m_warningColor
 +                                                        : widgetIconColorOr(colorSpecFromRole(ColorRole::OnSurface));
 +    const ColorSpec labelColor = widgetForegroundOr(colorSpecFromRole(ColorRole::OnSurface));

@@ -34,6 +34,7 @@
             ./patches/solid-panels.patch
             ./patches/network-wifi-off-color.patch
             ./patches/bluetooth-off-color.patch
+            ./patches/theme-terminal-colors.patch
           ];
       }))
       pkgs.adwaita-icon-theme
