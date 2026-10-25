@@ -15,23 +15,3 @@
 (require :config.plugins.database)
 (require :config.plugins.ai)
 (require :config.plugins.cord)
-
-;; neovide
-(when vim.g.neovide
-  (set vim.g.neovide_position_animation_length 0)
-  (set vim.g.neovide_scroll_animation_length 0)
-  (set vim.g.neovide_scroll_animation_far_lines 0)
-  (set vim.g.neovide_cursor_animation_length 0)
-  (set vim.g.neovide_cursor_short_animation_length 0)
-  (set vim.g.neovide_cursor_trail_size 0)
-  (set vim.g.neovide_cursor_animate_in_insert_mode false)
-  (set vim.g.neovide_cursor_animate_command_line false)
-  (set vim.g.neovide_cursor_smooth_blink false)
-  (set vim.g.neovide_cursor_vfx_mode "")
-  (set vim.g.neovide_progress_bar_enabled false)
-  (set vim.g.neovide_opacity 0.8)
-  (set vim.g.neovide_normal_opacity 0.8)
-  (set vim.g.neovide_padding_left 5)
-  (set vim.g.neovide_padding_right 5)
-  (set vim.g.neovide_hide_mouse_when_typing true)
-  (set vim.g.neovide_confirm_quit false))
