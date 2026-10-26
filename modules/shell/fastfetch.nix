@@ -6,6 +6,7 @@
     ...
   }: let
     c = config.lib.stylix.colors;
+    orange = "38;2;${c."base09-rgb-r"};${c."base09-rgb-g"};${c."base09-rgb-b"}";
     noctalia = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
     # nixosBlue = "38;2;82;119;195";
     # nixosBlueLight = "38;2;126;186;228";
@@ -70,49 +71,49 @@
           }
           {
             type = "custom";
-            key = "│ {#31} toolkit {#keys}│";
+            key = "│ {#${orange}} toolkit {#keys}│";
             format = "noctalia ${noctalia.version}";
           }
           {
             type = "custom";
-            key = "│ {#32}󰏘 theme   {#keys}│";
+            key = "│ {#31}󰏘 theme   {#keys}│";
             format = c.scheme;
           }
           {
             type = "custom";
-            key = "│ {#33} font    {#keys}│";
+            key = "│ {#32} font    {#keys}│";
             format = config.stylix.fonts.monospace.name;
           }
           {
             type = "terminal";
-            key = "│ {#34} term    {#keys}│";
+            key = "│ {#33} term    {#keys}│";
           }
           {
             type = "shell";
-            key = "│ {#35} shell   {#keys}│";
+            key = "│ {#34} shell   {#keys}│";
           }
           {
             type = "host";
-            key = "│ {#36} host    {#keys}│";
+            key = "│ {#35} host    {#keys}│";
           }
           {
             type = "cpu";
-            key = "│ {#31}󰍛 cpu     {#keys}│";
+            key = "│ {#36}󰍛 cpu     {#keys}│";
             format = "{name}";
           }
           {
             type = "gpu";
-            key = "│ {#32}󰍛 gpu     {#keys}│";
+            key = "│ {#${orange}}󰍛 gpu     {#keys}│";
             format = "{1} {2}";
             hideType = "integrated";
           }
           {
             type = "memory";
-            key = "│ {#33} memory  {#keys}│";
+            key = "│ {#31} memory  {#keys}│";
           }
           {
             type = "disk";
-            key = "│ {#34}󰉉 disk    {#keys}│";
+            key = "│ {#32}󰉉 disk    {#keys}│";
             folders = "/";
           }
           {
@@ -122,7 +123,7 @@
           {
             type = "custom";
             key = "│ {#39} colors  {#keys}│";
-            format = "{#31}██{#32}██{#33}██{#34}██{#35}██{#36}██{#37}██{#}";
+            format = "{#31}██{#32}██{#33}██{#34}██{#35}██{#36}██{#${orange}}██{#37}██{#}";
           }
           {
             type = "custom";
