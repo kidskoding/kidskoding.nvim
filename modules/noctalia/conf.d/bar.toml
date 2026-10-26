@@ -36,7 +36,6 @@ active_pill_size = 1
 inactive_pill_size = 1
 label_source = "id"
 hide_when_empty = true
-occupied_color = "#928374"
 
 [widget.media]
 artist_first = false
@@ -47,30 +46,30 @@ show_progress = true
 
 [widget.volume]
 show_label = true
-icon_color = "#d3869b"
-mute_color = "error"
+icon_color = "magenta"
+mute_color = "red"
 
 [widget.network]
 show_label = true
 show_vpn_label = false
-icon_color = "#8ec07c"
+icon_color = "cyan"
 
 [widget.bluetooth]
 show_label = true
-icon_color = "tertiary"
+icon_color = "blue"
 
 [widget.brightness]
 show_label = true
-icon_color = "secondary"
+icon_color = "yellow"
 
 [widget.battery]
 display_mode = "glyph"
 show_label = true
-icon_color = "primary"
-warning_color = "secondary"
+icon_color = "green"
+warning_color = "yellow"
 
 [widget.clock]
-format = "<span foreground='#fb4934'></span> {:%a %b %d} | <span foreground='#fb4934'></span> {:%I:%M %p}"
+format = "<span foreground='@red'></span> {:%a %b %d} | <span foreground='@red'></span> {:%I:%M %p}"
 tooltip_format = "{:%A, %B %-d %Y}"
 
 [widget.clock.actions]
