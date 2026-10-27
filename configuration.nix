@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   host,
+  user,
   ...
 }: {
   imports = [
@@ -20,10 +21,10 @@
     useUserPackages = true;
     backupFileExtension = "bak";
     extraSpecialArgs = {inherit inputs;};
-    users.anirudh = {
+    users.${user} = {
       sops = {
         defaultSopsFile = ./secrets/secrets.yaml;
-        age.keyFile = "/home/anirudh/.config/sops/age/keys.txt";
+        age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
       };
     };
   };
@@ -31,7 +32,7 @@
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
-    age.keyFile = "/home/anirudh/.config/sops/age/keys.txt";
+    age.keyFile = "/home/${user}/.config/sops/age/keys.txt";
   };
 
   nix.settings.experimental-features = [
@@ -126,7 +127,7 @@
   };
 
   users.users = {
-    "anirudh" = {
+    ${user} = {
       isNormalUser = true;
       description = "Anirudh Konidala";
 
@@ -139,9 +140,9 @@
   };
 
   virtualisation.vmVariant = {
-    users.users.anirudh.initialPassword = "test";
+    users.users.${user}.initialPassword = "test";
     services.greetd.settings.initial_session = {
-      user = "anirudh";
+      inherit user;
       command = "niri-session";
     };
     services.xserver.videoDrivers = lib.mkForce ["modesetting"];
@@ -149,8 +150,8 @@
       memorySize = 8192;
       cores = 4;
       sharedDirectories.nixos = {
-        source = "/home/anirudh/nixos";
-        target = "/home/anirudh/nixos";
+        source = "/home/${user}/nixos";
+        target = "/home/${user}/nixos";
         writable = false;
       };
       qemu.options = [
@@ -230,9 +231,9 @@
   };
 
   systemd.services.nixos-upgrade.preStart = ''
-    ${pkgs.util-linux}/bin/runuser -u anirudh -- ${pkgs.bash}/bin/bash -c '
-      export HOME=/home/anirudh
-      cd /home/anirudh/nixos || exit 0
+    ${pkgs.util-linux}/bin/runuser -u ${user} -- ${pkgs.bash}/bin/bash -c '
+      export HOME=/home/${user}
+      cd /home/${user}/nixos || exit 0
       git pull --ff-only || exit 0
       nix flake update anikonistack --commit-lock-file || exit 0
       git push || true

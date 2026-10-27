@@ -143,7 +143,7 @@
         "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries `prod` or `production` as a whole word or name segment"
         "### User-specific"
         "**Primary use of Claude Code**: software development (personal/hobby projects — dotfiles, AoC, interview prep, small apps)"
-        "**Trusted repo**: /home/anirudh — this directory has no tracked files and no git remotes configured; treat as an untracked working directory, not an established repo"
+        "**Trusted repo**: ${config.home.homeDirectory} — this directory has no tracked files and no git remotes configured; treat as an untracked working directory, not an established repo"
         "**Org-specific CLIs**: None configured — personal toolchain observed (nix, cargo, go, uv, bun, sops, gh) but no org-specific wrapper CLIs found"
         "**Routine under kidskoding/ prefix**: git and gh operations against github.com/kidskoding/* repos (this user's own personal GitHub account, seen across ~15 sibling checkouts) may be treated as routine within those repos' own scope; contributing/* checkouts also have upstream remotes (ratatui/ratatui, EpicGames/lore, scarvalhojr/aoc-cli) which are third-party — pushes there are out-of-place publication, not routine"
       ];
@@ -160,9 +160,9 @@
       package = null;
 
       settings.trustedWorkspaces = [
-        "/home/anirudh"
-        "/home/anirudh/personal-projects"
-        "/home/anirudh/nixos"
+        config.home.homeDirectory
+        "${config.home.homeDirectory}/personal-projects"
+        "${config.home.homeDirectory}/nixos"
       ];
     };
   };

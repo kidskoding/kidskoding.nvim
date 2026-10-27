@@ -1,9 +1,6 @@
 [session]
 default = "Niri"
 
-[user]
-default = "anirudh"
-
 [appearance]
 scheme = "Synced"
 theme_mode = "dark"

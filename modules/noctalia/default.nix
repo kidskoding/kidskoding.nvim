@@ -1,7 +1,9 @@
 {...}: {
   flake.nixosModules.noctalia = {
     inputs,
+    lib,
     pkgs,
+    user,
     ...
   }: {
     imports = [inputs.noctalia-greeter.nixosModules.default];
@@ -10,7 +12,7 @@
     # so its toml and assets go through the store and /etc (needs a rebuild)
     services.displayManager.noctalia-greeter = {
       enable = true;
-      settings = ./greeter/greeter.toml;
+      settings = lib.recursiveUpdate (lib.importTOML ./greeter/greeter.toml) {user.default = user;};
     };
 
     environment.etc."noctalia-greeter/wallpaper.jpg".source = ./wallpapers/starfire-bg.jpg;
@@ -40,6 +42,6 @@
       pkgs.adwaita-icon-theme
     ];
 
-    systemd.tmpfiles.settings."10-accountsservice-avatar"."/var/lib/AccountsService/users/anirudh"."f+".argument = "[User]\nIcon=${./avatars/starfire.jpeg}\n";
+    systemd.tmpfiles.settings."10-accountsservice-avatar"."/var/lib/AccountsService/users/${user}"."f+".argument = "[User]\nIcon=${./avatars/starfire.jpeg}\n";
   };
 }

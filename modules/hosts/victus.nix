@@ -3,7 +3,7 @@
   self,
   ...
 }: {
-  flake.nixosModules.victus = {
+  flake.nixosModules.victus = {user, ...}: {
     imports = [
       ../../hosts/victus/hardware-configuration.nix
       ../../hosts/victus/disko.nix
@@ -13,7 +13,7 @@
 
     system.stateVersion = "26.05";
 
-    home-manager.users.anirudh.imports = [
+    home-manager.users.${user}.imports = [
       self.homeModules.victus
       self.homeModules.gaming
     ];
@@ -25,6 +25,7 @@
     specialArgs = {
       inherit inputs;
       host = "victus";
+      user = "anirudh";
     };
     modules = [
       self.nixosModules.base
