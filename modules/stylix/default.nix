@@ -2,6 +2,7 @@
   flake.nixosModules.stylix = {
     config,
     inputs,
+    lib,
     pkgs,
     ...
   }: {
@@ -15,14 +16,14 @@
       polarity = "dark";
 
       fonts = {
-        monospace = {
-          package = pkgs.nerd-fonts.terminess-ttf;
-          name = "Terminess Nerd Font Mono";
+        monospace = lib.mkDefault {
+          package = pkgs.nerd-fonts.jetbrains-mono;
+          name = "JetBrainsMono Nerd Font Mono";
         };
 
         sansSerif = config.stylix.fonts.monospace;
         serif = config.stylix.fonts.monospace;
-        sizes.terminal = 16;
+        sizes.terminal = lib.mkDefault 16;
       };
 
       cursor = {

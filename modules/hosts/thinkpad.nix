@@ -8,14 +8,20 @@
       ../../hosts/thinkpad/hardware-configuration.nix
     ];
 
+    my = {
+      gpu = ["amd"];
+      display = {
+        width = 1920;
+        height = 1200;
+        scale = 1.2;
+      };
+    };
+
+    stylix.fonts.sizes.terminal = 14;
+
     system.stateVersion = "26.05";
-
-    home-manager.users.${user}.imports = [
-      self.homeModules.thinkpad
-    ];
+    home-manager.users.${user}.home.stateVersion = "26.05";
   };
-
-  flake.homeModules.thinkpad = ../../hosts/thinkpad/home.nix;
 
   flake.nixosConfigurations.thinkpad = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {

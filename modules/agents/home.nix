@@ -96,6 +96,13 @@
       };
     };
 
+    home.activation.cloneAnikonistack = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -d "${config.anikonistack.checkout}" ]; then
+        run ${pkgs.git}/bin/git clone https://github.com/kidskoding/anikonistack "${config.anikonistack.checkout}" \
+          || warnEcho "anikonistack clone failed; theme and custom skills stay broken until it exists"
+      fi
+    '';
+
     home.packages = [pkgs.nodejs];
 
     programs.claude-code = {

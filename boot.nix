@@ -4,7 +4,6 @@
       grub.enable = true;
       grub.device = "nodev";
       grub.efiSupport = true;
-      grub.gfxmodeEfi = "1920x1080";
 
       efi.canTouchEfiVariables = true;
 
@@ -13,7 +12,7 @@
 
     plymouth = {
       enable = true;
-      theme = "bgrt";
+      theme = "nixos-bgrt";
       themePackages = with pkgs; [
         nixos-bgrt-plymouth
       ];
@@ -22,7 +21,6 @@
     consoleLogLevel = 0;
     initrd.verbose = false;
     initrd.systemd.enable = true;
-    initrd.kernelModules = ["i915"];
 
     kernelParams = [
       "quiet"
@@ -32,8 +30,6 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-      "i915.enable_psr=0"
-      "pci=noaer"
     ];
   };
 }

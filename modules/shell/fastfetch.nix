@@ -35,6 +35,7 @@
 
         display = {
           separator = " ";
+          size.ndigits = 1;
           color.keys = "38;2;${c."base04-rgb-r"};${c."base04-rgb-g"};${c."base04-rgb-b"}";
         };
 
@@ -115,6 +116,7 @@
             type = "disk";
             key = "│ {#32}󰉉 disk    {#keys}│";
             folders = "/";
+            format = "{size-used} / {size-total} ({size-percentage}) - {filesystem}";
           }
           {
             type = "custom";

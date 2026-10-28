@@ -47,7 +47,7 @@
 
       # fonts
       nerd-fonts.symbols-only
-      nerd-fonts.terminess-ttf
+      nerd-fonts.jetbrains-mono
       symbola
       corefonts
 

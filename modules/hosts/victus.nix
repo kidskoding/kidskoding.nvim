@@ -7,19 +7,34 @@
     imports = [
       ../../hosts/victus/hardware-configuration.nix
       ../../hosts/victus/disko.nix
-      ../../hosts/victus/nvidia.nix
       self.nixosModules.gaming
     ];
 
+    my = {
+      gpu = ["intel" "nvidia"];
+      display = {
+        width = 1920;
+        height = 1080;
+        refresh = 144.0;
+        vrr = true;
+        textScale = 1.25;
+      };
+    };
+
+    boot.kernelParams = ["pci=noaer"];
+
+    hardware.nvidia.prime = {
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+
     system.stateVersion = "26.05";
 
-    home-manager.users.${user}.imports = [
-      self.homeModules.victus
-      self.homeModules.gaming
-    ];
+    home-manager.users.${user} = {
+      imports = [self.homeModules.gaming];
+      home.stateVersion = "26.05";
+    };
   };
-
-  flake.homeModules.victus = ../../hosts/victus/home.nix;
 
   flake.nixosConfigurations.victus = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {

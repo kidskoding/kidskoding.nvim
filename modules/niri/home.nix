@@ -51,24 +51,8 @@
         QT_AUTO_SCREEN_SCALE_FACTOR = "0";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         GDK_SCALE = "1";
-        GDK_DPI_SCALE = "1.25";
-        QT_FONT_DPI = "120";
         MOZ_ENABLE_WAYLAND = "1";
         TERMINAL = terminal;
-      };
-
-      outputs."eDP-1" = {
-        mode = {
-          width = 1920;
-          height = 1080;
-          refresh = 144.0;
-        };
-        position = {
-          x = 0;
-          y = 0;
-        };
-        scale = 1.0;
-        variable-refresh-rate = "on-demand";
       };
 
       input = {
