@@ -1,0 +1,183 @@
+diff --git a/src/shell/lockscreen/lock_surface.cpp b/src/shell/lockscreen/lock_surface.cpp
+index fead01c..5121fbb 100644
+--- a/src/shell/lockscreen/lock_surface.cpp
++++ b/src/shell/lockscreen/lock_surface.cpp
+@@ -14,6 +14,7 @@
+ #include "render/scene/wallpaper_node.h"
+ #include "shell/lockscreen/lockscreen_login_box.h"
+ #include "shell/lockscreen/lockscreen_widgets_host.h"
++#include "shell/profile/avatar_path.h"
+ #include "shell/session/session_action_meta.h"
+ #include "shell/session/session_action_runner.h"
+ #include "system/weather_service.h"
+@@ -50,6 +51,7 @@ namespace {
+ 
+   constexpr float kMediaArtSize = lockscreen_login_box::kRegularMediaArtSize;
+   constexpr float kWeatherGlyphSize = 28.0F;
++  constexpr float kHeaderAvatarSize = 72.0F;
+   constexpr float kForecastGlyphSize = lockscreen_login_box::kRegularForecastGlyphSize;
+   constexpr float kLayoutChipMaxWidth = 96.0F;
+   constexpr int kForecastDayCountPaired = 3;
+@@ -234,6 +236,28 @@ LockSurface::LockSurface(WaylandConnection& connection, ConfigService* config) :
+       .maxLines = 1,
+   })));
+ 
++  m_infoRow->addChild(ui::column({
++      .out = &m_headerUser,
++      .align = FlexAlign::Center,
++      .gap = Style::spaceSm,
++      .visible = false,
++      .participatesInLayout = false,
++      .configure = [](Flex& column) { column.setZIndex(1); },
++  }, ui::image({
++      .out = &m_headerUserAvatar,
++      .fit = ImageFit::Cover,
++      .radius = kHeaderAvatarSize * 0.5F,
++      .width = kHeaderAvatarSize,
++      .height = kHeaderAvatarSize,
++  }), ui::label({
++      .out = &m_headerUserName,
++      .fontSize = Style::fontSizeBody,
++      .fontWeight = FontWeight::Bold,
++      .color = colorSpecFromRole(ColorRole::OnSurface),
++      .maxLines = 1,
++      .textAlign = TextAlign::Center,
++  })));
++
+   m_infoRow->addChild(
+       ui::flex(
+           FlexDirection::Horizontal,
+@@ -1274,8 +1298,11 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+   const float headerWarningHeight = regular && loginStyle.showClock && !loginStyle.showMedia
+       ? Style::controlHeightSm
+       : 0.0F;
+-  panelHeight += headerWarningHeight;
+-  panelY -= headerWarningHeight * 0.5F;
++  const float headerUserHeight = regular && loginStyle.showClock && !loginStyle.showMedia && loginStyle.showUser
++      ? kHeaderAvatarSize + Style::spaceSm + Style::controlHeightSm
++      : 0.0F;
++  panelHeight += headerWarningHeight + headerUserHeight;
++  panelY -= (headerWarningHeight + headerUserHeight) * 0.5F;
+ 
+   panelX = util::clampOrdered(panelX, Style::spaceLg, sw - panelWidth - Style::spaceLg);
+   panelY = util::clampOrdered(panelY, Style::spaceLg, sh - panelHeight - Style::spaceLg);
+@@ -1343,9 +1370,9 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+       loginVisible && loginStyle.showKeyboardLayout && m_layoutChip != nullptr && m_layoutChip->visible();
+ 
+   lockscreen_login_box::RegularRowHeights rows = regular
+-      ? lockscreen_login_box::regularRowHeights(panelHeight - headerWarningHeight, showSession, showInfoExtras)
++      ? lockscreen_login_box::regularRowHeights(panelHeight - headerWarningHeight - headerUserHeight, showSession, showInfoExtras)
+       : lockscreen_login_box::RegularRowHeights{};
+-  rows.info += headerWarningHeight;
++  rows.info += headerWarningHeight + headerUserHeight;
+   const float contentScale = regular ? rows.scale : 1.0F;
+   m_regularContentScale = contentScale;
+   const float captionSize = Style::fontSizeCaption * contentScale;
+@@ -1550,7 +1577,7 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+ 
+   if (structuredHeader) {
+     const float columnGap = Style::spaceLg * 1.5F * contentScale;
+-    const float groupHeight = rows.info - headerWarningHeight;
++    const float groupHeight = rows.info - headerWarningHeight - headerUserHeight;
+     const float columnWidth = std::max(0.0F, (headerWidth - columnGap) * 0.5F);
+     const float iconSize = Style::fontSizeBody * contentScale;
+     const float iconGap = Style::spaceSm * contentScale;
+@@ -1566,7 +1593,7 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+     m_loginClockRow->layout(renderer);
+     m_loginClockRow->setPosition(
+         (columnWidth - m_loginClockRow->width()) * 0.5F,
+-        std::max(0.0F, (groupHeight - m_loginClockRow->height()) * 0.5F)
++        headerUserHeight + std::max(0.0F, (groupHeight - m_loginClockRow->height()) * 0.5F)
+     );
+ 
+     m_loginBatteryLabel->setMaxWidth(textWidth);
+@@ -1577,7 +1604,7 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+     m_loginBatteryRow->layout(renderer);
+     m_loginBatteryRow->setPosition(
+         columnWidth + columnGap + (columnWidth - m_loginBatteryRow->width()) * 0.5F,
+-        std::max(0.0F, (groupHeight - m_loginBatteryRow->height()) * 0.5F)
++        headerUserHeight + std::max(0.0F, (groupHeight - m_loginBatteryRow->height()) * 0.5F)
+     );
+ 
+     const bool showCapsLock = loginStyle.showCapsLock && m_capsLock;
+@@ -1592,11 +1619,39 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+       m_headerCapsLock->layout(renderer);
+       m_headerCapsLock->setPosition(
+           (contentWidth - m_headerCapsLock->width()) * 0.5F,
+-          groupHeight + std::max(0.0F, (headerWarningHeight - m_headerCapsLock->height()) * 0.5F)
++          headerUserHeight + groupHeight + std::max(0.0F, (headerWarningHeight - m_headerCapsLock->height()) * 0.5F)
++      );
++    }
++
++    m_headerUser->setVisible(headerUserHeight > 0.0F);
++    if (headerUserHeight > 0.0F) {
++      const float avatarSize = kHeaderAvatarSize * contentScale;
++      const int avatarPx = static_cast<int>(std::round(avatarSize));
++      const std::string avatarPath =
++          m_config != nullptr ? shell::avatarDisplayPath(nullptr, m_config->config()) : std::string{};
++      if (avatarPath != m_headerUserAvatarPath || avatarPx != m_headerUserAvatarPx) {
++        m_headerUserAvatarPath = avatarPath;
++        m_headerUserAvatarPx = avatarPx;
++        if (avatarPath.empty() || !m_headerUserAvatar->setSourceFile(renderer, avatarPath, avatarPx, false, true)) {
++          m_headerUserAvatar->clear(renderer);
++        }
++      }
++      m_headerUserAvatar->setSize(avatarSize, avatarSize);
++      m_headerUserAvatar->setRadius(avatarSize * 0.5F);
++      m_headerUserAvatar->setVisible(m_headerUserAvatar->hasImage());
++      m_headerUserName->setFontSize(bodySize);
++      m_headerUserName->setMaxWidth(headerWidth);
++      m_headerUserName->setText(m_user);
++      m_headerUser->setGap(Style::spaceSm * contentScale);
++      m_headerUser->layout(renderer);
++      m_headerUser->setPosition(
++          (contentWidth - m_headerUser->width()) * 0.5F,
++          std::max(0.0F, (headerUserHeight - m_headerUser->height()) * 0.5F)
+       );
+     }
+   } else if (m_headerCapsLock != nullptr) {
+     m_headerCapsLock->setVisible(false);
++    m_headerUser->setVisible(false);
+   }
+ 
+   // Auth panel: sibling above/below the login box (flips below when near the top edge).
+diff --git a/src/shell/lockscreen/lock_surface.h b/src/shell/lockscreen/lock_surface.h
+index eaebe32..45e8df4 100644
+--- a/src/shell/lockscreen/lock_surface.h
++++ b/src/shell/lockscreen/lock_surface.h
+@@ -172,6 +172,11 @@ private:
+   Label* m_headerCapsLockLabel = nullptr;
+   Flex* m_headerBatteryText = nullptr;
+   Label* m_headerBatteryStatus = nullptr;
++  Flex* m_headerUser = nullptr;
++  Image* m_headerUserAvatar = nullptr;
++  Label* m_headerUserName = nullptr;
++  std::string m_headerUserAvatarPath;
++  int m_headerUserAvatarPx = 0;
+   Flex* m_mediaBlock = nullptr;
+   Image* m_mediaArt = nullptr;
+   Glyph* m_mediaFallbackGlyph = nullptr;
+diff --git a/src/shell/lockscreen/lockscreen_login_box.cpp b/src/shell/lockscreen/lockscreen_login_box.cpp
+index 40f8b87..cf58635 100644
+--- a/src/shell/lockscreen/lockscreen_login_box.cpp
++++ b/src/shell/lockscreen/lockscreen_login_box.cpp
+@@ -325,6 +325,7 @@ namespace lockscreen_login_box {
+     style.showWeather = readBool(settings, kShowWeatherKey, style.showWeather);
+     style.showClock = readBool(settings, "show_clock", style.showClock);
+     style.showBattery = readBool(settings, "show_battery", style.showBattery);
++    style.showUser = readBool(settings, "show_user", style.showUser);
+     style.showUnlockHint = readBool(settings, kShowUnlockHintKey, style.showUnlockHint);
+     return style;
+   }
+diff --git a/src/shell/lockscreen/lockscreen_login_box.h b/src/shell/lockscreen/lockscreen_login_box.h
+index 9e29dae..98f48c7 100644
+--- a/src/shell/lockscreen/lockscreen_login_box.h
++++ b/src/shell/lockscreen/lockscreen_login_box.h
+@@ -55,6 +55,7 @@ namespace lockscreen_login_box {
+     bool showWeather = true;
+     bool showClock = false;
+     bool showBattery = false;
++    bool showUser = false;
+     bool showUnlockHint = true;
+   };
+ 

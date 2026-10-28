@@ -38,6 +38,7 @@ show_media = false
 show_weather = false
 show_clock = true
 show_battery = true
+show_user = true
 show_caps_lock = true
 show_keyboard_layout = true
 

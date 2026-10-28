@@ -32,11 +32,13 @@
             ./patches/lockscreen-login-clock.patch
             ./patches/lockscreen-battery-status.patch
             ./patches/lockscreen-header-caps-lock.patch
+            ./patches/lockscreen-header-user.patch
             ./patches/media-player-seek-bar.patch
             ./patches/solid-panels.patch
             ./patches/network-wifi-off-color.patch
             ./patches/bluetooth-off-color.patch
             ./patches/theme-terminal-colors.patch
+            ./patches/panel-close-button-red.patch
           ];
       }))
       pkgs.adwaita-icon-theme
