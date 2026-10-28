@@ -21,8 +21,12 @@
           name = "JetBrainsMono Nerd Font Mono";
         };
 
-        sansSerif = config.stylix.fonts.monospace;
-        serif = config.stylix.fonts.monospace;
+        sansSerif = lib.mkDefault {
+          inherit (config.stylix.fonts.monospace) package;
+          name = "JetBrainsMono Nerd Font Propo";
+        };
+
+        serif = config.stylix.fonts.sansSerif;
         sizes.terminal = lib.mkDefault 16;
       };
 

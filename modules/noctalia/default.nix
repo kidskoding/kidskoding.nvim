@@ -15,7 +15,7 @@
       enable = true;
       settings = lib.recursiveUpdate (lib.importTOML ./greeter/greeter.toml) {
         user.default = user;
-        appearance.font_family = config.stylix.fonts.monospace.name;
+        appearance.font_family = config.stylix.fonts.sansSerif.name;
       };
     };
 

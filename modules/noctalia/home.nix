@@ -17,7 +17,7 @@
 
       "noctalia/display.toml".source = (pkgs.formats.toml {}).generate "noctalia-display.toml" {
         accessibility.ui_scale = 1.2 / d.scale;
-        shell.font_family = config.stylix.fonts.monospace.name;
+        shell.font_family = config.stylix.fonts.sansSerif.name;
         bar.main =
           {
             scale =
