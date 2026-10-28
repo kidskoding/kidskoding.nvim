@@ -10,11 +10,6 @@ hide_logo = false
 path = "/etc/noctalia-greeter/wallpaper.jpg"
 fill_mode = "crop"
 
-[output]
-width = 1920
-height = 1080
-scale = 1.0
-
 [cursor]
 theme = "Adwaita"
 size = 32

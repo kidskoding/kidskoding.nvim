@@ -16,6 +16,7 @@
       settings = lib.recursiveUpdate (lib.importTOML ./greeter/greeter.toml) {
         user.default = user;
         appearance.font_family = config.stylix.fonts.sansSerif.name;
+        output = {inherit (config.my.display) width height scale;};
       };
     };
 
