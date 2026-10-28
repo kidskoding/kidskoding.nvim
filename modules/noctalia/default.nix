@@ -1,5 +1,6 @@
 {...}: {
   flake.nixosModules.noctalia = {
+    config,
     inputs,
     lib,
     pkgs,
@@ -12,7 +13,10 @@
     # so its toml and assets go through the store and /etc (needs a rebuild)
     services.displayManager.noctalia-greeter = {
       enable = true;
-      settings = lib.recursiveUpdate (lib.importTOML ./greeter/greeter.toml) {user.default = user;};
+      settings = lib.recursiveUpdate (lib.importTOML ./greeter/greeter.toml) {
+        user.default = user;
+        appearance.font_family = config.stylix.fonts.monospace.name;
+      };
     };
 
     environment.etc."noctalia-greeter/wallpaper.jpg".source = ./wallpapers/starfire-bg.jpg;

@@ -5,7 +5,6 @@ default = "Niri"
 scheme = "Synced"
 theme_mode = "dark"
 hide_logo = false
-font_family = "JetBrainsMono Nerd Font Mono"
 
 [appearance.palette]
 primary = "#fabd2f"

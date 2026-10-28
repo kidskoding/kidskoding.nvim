@@ -1,7 +1,6 @@
 [shell]
 time_format = "{:%-I:%M %p}"
 avatar_path = "~/nixos/modules/noctalia/avatars/starfire.jpeg"
-font_family = "JetBrainsMono Nerd Font Mono"
 
 [shell.panel]
 open_near_click_control_center = true
