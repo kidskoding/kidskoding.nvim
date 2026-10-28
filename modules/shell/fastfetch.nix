@@ -35,7 +35,10 @@
 
         display = {
           separator = " ";
-          size.ndigits = 1;
+          size = {
+            ndigits = 1;
+            spaceBeforeUnit = "never";
+          };
           color.keys = "38;2;${c."base04-rgb-r"};${c."base04-rgb-g"};${c."base04-rgb-b"}";
         };
 
