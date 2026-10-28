@@ -39,8 +39,8 @@
         };
 
         character = {
-          success_symbol = "[▶](bold green)";
-          error_symbol = "[▶](bold red)";
+          success_symbol = "[▶](green)";
+          error_symbol = "[▶](red)";
         };
 
         os.symbols.NixOS = " ";
