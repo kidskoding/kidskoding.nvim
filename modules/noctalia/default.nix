@@ -39,6 +39,7 @@
             ./patches/bluetooth-off-color.patch
             ./patches/theme-terminal-colors.patch
             ./patches/panel-close-button-red.patch
+            ./patches/marquee-gap.patch
           ];
       }))
       pkgs.adwaita-icon-theme

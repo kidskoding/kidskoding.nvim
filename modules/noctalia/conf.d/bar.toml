@@ -38,7 +38,7 @@ hide_when_empty = true
 
 [widget.media]
 artist_first = false
-max_length = 220
+max_length = 275
 title_scroll = "always"
 hide_when_no_media = true
 show_progress = true
