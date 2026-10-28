@@ -2,6 +2,9 @@
   flake.homeModules.anirudh = {pkgs, ...}: {
     programs.btop.enable = true;
 
+    programs.cava.enable = true;
+    stylix.targets.cava.rainbow.enable = true;
+
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -28,7 +31,6 @@
 
       # other really cool stuff!!
       asciiquarium-transparent
-      cava
       cbonsai
       cowsay
       dua
