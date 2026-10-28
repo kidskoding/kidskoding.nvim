@@ -3,10 +3,18 @@
     # backup editor: helix fork with vim keybindings (evil-helix), will run as `hx`
     programs.helix = {
       enable = true;
-      package = pkgs.evil-helix;
+
+      # evil mode overwrites statusline.mode with NOR/INS/VIS; drop that so the names below apply
+      package = pkgs.evil-helix.overrideAttrs (old: {
+        patches =
+          (old.patches or [])
+          ++ [
+            ./patches/statusline-mode-names.patch
+          ];
+      });
 
       settings = {
-        theme = "gruvbox_custom";
+        theme = "gruvbox";
 
         editor = {
           line-number = "relative";
@@ -17,25 +25,17 @@
             normal = "block";
             select = "underline";
           };
-        };
-      };
 
-      # overrides on top of built-in gruvbox, matching the nvim lualine/gruvbox tweaks
-      themes.gruvbox_custom = {
-        inherits = "gruvbox";
-
-        # brackets and delimiters in plain fg, not orange
-        "punctuation" = "fg1";
-
-        # brighter middle text; normal-mode badge in yellow like lualine
-        "ui.statusline" = {
-          fg = "fg2";
-          bg = "bg2";
-        };
-        "ui.statusline.normal" = {
-          fg = "bg0";
-          bg = "yellow0";
-          modifiers = ["bold"];
+          statusline = {
+            left = ["mode" "version-control" "file-name" "file-modification-indicator"];
+            right = ["spinner" "diagnostics" "file-type" "selections" "position"];
+            separator = "│";
+            mode = {
+              normal = "NORMAL";
+              insert = "INSERT";
+              select = "VISUAL";
+            };
+          };
         };
       };
     };

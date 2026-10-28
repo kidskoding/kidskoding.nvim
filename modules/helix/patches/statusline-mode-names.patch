@@ -1,0 +1,32 @@
+--- a/helix-term/src/config.rs
++++ b/helix-term/src/config.rs
+@@ -2,7 +2,6 @@
+ use crate::keymap::{merge_keys, KeyTrie};
+ use helix_loader::merge_toml_values;
+ use helix_view::document::Mode;
+-use helix_view::editor::ModeConfig;
+ use serde::Deserialize;
+ use std::collections::HashMap;
+ use std::fmt::Display;
+@@ -66,7 +65,7 @@
+         let local_config: Result<ConfigRaw, ConfigLoadError> =
+             local.and_then(|file| toml::from_str(&file).map_err(ConfigLoadError::BadConfig));
+         let evil = Self::is_evil(&global_config, &local_config);
+-        let mut res = match (global_config, local_config) {
++        let res = match (global_config, local_config) {
+             (Ok(global), Ok(local)) => {
+                 let mut keys = if !evil {
+                     keymap::default()
+@@ -126,12 +125,6 @@
+             (Err(err), Err(_)) => return Err(err),
+         };
+ 
+-        // HACK: because we can't easily differentiate between "no configuration" and
+-        // "explicit non-evil mode configuration"
+-        if evil {
+-            res.editor.statusline.mode = ModeConfig::default_evil();
+-        }
+-
+         Ok(res)
+     }
+ 
