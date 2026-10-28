@@ -18,7 +18,7 @@
       };
     };
 
-    stylix.fonts.sizes.terminal = 16;
+    stylix.fonts.sizes.terminal = 14;
 
     system.stateVersion = "26.05";
     home-manager.users.${user}.home.stateVersion = "26.05";

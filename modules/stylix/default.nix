@@ -7,8 +7,8 @@
     ...
   }: let
     nerdFont = {
-      package = pkgs.nerd-fonts.ubuntu-mono;
-      family = "UbuntuMono Nerd Font";
+      package = pkgs.nerd-fonts.fira-code;
+      family = "FiraCode Nerd Font";
     };
   in {
     imports = [inputs.stylix.nixosModules.stylix];
@@ -32,7 +32,7 @@
         };
 
         serif = config.stylix.fonts.sansSerif;
-        sizes.terminal = lib.mkDefault 18;
+        sizes.terminal = lib.mkDefault 16;
       };
 
       cursor = {
