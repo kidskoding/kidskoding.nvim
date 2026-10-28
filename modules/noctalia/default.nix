@@ -45,6 +45,7 @@
             ./patches/theme-terminal-colors.patch
             ./patches/panel-close-button-red.patch
             ./patches/marquee-gap.patch
+            # ./patches/destructive-button-hover.patch
           ];
       }))
       pkgs.adwaita-icon-theme

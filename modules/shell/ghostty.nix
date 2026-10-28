@@ -7,6 +7,8 @@
       settings = {
         term = "xterm-256color";
 
+        font-feature = ["-calt" "-liga" "-dlig"];
+
         background-blur = true;
 
         confirm-close-surface = false;
