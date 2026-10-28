@@ -1,7 +1,9 @@
 my nixos config!!
 
-![screenshot 1](screenshots/1.png)
-![screenshot 2](screenshots/2.png)
-![screenshot 3](screenshots/3.png)
-![screenshot 4](screenshots/5.png)
-![screenshot 4](screenshots/4.png)
+![fastfetch](screenshots/thinkpad/1-fetch.png)
+![neovim and btop](screenshots/thinkpad/2-nvim-btop.png)
+![cbonsai, tty-clock and pipes](screenshots/thinkpad/3-bonsai-clock-pipes.png)
+![control center](screenshots/thinkpad/4-control-center.png)
+![launcher](screenshots/thinkpad/5-launcher.png)
+![spotify and cava](screenshots/thinkpad/6-spotify-cava.png)
+![overview](screenshots/thinkpad/7-overview.png)
