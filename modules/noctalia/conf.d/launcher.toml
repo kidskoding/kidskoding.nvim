@@ -12,6 +12,7 @@ pinned = [
   "lunarclient",
   "orca-ide",
   "org.gnome.Nautilus",
+  "org.neovim.nvim",
   "qimgv",
   "rs.ruffle.Ruffle",
   "spotify",
