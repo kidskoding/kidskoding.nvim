@@ -1,25 +1,11 @@
 {...}: {
   flake.homeModules.anirudh = {
-    config,
-    lib,
-    pkgs,
-    ...
-  }: {
-    # some fonts lack glyphs in bold (agave has no bold ▶); fall back to text before emoji
-    home.packages = [pkgs.nerd-fonts.jetbrains-mono];
-
     programs.ghostty = {
       enable = true;
       enableFishIntegration = true;
 
       settings = {
         term = "xterm-256color";
-
-        font-family = lib.mkForce [
-          config.stylix.fonts.monospace.name
-          "JetBrainsMono Nerd Font Mono"
-          config.stylix.fonts.emoji.name
-        ];
 
         background-blur = true;
 

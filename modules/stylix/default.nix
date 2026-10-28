@@ -7,8 +7,8 @@
     ...
   }: let
     nerdFont = {
-      package = pkgs.nerd-fonts.fira-code;
-      family = "FiraCode Nerd Font";
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      family = "JetBrainsMono Nerd Font";
     };
   in {
     imports = [inputs.stylix.nixosModules.stylix];
