@@ -5,7 +5,12 @@
     lib,
     pkgs,
     ...
-  }: {
+  }: let
+    nerdFont = {
+      package = pkgs.nerd-fonts.jetbrains-mono;
+      family = "Agave Nerd Font";
+    };
+  in {
     imports = [inputs.stylix.nixosModules.stylix];
 
     stylix = {
@@ -17,13 +22,13 @@
 
       fonts = {
         monospace = lib.mkDefault {
-          package = pkgs.nerd-fonts.jetbrains-mono;
-          name = "JetBrainsMono Nerd Font Mono";
+          inherit (nerdFont) package;
+          name = "${nerdFont.family} Mono";
         };
 
         sansSerif = lib.mkDefault {
-          inherit (config.stylix.fonts.monospace) package;
-          name = "JetBrainsMono Nerd Font Propo";
+          inherit (nerdFont) package;
+          name = "${nerdFont.family} Propo";
         };
 
         serif = config.stylix.fonts.sansSerif;
