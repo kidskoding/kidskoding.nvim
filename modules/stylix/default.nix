@@ -7,8 +7,8 @@
     ...
   }: let
     nerdFont = {
-      package = pkgs.nerd-fonts.agave;
-      family = "Agave Nerd Font";
+      package = pkgs.nerd-fonts.ubuntu-mono;
+      family = "UbuntuMono Nerd Font";
     };
   in {
     imports = [inputs.stylix.nixosModules.stylix];

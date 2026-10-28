@@ -29,7 +29,7 @@
           */
           padding = {
             top = 5;
-            left = 1;
+            left = 2;
           };
         };
 
