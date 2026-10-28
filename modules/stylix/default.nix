@@ -7,7 +7,7 @@
     ...
   }: let
     nerdFont = {
-      package = pkgs.nerd-fonts.jetbrains-mono;
+      package = pkgs.nerd-fonts.agave;
       family = "Agave Nerd Font";
     };
   in {
