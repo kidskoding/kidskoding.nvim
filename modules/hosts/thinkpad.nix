@@ -3,18 +3,7 @@
   self,
   ...
 }: {
-  flake.nixosModules.thinkpad = {
-    pkgs,
-    user,
-    ...
-  }: let
-    # amd-pstate-epp: "powersave" governor already scales with load; EPP sets how eagerly it clocks up
-    setEpp = pkgs.writeShellScript "set-epp" ''
-      for f in /sys/devices/system/cpu/cpu*/cpufreq/energy_performance_preference; do
-        echo "$1" > "$f"
-      done
-    '';
-  in {
+  flake.nixosModules.thinkpad = {user, ...}: {
     imports = [
       ../../hosts/thinkpad/hardware-configuration.nix
       ../../hosts/thinkpad/disko.nix
@@ -35,12 +24,6 @@
       "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 100"
       "w /sys/class/power_supply/BAT0/charge_control_start_threshold - - - - 0"
     ];
-
-    # full speed on the charger, kernel default on battery; "add" covers boot
-    services.udev.extraRules = ''
-      SUBSYSTEM=="power_supply", KERNEL=="AC", ACTION=="add|change", ATTR{online}=="1", RUN+="${setEpp} performance"
-      SUBSYSTEM=="power_supply", KERNEL=="AC", ACTION=="add|change", ATTR{online}=="0", RUN+="${setEpp} balance_performance"
-    '';
 
     # This value determines the NixOS release from which the default
     # settings for stateful data, like file locations and database versions
