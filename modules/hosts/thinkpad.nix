@@ -20,6 +20,11 @@
 
     stylix.fonts.sizes.terminal = 14;
 
+    systemd.tmpfiles.rules = [
+      "w /sys/class/power_supply/BAT0/charge_control_start_threshold - - - - 75"
+      "w /sys/class/power_supply/BAT0/charge_control_end_threshold - - - - 80"
+    ];
+
     system.stateVersion = "26.05";
     home-manager.users.${user}.home.stateVersion = "26.05";
   };
