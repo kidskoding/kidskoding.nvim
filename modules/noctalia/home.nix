@@ -25,6 +25,7 @@
               else 1.1;
           }
           // lib.optionalAttrs narrow {
+            font_scale = 1.0;
             start = ["control-center" "workspaces" "media"];
             center = [];
           };

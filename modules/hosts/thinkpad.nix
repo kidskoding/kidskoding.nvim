@@ -6,6 +6,7 @@
   flake.nixosModules.thinkpad = {user, ...}: {
     imports = [
       ../../hosts/thinkpad/hardware-configuration.nix
+      ../../hosts/thinkpad/disko.nix
     ];
 
     my = {
