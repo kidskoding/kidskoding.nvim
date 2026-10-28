@@ -1,5 +1,12 @@
 {...}: {
   flake.homeModules.anirudh = {...}: {
+    programs.niri.settings.layer-rules = [
+      {
+        matches = [{namespace = "^noctalia-wallpaper$";}];
+        place-within-backdrop = true;
+      }
+    ];
+
     programs.niri.settings.window-rules = [
       {
         draw-border-with-background = false;

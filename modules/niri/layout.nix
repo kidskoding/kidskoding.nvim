@@ -4,7 +4,10 @@
   in {
     programs.niri.settings.layout = {
       gaps = 10;
-      background-color = c.base00;
+
+      # transparent so the wallpaper in the backdrop shows through, both on
+      # the desktop and between workspaces in the overview
+      background-color = "transparent";
 
       center-focused-column = "on-overflow";
       default-column-width.proportion = 0.5;

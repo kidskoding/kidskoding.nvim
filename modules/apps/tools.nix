@@ -1,5 +1,7 @@
 {...}: {
   flake.homeModules.anirudh = {pkgs, ...}: {
+    programs.btop.enable = true;
+
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -27,6 +29,7 @@
       # other really cool stuff!!
       asciiquarium-transparent
       cava
+      cbonsai
       cowsay
       dua
       fortune
@@ -39,6 +42,7 @@
       tickrs
       timr-tui
       tldr
+      tty-clock
       wtf
 
       # user utilities
