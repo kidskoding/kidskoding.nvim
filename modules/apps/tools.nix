@@ -3,7 +3,6 @@
     programs.btop.enable = true;
 
     programs.cava.enable = true;
-    stylix.targets.cava.rainbow.enable = true;
 
     xdg.mimeApps = {
       enable = true;
