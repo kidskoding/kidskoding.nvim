@@ -30,18 +30,6 @@ in {
     inputs.llm-agents.packages.${system}.hermes-agent # hermes-agent cli!
     inputs.llm-agents.packages.${system}.hermes-desktop # hermes-agent desktop!
 
-    # rust nightly toolchain
-    (inputs.fenix.packages.${system}.latest.withComponents [
-      "cargo"
-      "clippy"
-      "rust-analyzer"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])
-
-    inputs.nix-vite-plus.packages.${system}.default
-
     inputs.matui.packages.${system}.default
     inputs.toofan.packages.${system}.default
 

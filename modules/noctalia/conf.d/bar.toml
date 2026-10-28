@@ -17,7 +17,16 @@ capsule_padding = 8
 capsule_thickness = 0.8
 start = ["control-center", "workspaces"]
 center = ["media"]
-end = ["tray", "network", "bluetooth", "volume", "brightness", "battery", "clock", "session"]
+end = [
+  "tray",
+  "network",
+  "bluetooth",
+  "volume",
+  "brightness",
+  "battery",
+  "clock",
+  "session",
+]
 
 [bar.main.dead_zone.actions]
 right = "none"
