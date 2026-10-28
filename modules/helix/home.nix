@@ -9,7 +9,7 @@
         theme = "gruvbox_custom";
 
         editor = {
-          line-number = "relative";
+          line-number = "absolute";
           cursorline = true;
           color-modes = true;
         };
