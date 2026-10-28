@@ -110,7 +110,7 @@
       size = 16 * 1024;
     }
   ];
-  services.logind.settings.Login.HandleLidSwitch = "lock";
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
 
   time.timeZone = "America/Chicago";
   i18n.defaultLocale = "en_US.UTF-8";
