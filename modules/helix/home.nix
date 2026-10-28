@@ -6,11 +6,23 @@
       package = pkgs.evil-helix;
 
       settings = {
-        theme = "gruvbox";
+        theme = "gruvbox_custom";
 
         editor = {
           line-number = "relative";
           cursorline = true;
+          color-modes = true;
+        };
+      };
+
+      themes.gruvbox_custom = {
+        inherits = "gruvbox";
+
+        # NOR badge yellow (gruvbox default is grey fg3)
+        "ui.statusline.normal" = {
+          fg = "bg1";
+          bg = "yellow0";
+          modifiers = ["bold"];
         };
       };
     };
