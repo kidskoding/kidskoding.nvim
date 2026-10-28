@@ -1,5 +1,5 @@
 diff --git a/src/shell/lockscreen/lock_surface.cpp b/src/shell/lockscreen/lock_surface.cpp
-index fead01c..7bf66ae 100644
+index fead01c..278f0a1 100644
 --- a/src/shell/lockscreen/lock_surface.cpp
 +++ b/src/shell/lockscreen/lock_surface.cpp
 @@ -14,6 +14,7 @@
@@ -55,11 +55,14 @@ index fead01c..7bf66ae 100644
    if (m_weatherCurrent != nullptr) {
      m_loginClockRow->setParticipatesInLayout(!structuredHeader);
      m_loginBatteryRow->setParticipatesInLayout(!structuredHeader);
-@@ -1551,7 +1574,10 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+@@ -1550,8 +1573,12 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+ 
    if (structuredHeader) {
      const float columnGap = Style::spaceLg * 1.5F * contentScale;
-     const float groupHeight = rows.info - headerWarningHeight;
+-    const float groupHeight = rows.info - headerWarningHeight;
 -    const float columnWidth = std::max(0.0F, (headerWidth - columnGap) * 0.5F);
++    const bool showCapsLock = loginStyle.showCapsLock && m_capsLock;
++    const float groupHeight = rows.info - (showCapsLock ? headerWarningHeight : 0.0F);
 +    const float columnCount = showHeaderUser ? 3.0F : 2.0F;
 +    const float columnWidth = std::max(0.0F, (headerWidth - columnGap * (columnCount - 1.0F)) / columnCount);
 +    const float clockColumnX = showHeaderUser ? columnWidth + columnGap : 0.0F;
@@ -67,7 +70,7 @@ index fead01c..7bf66ae 100644
      const float iconSize = Style::fontSizeBody * contentScale;
      const float iconGap = Style::spaceSm * contentScale;
      const float textWidth = std::max(0.0F, columnWidth - iconSize - iconGap);
-@@ -1565,7 +1591,7 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+@@ -1565,7 +1592,7 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
      m_loginClockRow->setMaxWidth(columnWidth);
      m_loginClockRow->layout(renderer);
      m_loginClockRow->setPosition(
@@ -76,7 +79,7 @@ index fead01c..7bf66ae 100644
          std::max(0.0F, (groupHeight - m_loginClockRow->height()) * 0.5F)
      );
  
-@@ -1576,7 +1602,7 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
+@@ -1576,11 +1603,10 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
      m_loginBatteryRow->setMaxWidth(columnWidth);
      m_loginBatteryRow->layout(renderer);
      m_loginBatteryRow->setPosition(
@@ -85,6 +88,10 @@ index fead01c..7bf66ae 100644
          std::max(0.0F, (groupHeight - m_loginBatteryRow->height()) * 0.5F)
      );
  
+-    const bool showCapsLock = loginStyle.showCapsLock && m_capsLock;
+     m_headerCapsLock->setVisible(showCapsLock);
+     if (showCapsLock) {
+       m_headerCapsLock->setGap(iconGap);
 @@ -1595,8 +1621,37 @@ void LockSurface::layoutScene(std::uint32_t width, std::uint32_t height) {
            groupHeight + std::max(0.0F, (headerWarningHeight - m_headerCapsLock->height()) * 0.5F)
        );

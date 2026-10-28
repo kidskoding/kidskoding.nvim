@@ -29,16 +29,13 @@
           */
           padding = {
             top = 5;
-            left = 3;
+            left = 1;
           };
         };
 
         display = {
           separator = " ";
-          size = {
-            ndigits = 1;
-            spaceBeforeUnit = "never";
-          };
+          size.ndigits = 1;
           color.keys = "38;2;${c."base04-rgb-r"};${c."base04-rgb-g"};${c."base04-rgb-b"}";
         };
 
