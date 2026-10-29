@@ -63,6 +63,22 @@
               ];
             };
 
+            "bind \"Ctrl Alt h\"" = {
+              MovePane = "left";
+            };
+            "bind \"Ctrl Alt j\"" = {
+              MovePane = "down";
+            };
+            "bind \"Ctrl Alt k\"" = {
+              MovePane = "up";
+            };
+            "bind \"Ctrl Alt l\"" = {
+              MovePane = "right";
+            };
+            "bind \"Alt b\"" = {
+              BreakPane = [];
+            };
+
             "bind \"Alt h\" \"Alt Left\"" = {
               MoveFocus = "Left";
             };
