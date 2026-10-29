@@ -57,6 +57,7 @@
 
       # cloud
       awscli2
+      terraform
     ];
   };
 }
