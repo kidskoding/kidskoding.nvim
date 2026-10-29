@@ -102,7 +102,7 @@
       omnisharp-roslyn
       elmPackages.elm
       elmPackages.elm-language-server
-      (julia.withPackages ["LanguageServer"])
+      julia
       php
       phpPackages.composer
       intelephense

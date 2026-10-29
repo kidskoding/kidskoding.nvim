@@ -37,7 +37,10 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
 
     # coding agent skills, plugins, settings
-    anikonistack.url = "github:kidskoding/anikonistack";
+    anikonistack = {
+      url = "github:kidskoding/anikonistack";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # neovim nightly (0.13.0-dev)
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -87,7 +90,10 @@
 
     # productivity
     matui.url = "github:pkulak/matui"; # matrix tui client
-    toofan.url = "github:vyrx-dev/toofan";
+    toofan = {
+      url = "github:vyrx-dev/toofan";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # browsers
     cromite = {

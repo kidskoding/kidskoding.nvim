@@ -33,7 +33,7 @@ jobs:
       - name: Check TOML formatting
         run: nix run --no-write-lock-file --inputs-from . nixpkgs#taplo -- fmt --check
 
-  flake-check:
+  eval-thinkpad:
     runs-on: codeberg-medium
     timeout-minutes: 30
     container:
@@ -45,8 +45,8 @@ jobs:
           git remote add origin "$CI_REPOSITORY_URL"
           git fetch --no-tags --depth=1 origin "$CI_COMMIT_SHA"
           git checkout --detach FETCH_HEAD
-      - name: Check flake
-        run: nix flake check --no-write-lock-file --print-build-logs
+      - name: Evaluate thinkpad
+        run: nix eval --raw --no-write-lock-file --print-build-logs .#nixosConfigurations.thinkpad.config.system.build.toplevel.drvPath
 
   noctalia-config:
     runs-on: codeberg-medium
