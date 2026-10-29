@@ -58,6 +58,9 @@
       # cloud
       awscli2
       terraform
+
+      # other
+      ncspot
     ];
   };
 }

@@ -46,6 +46,7 @@
             ./patches/panel-close-button-red.patch
             ./patches/marquee-gap.patch
             ./patches/destructive-button-hover.patch
+            ./patches/headphones-volume-icon.patch
           ];
       }))
       pkgs.adwaita-icon-theme
