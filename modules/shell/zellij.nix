@@ -19,6 +19,7 @@
         copy_command = "wl-copy";
         show_startup_tips = false;
         pane_frame_style = "full";
+        stacked_pane_list = false;
 
         keybinds = {
           unbind = [
