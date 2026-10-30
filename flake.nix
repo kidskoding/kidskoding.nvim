@@ -1,116 +1,113 @@
 {
-  description = "anirudh's nixos flake";
+  description = "kidskoding.nvim: a minimal Neovim config written in Fennel";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  outputs = {
+    self,
+    nixpkgs,
+  }: let
+    inherit (nixpkgs) lib;
+    systems = ["x86_64-linux" "aarch64-linux" "x86_64-darwin" "aarch64-darwin"];
+    forAllSystems = f:
+      lib.genAttrs systems (system:
+        f (import nixpkgs {
+          inherit system;
+          config.allowUnfreePredicate = pkg: lib.getName pkg == "intelephense";
+        }));
+  in {
+    packages = forAllSystems (pkgs: let
+      config = lib.fileset.toSource {
+        root = ./.;
+        fileset = lib.fileset.unions [
+          ./init.lua
+          ./fnl
+          ./flsproject.fnl
+          ./nvim-pack-lock.json
+        ];
+      };
 
-    # home manager!!
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+      deps = builtins.filter (lib.meta.availableOn pkgs.stdenv.hostPlatform) (with pkgs; [
+        # plugin installs, parsers, pickers
+        curl
+        git
+        gnutar
+        ripgrep
+        fd
+        stdenv.cc
+        tree-sitter
 
-    # dendriticness!!
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    import-tree.url = "github:vic/import-tree";
+        # plugin tools
+        difftastic
+        lazygit
+        websocat
+        zathura
 
-    # advent of code cli (my fork)
-    aoc-cli = {
-      url = "github:kidskoding/aoc-cli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+        # formatters
+        alejandra
+        fnlfmt
+        ruff
+        stylua
+        typstyle
 
-    # coding agents
-    antigravity-cli = {
-      url = "github:Hy4ri/antigravity-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    claude-code-cli = {
-      url = "github:sadjow/claude-code-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    claude-desktop.url = "github:k3d3/claude-desktop-linux-flake";
-    codex-cli = {
-      url = "github:sadjow/codex-cli-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    llm-agents.url = "github:numtide/llm-agents.nix";
+        # lsps
+        clang-tools
+        dockerfile-language-server
+        elmPackages.elm-language-server
+        fennel-ls
+        fish-lsp
+        gopls
+        graphql-language-service-cli
+        intelephense
+        jdt-language-server
+        (julia.withPackages ["LanguageServer"])
+        kotlin-language-server
+        lua-language-server
+        marksman
+        mdx-language-server
+        metals
+        nixd
+        ocamlPackages.ocaml-lsp
+        omnisharp-roslyn
+        ruby-lsp
+        rust-analyzer
+        sourcekit-lsp
+        sqls
+        taplo
+        terraform-ls
+        tinymist
+        ty
+        typescript
+        vscode-langservers-extracted
+        yaml-language-server
+        zls
+      ]);
+    in {
+      default = pkgs.writeShellApplication {
+        name = "nvim";
+        text = ''
+          export PATH="''${PATH:+$PATH:}${lib.makeBinPath deps}"
+          export NVIM_APPNAME="''${NVIM_APPNAME:-nvim}"
+          export TSDK="''${TSDK:-${pkgs.typescript_5}/lib/node_modules/typescript/lib}"
 
-    # coding agent skills, plugins, settings
-    anikonistack = {
-      url = "github:kidskoding/anikonistack";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+          dir="''${XDG_CONFIG_HOME:-$HOME/.config}/$NVIM_APPNAME"
+          if [ -L "$dir" ] && [ ! -e "$dir" ]; then
+            echo "error: $dir is a broken symlink" >&2
+            exit 1
+          elif [ ! -e "$dir" ]; then
+            ${pkgs.coreutils}/bin/mkdir -p "$dir"
+            ${pkgs.coreutils}/bin/cp -rT --no-preserve=mode ${config} "$dir"
+          fi
 
-    # neovim nightly (0.13.0-dev)
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+          exec ${pkgs.neovim-unwrapped}/bin/nvim "$@"
+        '';
+      };
+    });
 
-    # rust nightly (fenix latest)
-    fenix = {
-      url = "github:nix-community/fenix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # vite-plus
-    nix-vite-plus = {
-      url = "github:ryoppippi/nix-vite-plus";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # niri
-    niri.url = "github:sodiboo/niri-flake";
-
-    # noctalia
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # stylix: nix in style 💎!!
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # disko: declarative disk layout!
-    disko = {
-      url = "github:nix-community/disko/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # secrets (sops)
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # productivity
-    matui.url = "github:pkulak/matui"; # matrix tui client
-    toofan = {
-      url = "github:vyrx-dev/toofan";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # browsers
-    cromite = {
-      url = "github:Impqxr/cromite-nix-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    zen-browser = {
-      url = "github:0xc000022070/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
-    };
-
-    # artcraft: rust clones of creative/office apps
-    artcraft-nix.url = "github:applicative-systems/artcraft-nix";
+    apps = forAllSystems (pkgs: {
+      default = {
+        type = "app";
+        program = lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      };
+    });
   };
-
-  outputs = inputs:
-    inputs.flake-parts.lib.mkFlake {inherit inputs;}
-    (inputs.import-tree.matchNot ".*/nvim/config/.*" ./modules);
 }
