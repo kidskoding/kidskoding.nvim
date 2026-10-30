@@ -29,6 +29,16 @@ auto_locate = true
 enabled = true
 unit = "imperial"
 
+[calendar]
+enabled = true
+event_time_format = "%-I:%M %p"
+
+# sign-in token lives in the keyring: connect once per machine in Settings → Calendar
+[calendar.account.personal_google]
+type = "google"
+name = "ak123 (uiuc)"
+color = "primary"
+
 [battery]
 warning_threshold = 30
 

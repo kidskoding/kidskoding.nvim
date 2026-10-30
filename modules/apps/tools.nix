@@ -9,6 +9,11 @@
       defaultApplications = {
         "application/pdf" = "org.pwmt.zathura-pdf-mupdf.desktop";
         "inode/directory" = "org.gnome.Nautilus.desktop";
+        "image/png" = "qimgv.desktop";
+        "image/jpeg" = "qimgv.desktop";
+        "image/gif" = "qimgv.desktop";
+        "image/webp" = "qimgv.desktop";
+        "image/bmp" = "qimgv.desktop";
       };
     };
 
